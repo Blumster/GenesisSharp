@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79D79069-0406-4D0C-9850-C18C53D336F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Genesis.Shared</RootNamespace>
+    <AssemblyName>Genesis.Shared</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data">
+      <HintPath>..\Libraries\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TNL.NET">
+      <HintPath>..\Libraries\TNL.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="UniversalAuth">
+      <HintPath>..\Libraries\UniversalAuth.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constant\LeaveClanResponse.cs" />
+    <Compile Include="Database\Tables\Clan.cs" />
+    <Compile Include="Database\Tables\Convoy.cs" />
+    <Compile Include="Manager\AssetManager.cs" />
+    <Compile Include="Clonebase\CloneBase.cs" />
+    <Compile Include="Clonebase\CloneBaseArmor.cs" />
+    <Compile Include="Clonebase\CloneBaseCharacter.cs" />
+    <Compile Include="Clonebase\CloneBaseCommodity.cs" />
+    <Compile Include="Clonebase\CloneBaseCreature.cs" />
+    <Compile Include="Clonebase\CloneBaseGadget.cs" />
+    <Compile Include="Clonebase\CloneBaseObject.cs" />
+    <Compile Include="Clonebase\CloneBasePowerPlant.cs" />
+    <Compile Include="Clonebase\CloneBaseTinkeringKit.cs" />
+    <Compile Include="Clonebase\CloneBaseVehicle.cs" />
+    <Compile Include="Clonebase\CloneBaseWeapon.cs" />
+    <Compile Include="Clonebase\CloneBaseWheelSet.cs" />
+    <Compile Include="Constant\ChatType.cs" />
+    <Compile Include="Constant\CombatMode.cs" />
+    <Compile Include="Constant\CustomCharacterColor.cs" />
+    <Compile Include="Constant\DeathType.cs" />
+    <Compile Include="Constant\Faction.cs" />
+    <Compile Include="Constant\GadgetApplyError.cs" />
+    <Compile Include="Constant\GhostType.cs" />
+    <Compile Include="Constant\InventoryType.cs" />
+    <Compile Include="Constant\KmMode.cs" />
+    <Compile Include="Constant\MaskBits.cs" />
+    <Compile Include="Constant\MissionObjectiveState.cs" />
+    <Compile Include="Constant\ObjectType.cs" />
+    <Compile Include="Constant\Opcode.cs" />
+    <Compile Include="Constant\RequirementType.cs" />
+    <Compile Include="Constant\SocialType.cs" />
+    <Compile Include="Constant\StuntState.cs" />
+    <Compile Include="Constant\UnkFlags.cs" />
+    <Compile Include="Database\DataAccess.cs" />
+    <Compile Include="Database\DataStructs\AccountData.cs" />
+    <Compile Include="Database\DataStructs\CharacterData.cs" />
+    <Compile Include="Database\DataStructs\ItemData.cs" />
+    <Compile Include="Database\DataStructs\SectorServerData.cs" />
+    <Compile Include="Database\DataStructs\VehicleData.cs" />
+    <Compile Include="Database\IDatabaseAccess.cs" />
+    <Compile Include="Database\MySql\MySqlDatabase.cs" />
+    <Compile Include="Database\Tables\Account.cs" />
+    <Compile Include="Database\Tables\Character.cs" />
+    <Compile Include="Database\Tables\Item.cs" />
+    <Compile Include="Database\Tables\Realmlist.cs" />
+    <Compile Include="Database\Tables\Social.cs" />
+    <Compile Include="Database\Tables\Vehicle.cs" />
+    <Compile Include="Entities\Armor.cs" />
+    <Compile Include="Entities\Base\GraphicsBase.cs" />
+    <Compile Include="Entities\Base\ClonedObjectBase.cs" />
+    <Compile Include="Entities\Base\ClonedObjectBaseAbstract.cs" />
+    <Compile Include="Entities\Base\ClonedObjectBaseStatic.cs" />
+    <Compile Include="Entities\Base\ClonedObjectBaseVirtual.cs" />
+    <Compile Include="Entities\Base\GraphicsPhysicsBase.cs" />
+    <Compile Include="Entities\Base\PhysicsBase.cs" />
+    <Compile Include="Entities\Base\RoadNodeBase.cs" />
+    <Compile Include="Entities\Character.cs" />
+    <Compile Include="Entities\Creature.cs" />
+    <Compile Include="Entities\EnterPoint.cs" />
+    <Compile Include="Entities\Gadget.cs" />
+    <Compile Include="Entities\Inventory.cs" />
+    <Compile Include="Entities\MapPath.cs" />
+    <Compile Include="Entities\ObjectGraphics.cs" />
+    <Compile Include="Entities\Outpost.cs" />
+    <Compile Include="Entities\PowerPlant.cs" />
+    <Compile Include="Entities\Reaction.cs" />
+    <Compile Include="Entities\RiverNode.cs" />
+    <Compile Include="Entities\RoadJunction.cs" />
+    <Compile Include="Entities\RoadNode.cs" />
+    <Compile Include="Entities\SimpleObject.cs" />
+    <Compile Include="Entities\SpawnPoint.cs" />
+    <Compile Include="Entities\Store.cs" />
+    <Compile Include="Entities\TinkeringKit.cs" />
+    <Compile Include="Entities\Trigger.cs" />
+    <Compile Include="Entities\Vehicle.cs" />
+    <Compile Include="Entities\Weapon.cs" />
+    <Compile Include="Entities\WheelSet.cs" />
+    <Compile Include="Manager\CharacterManager.cs" />
+    <Compile Include="Manager\ChatManager.cs" />
+    <Compile Include="Manager\ClanManager.cs" />
+    <Compile Include="Manager\COIDManager.cs" />
+    <Compile Include="Manager\ConvoyManager.cs" />
+    <Compile Include="Manager\SocialManager.cs" />
+    <Compile Include="Map\MapEntry.cs" />
+    <Compile Include="Manager\MapManager.cs" />
+    <Compile Include="Map\SectorMap.cs" />
+    <Compile Include="Misc\CoidManager.cs" />
+    <Compile Include="Mission\Mission.cs" />
+    <Compile Include="Mission\MissionObjective.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirement.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementCharacterLevel.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementCollect.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementCrazyTaxi.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementDeliver.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementEscort.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementKill.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementKillAggregate.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementKm.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementMission.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementMoney.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementPatrol.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementStunt.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementTimePlayed.cs" />
+    <Compile Include="Mission\Requirements\ObjectiveRequirementUseItem.cs" />
+    <Compile Include="Packet.cs" />
+    <Compile Include="Prefix\PrefixArmor.cs" />
+    <Compile Include="Prefix\PrefixBase.cs" />
+    <Compile Include="Prefix\PrefixOrnament.cs" />
+    <Compile Include="Prefix\PrefixPowerPlant.cs" />
+    <Compile Include="Prefix\PrefixRaceItem.cs" />
+    <Compile Include="Prefix\PrefixVehicle.cs" />
+    <Compile Include="Prefix\PrefixWeapon.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skill\Skill.cs" />
+    <Compile Include="Skill\SkillElement.cs" />
+    <Compile Include="Social\EnemyEntry.cs" />
+    <Compile Include="Social\SocialEntry.cs" />
+    <Compile Include="Structures\Asset\AssetContainer.cs" />
+    <Compile Include="Structures\Asset\FileEntry.cs" />
+    <Compile Include="Structures\DamageArray.cs" />
+    <Compile Include="Structures\FrontRear.cs" />
+    <Compile Include="Structures\HeadBody.cs" />
+    <Compile Include="Structures\HeadDetail.cs" />
+    <Compile Include="Structures\ItemType.cs" />
+    <Compile Include="Structures\MapPathPoint.cs" />
+    <Compile Include="Structures\MissionString.cs" />
+    <Compile Include="Structures\Model\CreateCharacterModel.cs" />
+    <Compile Include="Structures\OutpostInformation.cs" />
+    <Compile Include="Structures\OutpostSkill.cs" />
+    <Compile Include="Entities\ReactionText.cs" />
+    <Compile Include="Structures\Reward.cs" />
+    <Compile Include="Structures\RGB.cs" />
+    <Compile Include="Structures\SeaPlane.cs" />
+    <Compile Include="Structures\SkillSet.cs" />
+    <Compile Include="Structures\SpawnList.cs" />
+    <Compile Include="Structures\Specifics\ArmorSpecific.cs" />
+    <Compile Include="Structures\Specifics\CharacterSpecific.cs" />
+    <Compile Include="Structures\Specifics\CloneBaseSpecific.cs" />
+    <Compile Include="Structures\Specifics\CommoditySpecific.cs" />
+    <Compile Include="Structures\Specifics\CreatureSpecific.cs" />
+    <Compile Include="Structures\Specifics\GadgetSpecific.cs" />
+    <Compile Include="Structures\Specifics\PowerPlantSpecific.cs" />
+    <Compile Include="Structures\Specifics\SimpleObjectSpecific.cs" />
+    <Compile Include="Structures\Specifics\TinkeringKitSpecific.cs" />
+    <Compile Include="Structures\Specifics\VehicleSpecific.cs" />
+    <Compile Include="Structures\Specifics\WeaponSpecific.cs" />
+    <Compile Include="Structures\Specifics\WheelSetSpecific.cs" />
+    <Compile Include="Structures\TextChoice.cs" />
+    <Compile Include="Structures\TextParam.cs" />
+    <Compile Include="Structures\TimeCurve.cs" />
+    <Compile Include="Structures\TriggerConditional.cs" />
+    <Compile Include="Structures\Variable.cs" />
+    <Compile Include="Structures\Vector3.cs" />
+    <Compile Include="Structures\Vector4.cs" />
+    <Compile Include="Structures\VehicleTrick.cs" />
+    <Compile Include="Structures\VisualWaypoint.cs" />
+    <Compile Include="Structures\WeatherContainer.cs" />
+    <Compile Include="Structures\WeatherInfo.cs" />
+    <Compile Include="Structures\XML\ConfigNewCharacter.cs" />
+    <Compile Include="Structures\XML\ContinentObject.cs" />
+    <Compile Include="Structures\XML\DataHolder.cs" />
+    <Compile Include="Structures\TFID.cs" />
+    <Compile Include="TNL\Ghost\GhostCharacter.cs" />
+    <Compile Include="TNL\Ghost\GhostCreature.cs" />
+    <Compile Include="TNL\Ghost\GhostObject.cs" />
+    <Compile Include="TNL\Ghost\GhostVehicle.cs" />
+    <Compile Include="TNL\TNLConnection.cs" />
+    <Compile Include="TNL\TNLConnection.Sector.cs" />
+    <Compile Include="TNL\TNLInterface.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Genesis.Utils\Genesis.Utils.csproj">
+      <Project>{9c1fafcf-897b-4749-a407-d50fcf6bdcdc}</Project>
+      <Name>Genesis.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="TNL\TNLConnection.Global.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
