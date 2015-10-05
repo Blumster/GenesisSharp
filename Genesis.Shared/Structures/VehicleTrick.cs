@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
@@ -7,13 +6,13 @@ namespace Genesis.Shared.Structures
 
     public struct VehicleTrick
     {
-        public String Description;
-        public Byte ExclusiveGroup;
-        public String FileName;
-        public String GroupDescription;
-        public Byte GroupId;
-        public Int32 Id;
-        public Int32 VehicleId;
+        public string Description;
+        public byte ExclusiveGroup;
+        public string FileName;
+        public string GroupDescription;
+        public byte GroupId;
+        public int Id;
+        public int VehicleId;
 
         public static VehicleTrick Read(BinaryReader br)
         {
@@ -31,7 +30,7 @@ namespace Genesis.Shared.Structures
 
         public override string ToString()
         {
-            return String.Format("Id: {0} | File: {1} | Desc: {2} | GDesc: {3}", Id, FileName, Description, GroupDescription);
+            return $"Id: {Id} | File: {FileName} | Desc: {Description} | GDesc: {GroupDescription}";
         }
     }
 }

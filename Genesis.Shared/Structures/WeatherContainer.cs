@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Genesis.Shared.Structures
 {
     public class WeatherContainer
     {
-        public String Effect;
-        public List<String> Environments = new List<String>();
+        public string Effect;
+        public List<string> Environments = new List<string>();
         public List<WeatherInfo> Weathers = new List<WeatherInfo>();
     }
 }

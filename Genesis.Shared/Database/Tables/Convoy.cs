@@ -6,12 +6,12 @@ namespace Genesis.Shared.Database.Tables
 
     public class Convoy
     {
-        public void RemoveFromConvoy(Int64 coid)
+        public void RemoveFromConvoy(long coid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("DELETE FROM `convoy_member` WHERE `MemberCoid` = {0}", coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"DELETE FROM `convoy_member` WHERE `MemberCoid` = {coid}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)

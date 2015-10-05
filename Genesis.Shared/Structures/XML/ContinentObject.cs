@@ -1,104 +1,82 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Genesis.Shared.Structures.XML
 {
-    using Shared.Manager;
+    using Manager;
 
     public struct ContinentObject
     {
         [XmlElement("intContestedMission")]
-        public Int32 ContestedMission;
+        public int ContestedMission;
         [XmlElement("IDContinentObject")]
-        public UInt32 ContinentObjectId;
+        public uint ContinentObjectId;
 
         [XmlElement("intCoordinates")]
-        public Int32 Coordinates;
+        public int Coordinates;
         [XmlElement("strDisplayName")]
-        public String DisplayName;
+        public string DisplayName;
 
         [XmlElement("CBIDImage")]
-        public Int32 Image;
+        public int Image;
         [XmlElement("strMapFilename")]
-        public String MapFileName;
+        public string MapFileName;
         [XmlElement("intMaxLevel")]
-        public Int32 MaxLevel;
+        public int MaxLevel;
         [XmlElement("intMaxPlayers")]
-        public Int32 MaxPlayers;
+        public int MaxPlayers;
         [XmlElement("intMaxVersion")]
-        public Int32 MaxVersion;
+        public int MaxVersion;
         [XmlElement("intMinLevel")]
-        public Int32 MinLevel;
+        public int MinLevel;
         [XmlElement("intMinVersion")]
-        public Int32 MinVersion;
+        public int MinVersion;
 
         [XmlElement("IDObjective")]
-        public Int32 Objective;
+        public int Objective;
         [XmlElement("IDOwningFaction")]
-        public Int32 OwningFaction;
+        public int OwningFaction;
 
         [XmlElement("rlPositionX")]
-        public Single PositionX;
+        public float PositionX;
 
         [XmlElement("rlPositionZ")]
-        public Single PositionZ;
+        public float PositionZ;
         [XmlElement("rlRotation")]
-        public Single Rotation;
+        public float Rotation;
         [XmlElement("bitDropBrokenItems")]
-        public String _dropBrokenItems;
+        public string DropBrokenItems;
         [XmlElement("bitDropCommodities")]
-        public String _dropCommodities;
+        public string DropCommodities;
 
         [XmlElement("bitIsArena")]
-        public String _isArena;
+        public string _isArena;
         [XmlElement("bitIsClientOnly")]
-        public String _isClientOnly;
+        public string _isClientOnly;
         [XmlElement("bitIsPersistent")]
-        public String _isPersistent;
+        public string _isPersistent;
         [XmlElement("bitIsTown")]
-        public String _isTown;
+        public string _isTown;
 
         [XmlElement("bitPlayCreateSounds")]
-        public String _playCreateSounds;
+        public string _playCreateSounds;
 
-        public Boolean IsPersistent
-        {
-            get { return _isPersistent == "Tr"; }
-        }
+        public bool IsPersistent => _isPersistent == "Tr";
 
-        public Boolean IsTown
-        {
-            get { return _isTown == "Tr"; }
-        }
+        public bool IsTown => _isTown == "Tr";
 
-        public Boolean IsClientOnly
-        {
-            get { return _isClientOnly == "Tr"; }
-        }
+        public bool IsClientOnly => _isClientOnly == "Tr";
 
-        public Boolean IsArena
-        {
-            get { return _isArena == "Tr"; }
-        }
+        public bool IsArena => _isArena == "Tr";
 
-        public Boolean IsPlayCreateSounds
-        {
-            get { return _playCreateSounds == "Tr"; }
-        }
+        public bool IsPlayCreateSounds => _playCreateSounds == "Tr";
 
-        public Boolean IsDropCommodities
-        {
-            get { return _dropCommodities == "Tr"; }
-        }
+        public bool IsDropCommodities => DropCommodities == "Tr";
 
-        public Boolean IsDropBrokenItems
-        {
-            get { return _dropBrokenItems == "Tr"; }
-        }
+        public bool IsDropBrokenItems => DropBrokenItems == "Tr";
 
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Format("ID: {0} | {1}", ContinentObjectId, DisplayName);
+            return $"ID: {ContinentObjectId} | {DisplayName}";
         }
 
         public void OnDeserialization()

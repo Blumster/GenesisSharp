@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using TNL.NET.Entities;
 
@@ -13,16 +12,16 @@ namespace Genesis.Shared.Manager
 
     public static class CharacterManager
     {
-        private static readonly Object Lock = new Object();
-        private static readonly Dictionary<Int64, Character> ActiveCharacters = new Dictionary<Int64, Character>();
+        private static readonly object Lock = new object();
+        private static readonly Dictionary<long, Character> ActiveCharacters = new Dictionary<long, Character>();
 
-        public static Boolean CreateCharacterFromRequest(TNLConnection connection, CreateCharacterModel model, out Int64 charCoid)
+        public static bool CreateCharacterFromRequest(TNLConnection connection, CreateCharacterModel model, out long charCoid)
         {
             var container = AssetManager.AssetContainer;
 
             charCoid = -1L;
 
-            Byte r, c;
+            byte r, c;
             if (!GetRaceClassByCBID(model.CBid, out r, out c))
                 return false;
 
@@ -30,7 +29,7 @@ namespace Genesis.Shared.Manager
             if (newCharEntry == null)
                 return false;
 
-            var map = MapManager.GetMap((UInt32)newCharEntry.StartTown);
+            var map = MapManager.GetMap((uint)newCharEntry.StartTown);
             if (map == null)
                 return false;
 
@@ -75,7 +74,7 @@ namespace Genesis.Shared.Manager
             return true;
         }
 
-        public static Boolean GetRaceClassByCBID(Int32 cbid, out Byte race, out Byte c)
+        public static bool GetRaceClassByCBID(int cbid, out byte race, out byte c)
         {
             switch (cbid)
             {

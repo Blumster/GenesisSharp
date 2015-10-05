@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct TextParam
     {
-        public Single CachedValue;
-        public UInt32 Id;
-        public Byte Type;
+        public float CachedValue;
+        public uint Id;
+        public byte Type;
 
-        public static TextParam Read(BinaryReader br, UInt32 mapVersion)
+        public static TextParam Read(BinaryReader br, uint mapVersion)
         {
             var tParam = new TextParam { Type = br.ReadByte() };
 

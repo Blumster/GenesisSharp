@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Entities
@@ -9,14 +8,14 @@ namespace Genesis.Shared.Entities
 
     public class OutPost : SimpleObject
     {
-        public Single CaptureRadius;
-        public Boolean IsOutpost;
+        public float CaptureRadius;
+        public bool IsOutpost;
         public Vector4 Location;
-        public String OutPostName;
+        public string OutPostName;
         public List<OutpostInformation> OutpostInformations = new List<OutpostInformation>();
-        public Single OutpostXPScalar;
-        public UInt32 VarTotalBeacons;
-        public UInt32 Unkvalue;
+        public float OutpostXPScalar;
+        public uint VarTotalBeacons;
+        public uint Unkvalue;
 
         public override void Unserialize(BinaryReader br, uint mapVersion)
         {
@@ -39,10 +38,10 @@ namespace Genesis.Shared.Entities
                 var oinfo = new OutpostInformation
                 {
                     BeaconVar = br.ReadUInt32(),
-                    Spawns = new List<Int64>(),
-                    Objects = new List<Int64>(),
+                    Spawns = new List<long>(),
+                    Objects = new List<long>(),
                     OutpostSkills = new List<OutpostSkill>(),
-                    Reactions = new List<Int64>()
+                    Reactions = new List<long>()
                 };
 
                 var spawnCount = br.ReadInt32();

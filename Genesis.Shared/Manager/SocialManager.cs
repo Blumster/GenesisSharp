@@ -12,9 +12,9 @@ namespace Genesis.Shared.Manager
 
     public static class SocialManager
     {
-        private static readonly Dictionary<Int64, Tuple<DateTime, IList<SocialEntry>>> Cache = new Dictionary<Int64, Tuple<DateTime, IList<SocialEntry>>>();
+        private static readonly Dictionary<long, Tuple<DateTime, IList<SocialEntry>>> Cache = new Dictionary<long, Tuple<DateTime, IList<SocialEntry>>>();
 
-        private static void CheckCache(Int64 coid)
+        private static void CheckCache(long coid)
         {
             if (Cache.ContainsKey(coid) && DateTime.Now - Cache[coid].Item1 > TimeSpan.FromMinutes(5.0D))
                 Cache.Remove(coid);
@@ -25,7 +25,6 @@ namespace Genesis.Shared.Manager
 
         public static void GetEnemies(TNLConnection session)
         {
-            //return;
             var coid = session.CurrentCharacter.GetCOID();
             CheckCache(coid);
 
@@ -38,18 +37,15 @@ namespace Genesis.Shared.Manager
             packet.WriteInteger(count >= 20 ? 20 : count);
 
             var j = 0;
-            foreach (var se in enemyEntries)
+            foreach (var se in enemyEntries.OfType<EnemyEntry>())
             {
-                if (!(se is EnemyEntry)) // should never happen
-                    continue;
-
                 packet.WriteLong(se.Character);
                 packet.WriteLong(se.OtherCharacter);
                 packet.WriteInteger(se.Level);
                 packet.WriteInteger(se.LastContinentId);
-                packet.WriteInteger((se as EnemyEntry).TimesKilled);
-                packet.WriteInteger((se as EnemyEntry).TimesKilledBy);
-                packet.WriteByte((se as EnemyEntry).Race);
+                packet.WriteInteger(se.TimesKilled);
+                packet.WriteInteger(se.TimesKilledBy);
+                packet.WriteByte(se.Race);
                 packet.WriteByte(se.Class);
                 packet.WriteBoolean(se.Online);
                 packet.WriteUtf8StringOn(se.Name, 17);
@@ -67,7 +63,6 @@ namespace Genesis.Shared.Manager
 
         public static void GetFriends(TNLConnection session)
         {
-            //return;
             var coid = session.CurrentCharacter.GetCOID();
             CheckCache(coid);
 
@@ -103,7 +98,6 @@ namespace Genesis.Shared.Manager
 
         public static void GetIgnored(TNLConnection session)
         {
-            //return;
             var coid = session.CurrentCharacter.GetCOID();
             CheckCache(coid);
 
@@ -144,7 +138,7 @@ namespace Genesis.Shared.Manager
             DataAccess.Social.AddEntry(session.CurrentCharacter.GetCOID(), coid, type);
         }
 
-        public static void RemoveEntry(TNLConnection session, Int64 coid, SocialType type)
+        public static void RemoveEntry(TNLConnection session, long coid, SocialType type)
         {
             DataAccess.Social.RemoveEntry(session.CurrentCharacter.GetCOID(), coid, type);
         }

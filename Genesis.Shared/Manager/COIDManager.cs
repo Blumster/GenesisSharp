@@ -6,11 +6,11 @@ namespace Genesis.Shared.Manager
 
     public static class COIDManager
     {
-        private static readonly Object Lock = new Object();
+        private static readonly object Lock = new object();
 
-        private static Int64 _nextCOID = -1;
+        private static long _nextCOID = -1;
 
-        public static void Intialize(Boolean global)
+        public static void Intialize(bool global)
         {
             _nextCOID = DataAccess.Item.GetNextCoid() + 1;
 
@@ -18,7 +18,7 @@ namespace Genesis.Shared.Manager
                 ++_nextCOID;
         }
 
-        public static Int64 NextCOID
+        public static long NextCOID
         {
             get
             {

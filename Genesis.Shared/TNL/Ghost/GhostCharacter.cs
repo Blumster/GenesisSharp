@@ -1,6 +1,4 @@
-﻿using System;
-
-using TNL.NET.Entities;
+﻿using TNL.NET.Entities;
 using TNL.NET.Types;
 using TNL.NET.Utils;
 
@@ -10,9 +8,9 @@ namespace Genesis.Shared.TNL.Ghost
     {
         private static NetClassRepInstance<GhostCharacter> _dynClassRep;
 
-        private Object Phantom;
-        private Single MapScale;
-        private Int32 CbidPet;
+        private object Phantom;
+        private float MapScale;
+        private int CbidPet;
 
         public new static void RegisterNetClassReps()
         {
@@ -39,7 +37,7 @@ namespace Genesis.Shared.TNL.Ghost
             
         }
 
-        public override UInt64 PackUpdate(GhostConnection connection, UInt64 updateMask, BitStream stream)
+        public override ulong PackUpdate(GhostConnection connection, ulong updateMask, BitStream stream)
         {
             return 0UL;
         }

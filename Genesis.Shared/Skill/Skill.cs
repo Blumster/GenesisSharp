@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Skill
@@ -8,40 +7,40 @@ namespace Genesis.Shared.Skill
 
     public struct Skill
     {
-        public Int32 AffectedObjectType;
-        public Int32 AffectedSubType;
-        public Int32 AffectedTarget;
-        public Int32 CategoryId;
-        public Int32 Class;
-        public String Description;
+        public int AffectedObjectType;
+        public int AffectedSubType;
+        public int AffectedTarget;
+        public int CategoryId;
+        public int Class;
+        public string Description;
         public List<SkillElement> Elements;
-        public Int32 GroupId;
-        public UInt32 Id;
-        public Int32 IsChain;
-        public Int32 IsSpray;
-        public Byte LocationLine;
-        public Byte LocationTree;
-        public Byte MaxSkillLevel;
-        public Byte MinimumLevel;
-        public String Name;
-        public Int16 NumOfElements;
-        public Byte OptionalAction;
-        public Int32 Race;
-        public Int32 SkillOptional1;
-        public Int32 SkillOptional2;
-        public Int32 SkillOptional3;
-        public Int32 SkillOptional4;
-        public Int32 SkillPrerequisite1;
-        public Int32 SkillPrerequisite2;
-        public Int32 SkillPrerequisite3;
-        public Byte SkillType;
-        public Int32 StatusEffect;
-        public Int32 SummonedCreatureId;
-        public Int32 TargetObjectType;
-        public Int32 TargetSubType;
-        public Int32 TargetType;
-        public Int32 UseBodyForArc;
-        public String XMLName;
+        public int GroupId;
+        public uint Id;
+        public int IsChain;
+        public int IsSpray;
+        public byte LocationLine;
+        public byte LocationTree;
+        public byte MaxSkillLevel;
+        public byte MinimumLevel;
+        public string Name;
+        public short NumOfElements;
+        public byte OptionalAction;
+        public int Race;
+        public int SkillOptional1;
+        public int SkillOptional2;
+        public int SkillOptional3;
+        public int SkillOptional4;
+        public int SkillPrerequisite1;
+        public int SkillPrerequisite2;
+        public int SkillPrerequisite3;
+        public byte SkillType;
+        public int StatusEffect;
+        public int SummonedCreatureId;
+        public int TargetObjectType;
+        public int TargetSubType;
+        public int TargetType;
+        public int UseBodyForArc;
+        public string XMLName;
 
         public static Skill Read(BinaryReader br)
         {

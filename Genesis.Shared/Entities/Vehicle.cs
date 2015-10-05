@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Genesis.Shared.Entities
 {
@@ -21,90 +20,90 @@ namespace Genesis.Shared.Entities
         // ReSharper disable UnusedAutoPropertyAccessor.Local
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable UnassignedField.Local
-        private Single _speedLimit;
-        private Single _possibleMaxSpeed;
-        private Boolean _canMelee;
-        private Boolean _isParked;
-        private Boolean _flipperActivated;
-        private Boolean _localCar;
-        private Boolean _justActivated;
-        private Boolean _drawTacArc;
-        private Boolean _drawTargets;
-        private Boolean _isManuallyAimingTurret;
-        private Boolean _hasAnyTargets;
-        public Boolean BrakeLock { get; private set; }
-        private Boolean _lockdown;
-        public Boolean IsTrailer { get; private set; }
-        public Boolean VehicleIsActive { get; private set; }
+        private float _speedLimit;
+        private float _possibleMaxSpeed;
+        private bool _canMelee;
+        private bool _isParked;
+        private bool _flipperActivated;
+        private bool _localCar;
+        private bool _justActivated;
+        private bool _drawTacArc;
+        private bool _drawTargets;
+        private bool _isManuallyAimingTurret;
+        private bool _hasAnyTargets;
+        public bool BrakeLock { get; private set; }
+        private bool _lockdown;
+        public bool IsTrailer { get; }
+        public bool VehicleIsActive { get; }
         private StuntState _stuntState;
         private TFID _lastSentTarget;
-        private Single _kmTravelled;
-        private Single _speed;
-        private Single _speedLastFrame;
-        private Single _wantedTurretDirection;
-        private Single _specialArmDirection;
-        private Single _maxWtWeaponFront;
-        private Single _maxWtWeaponTurret;
-        private Single _maxWtWeaponRear;
-        private Single _maxWtArmor;
-        private Single _maxWtPowerPlant;
-        private Boolean _lastSentBreaking;
-        private Boolean _lastSendFiring;
-        public Int32 Shield { get; private set; }
-        public Int32 MaxShield { get; private set; }
-        public Int32 VehicleTemplateId { get; private set; }
-        public Int32 HeatCurrent { get; private set; }
-        private Int32 _heatAccumulator;
-        private Boolean _packetOverride;
-        public UInt32 PrimaryColor { get; private set; }
-        public UInt32 SecondaryColor { get; private set; }
-        private UInt32 _dirtyBits;
-        private Int16 _armorAdd;
-        private Int32 _powerMaxAdd;
-        private Int32 _heatMaxAdd;
-        private Int16 _cooldownAdd;
-        private Int16 _inventorySlots;
-        public Single SpeedAdd { get; private set; }
-        public Single BrakesMaxTorqueFrontMultiplier { get; private set; }
-        public Single BrakesMaxTorqueRearAdjustMultiplier { get; private set; }
-        public Single SteeringMaxAngleMultiplier { get; private set; }
-        public Single SteeringFullSpeedLimitMultiplier { get; private set; }
-        public Single AVDNormalSpinDampeningMultiplier { get; private set; }
-        public Single AVDCollisionSpinDampeningAdjust { get; private set; }
-        private Int32 _torqueMaxAdd;
-        private Single _armorAdjustVariance;
-        private Single _powerMaxAdjustVariance;
-        private Single _cooldownRateVariance;
-        private Single _hHeatMaxVariance;
-        private Single _speedAdjustVariance;
-        private Single _maxWtWeaponFrontVariance;
-        private Single _maxWtWeaponTurretVariance;
-        private Single _maxWtWeaponRearVariance;
-        private Single _maxWtArmorVariance;
-        private Single _maxWtPowerplantVariance;
-        public Byte Trim { get; private set; }
+        private float _kmTravelled;
+        private float _speed;
+        private float _speedLastFrame;
+        private float _wantedTurretDirection;
+        private float _specialArmDirection;
+        private float _maxWtWeaponFront;
+        private float _maxWtWeaponTurret;
+        private float _maxWtWeaponRear;
+        private float _maxWtArmor;
+        private float _maxWtPowerPlant;
+        private bool _lastSentBreaking;
+        private bool _lastSendFiring;
+        public int Shield { get; private set; }
+        public int MaxShield { get; private set; }
+        public int VehicleTemplateId { get; }
+        public int HeatCurrent { get; private set; }
+        private int _heatAccumulator;
+        private bool _packetOverride;
+        public uint PrimaryColor { get; private set; }
+        public uint SecondaryColor { get; private set; }
+        private uint _dirtyBits;
+        private short _armorAdd;
+        private int _powerMaxAdd;
+        private int _heatMaxAdd;
+        private short _cooldownAdd;
+        private short _inventorySlots;
+        public float SpeedAdd { get; }
+        public float BrakesMaxTorqueFrontMultiplier { get; }
+        public float BrakesMaxTorqueRearAdjustMultiplier { get; }
+        public float SteeringMaxAngleMultiplier { get; }
+        public float SteeringFullSpeedLimitMultiplier { get; }
+        public float AVDNormalSpinDampeningMultiplier { get; }
+        public float AVDCollisionSpinDampeningAdjust { get; }
+        private int _torqueMaxAdd;
+        private float _armorAdjustVariance;
+        private float _powerMaxAdjustVariance;
+        private float _cooldownRateVariance;
+        private float _hHeatMaxVariance;
+        private float _speedAdjustVariance;
+        private float _maxWtWeaponFrontVariance;
+        private float _maxWtWeaponTurretVariance;
+        private float _maxWtWeaponRearVariance;
+        private float _maxWtArmorVariance;
+        private float _maxWtPowerplantVariance;
+        public byte Trim { get; private set; }
         private Inventory _invetory;
-        private Boolean _hasInventory;
-        private UInt64 _extraCredits;
-        public Single TurretDirection { get; private set; }
-        public Single Acceleration { get; private set; }
-        public Single Steering { get; private set; }
-        public Boolean Braking { get; private set; }
-        private Int64 _powerPlantCoid;
-        private Int64 _wheelSetCoid;
-        private Int64 _armorCoid;
-        private Int64 _trailerCoid;
-        private Int64[] _weaponsCoid;
-        public String VehicleName { get; private set; }
+        private bool _hasInventory;
+        private ulong _extraCredits;
+        public float TurretDirection { get; private set; }
+        public float Acceleration { get; private set; }
+        public float Steering { get; private set; }
+        public bool Braking { get; private set; }
+        private long _powerPlantCoid;
+        private long _wheelSetCoid;
+        private long _armorCoid;
+        private long _trailerCoid;
+        private long[] _weaponsCoid;
+        public string VehicleName { get; private set; }
         private Vector4 _target3DPoint;
-        public Int32[] TrickIds { get; private set; }
+        public int[] TrickIds { get; }
         private Vector4 _turret;
-        private Boolean[] _wheelWasOffGround;
-        private Boolean _playSuspensionEffect;
-        private Single _nextSkid;
-        private Single _nextSuspension;
-        private Boolean _loadedLight;
-        private Int32 _wheelPhysicsBodyIndex;
+        private bool[] _wheelWasOffGround;
+        private bool _playSuspensionEffect;
+        private float _nextSkid;
+        private float _nextSuspension;
+        private bool _loadedLight;
+        private int _wheelPhysicsBodyIndex;
 
         private PowerPlant _powerPlant;
         private Armor _armor;
@@ -113,13 +112,13 @@ namespace Genesis.Shared.Entities
         private Weapon[] _weapons;
         private SimpleObject _ornament;
         private SimpleObject _raceItem;
-        public Int64 CoidCurrentOwner { get; private set; }
-        public Int32 CurrentPathId { get; private set; }
-        public Int32 ExtraPathId { get; private set; }
-        public Single PatrolDistance { get; private set; }
-        public Boolean PathReversing { get; private set; }
-        public Boolean PathIsRoad { get; private set; }
-        public Int32 SpawnOwnerCoid { get; private set; }
+        public long CoidCurrentOwner { get; private set; }
+        public int CurrentPathId { get; }
+        public int ExtraPathId { get; private set; }
+        public float PatrolDistance { get; private set; }
+        public bool PathReversing { get; private set; }
+        public bool PathIsRoad { get; private set; }
+        public int SpawnOwnerCoid { get; }
         // ReSharper restore UnassignedField.Local
         // ReSharper restore FieldCanBeMadeReadOnly.Local
         // ReSharper restore NotAccessedField.Local
@@ -147,7 +146,7 @@ namespace Genesis.Shared.Entities
             {
                 Coid = -1L,
                 Global = false
-            }; ;
+            };
             _kmTravelled = 0.0f;
             _speed = 0.0f;
             _speedLastFrame = 0.0f;
@@ -278,7 +277,7 @@ namespace Genesis.Shared.Entities
             return _armor;
         }
 
-        public void AddWeapon(Int32 t, Weapon wep)
+        public void AddWeapon(int t, Weapon wep)
         {
             if (t >= 3)
                 _meleeWeapon = wep;
@@ -286,12 +285,12 @@ namespace Genesis.Shared.Entities
                 _weapons[t] = wep;
         }
 
-        public Weapon GetWeapon(Int32 t)
+        public Weapon GetWeapon(int t)
         {
             return _weapons[t];
         }
 
-        public Int16 CalculateMaximumMana()
+        public short CalculateMaximumMana()
         {
             if (true)
             {
@@ -316,7 +315,7 @@ namespace Genesis.Shared.Entities
             return _meleeWeapon;
         }
 
-        public Boolean LoadFromDB(VehicleData data, Int64 vehCoid = 0)
+        public bool LoadFromDB(VehicleData data, long vehCoid = 0)
         {
             if (data == null)
                 data = DataAccess.Vehicle.GetVehicle(vehCoid);
@@ -396,7 +395,7 @@ namespace Genesis.Shared.Entities
             return true;
         }
 
-        public override Boolean LoadFromDB(Int64 coid)
+        public override bool LoadFromDB(long coid)
         {
             return LoadFromDB(null, coid);
         }
@@ -416,15 +415,15 @@ namespace Genesis.Shared.Entities
                 Q2 = Rotation.Y,
                 Q3 = Rotation.Z,
                 Q4 = Rotation.W,
-                Ornament = _ornament != null ? _ornament.GetCOID() : -1L,
-                RaceItem = _raceItem != null ? _raceItem.GetCOID() : -1L,
-                PowerPlant = _powerPlant != null ? _powerPlant.GetCOID() : -1L,
-                Armor = _armor != null ? _armor.GetCOID() : -1L,
-                Wheelset = _wheelSet != null ? _wheelSet.GetCOID() : -1L,
-                MeleeWeapon = _meleeWeapon != null ? _meleeWeapon.GetCOID() : -1L,
-                Front = _weapons[0] != null ? _weapons[0].GetCOID() : -1L,
-                Turret = _weapons[1] != null ? _weapons[1].GetCOID() : -1L,
-                Rear = _weapons[2] != null ? _weapons[2].GetCOID() : -1L,
+                Ornament = _ornament?.GetCOID() ?? -1L,
+                RaceItem = _raceItem?.GetCOID() ?? -1L,
+                PowerPlant = _powerPlant?.GetCOID() ?? -1L,
+                Armor = _armor?.GetCOID() ?? -1L,
+                Wheelset = _wheelSet?.GetCOID() ?? -1L,
+                MeleeWeapon = _meleeWeapon?.GetCOID() ?? -1L,
+                Front = _weapons[0]?.GetCOID() ?? -1L,
+                Turret = _weapons[1]?.GetCOID() ?? -1L,
+                Rear = _weapons[2]?.GetCOID() ?? -1L,
                 Name = VehicleName,
                 Trim = Trim,
                 PrimaryColor = PrimaryColor,
@@ -439,35 +438,18 @@ namespace Genesis.Shared.Entities
                 IsInDB = true;
             }
 
-            if (_ornament != null)
-                _ornament.SaveToDB();
-
-            if (_raceItem != null)
-                _raceItem.SaveToDB();
-
-            if (_powerPlant != null)
-                _powerPlant.SaveToDB();
-
-            if (_wheelSet != null)
-                _wheelSet.SaveToDB();
-
-            if (_armor != null)
-                _armor.SaveToDB();
-
-            if (_meleeWeapon != null)
-                _meleeWeapon.SaveToDB();
-
-            if (_weapons[0] != null)
-                _weapons[0].SaveToDB();
-
-            if (_weapons[1] != null)
-                _weapons[1].SaveToDB();
-
-            if (_weapons[2] != null)
-                _weapons[2].SaveToDB();
+            _ornament?.SaveToDB();
+            _raceItem?.SaveToDB();
+            _powerPlant?.SaveToDB();
+            _wheelSet?.SaveToDB();
+            _armor?.SaveToDB();
+            _meleeWeapon?.SaveToDB();
+            _weapons[0]?.SaveToDB();
+            _weapons[1]?.SaveToDB();
+            _weapons[2]?.SaveToDB();
         }
 
-        public Int32 CalculateMaximumHeat()
+        public int CalculateMaximumHeat()
         {
             return 0; // TODO
         }
@@ -487,7 +469,7 @@ namespace Genesis.Shared.Entities
 
             // if logging in at a map where u sit in the vehicle
             GetSuperCharacter(false).Connection.SetScopeObject(g);
-            (GetSuperCharacter(false).Connection.GetInterface() as TNLInterface).AddGhost(GetSuperCharacter(false).Connection, g);
+            (GetSuperCharacter(false).Connection.GetInterface() as TNLInterface)?.AddGhost(GetSuperCharacter(false).Connection, g);
 
             //GhostingManager.Instance.CreateGhost(this, g, EnumGhostType.GVehicle);
 
@@ -521,7 +503,7 @@ namespace Genesis.Shared.Entities
             SetGhosted(true);
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             base.WriteToCreatePacket(packet, extended);
 
@@ -692,7 +674,7 @@ namespace Genesis.Shared.Entities
             #endregion Create Vehicle Extended
         }
 
-        public void InitNewVehicle(CreateCharacterModel model, ConfigNewCharacter newCharEntry, SectorMap map, Int64 charCoid, Int64 vehicleCoid)
+        public void InitNewVehicle(CreateCharacterModel model, ConfigNewCharacter newCharEntry, SectorMap map, long charCoid, long vehicleCoid)
         {
             SetCOID(vehicleCoid);
 
@@ -758,7 +740,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public Boolean SkipCurrentOwner()
+        public bool SkipCurrentOwner()
         {
             return true;
         }

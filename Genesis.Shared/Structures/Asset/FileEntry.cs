@@ -1,22 +1,21 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Asset
 {
     public class FileEntry
     {
-        public UInt32 Offset;
-        public UInt32 Size;
-        public UInt32 RealSize;
-        public UInt32 ModifiedTime;
-        public UInt16 Scheme;
-        public UInt32 PackFile;
-        public String Name;
+        public uint Offset;
+        public uint Size;
+        public uint RealSize;
+        public uint ModifiedTime;
+        public ushort Scheme;
+        public uint PackFile;
+        public string Name;
 
-        public Boolean IsRead { get; set; }
-        public String FileName { get; set; }
+        public bool IsRead { get; set; }
+        public string FileName { get; set; }
 
-        public void Read(BinaryReader br, String fName)
+        public void Read(BinaryReader br, string fName)
         {
             FileName = fName;
 
@@ -28,9 +27,9 @@ namespace Genesis.Shared.Structures.Asset
             PackFile = br.ReadUInt32();
         }
 
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Format("FileName: {0} | Name: {1}", FileName, Name);
+            return $"FileName: {FileName} | Name: {Name}";
         }
     }
 }

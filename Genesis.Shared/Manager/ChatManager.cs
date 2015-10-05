@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Genesis.Shared.Manager
+﻿namespace Genesis.Shared.Manager
 {
     using Constant;
     using TNL;
@@ -59,13 +57,13 @@ namespace Genesis.Shared.Manager
             conn.CurrentCharacter.GetMap().BroadcastChat(type, ConstructBroadcastPacket(type, isGm, sender, sendercoid, msg), conn.CurrentCharacter);
         }
 
-        private static Packet ConstructChatPacket(ChatType type, Boolean isGm, String recipient, String sender, String msg)
+        private static Packet ConstructChatPacket(ChatType type, bool isGm, string recipient, string sender, string msg)
         {
-            var msglen = (Int16) msg.Length;
+            var msglen = (short) msg.Length;
 
             var p = new Packet(Opcode.Chat);
 
-            p.WriteInteger((UInt32) type);
+            p.WriteInteger((uint) type);
             p.WriteBoolean(isGm);
             p.WriteUtf8StringOn(recipient, 17);
             p.WriteUtf8StringOn(sender, 17);
@@ -76,13 +74,13 @@ namespace Genesis.Shared.Manager
             return p;
         }
 
-        private static Packet ConstructBroadcastPacket(ChatType type, Boolean isGm, String sender, Int64 sendercoid, String msg)
+        private static Packet ConstructBroadcastPacket(ChatType type, bool isGm, string sender, long sendercoid, string msg)
         {
-            var msglen = (Int16) msg.Length;
+            var msglen = (short) msg.Length;
 
             var p = new Packet(Opcode.Broadcast);
                 
-            p.WriteInteger((UInt32) type);
+            p.WriteInteger((uint) type);
             p.WriteLong(sendercoid);
             p.WriteBoolean(isGm);
             p.WritePadding(1).WriteShort(msglen);

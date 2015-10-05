@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Genesis.Shared.Database;
+
 using TNL.NET.Data;
 using TNL.NET.Entities;
 using TNL.NET.Structs;
@@ -12,6 +12,7 @@ using TNL.NET.Utils;
 namespace Genesis.Shared.TNL
 {
     using Constant;
+    using Database;
     using Entities;
     using Manager;
     using Utils;
@@ -21,15 +22,15 @@ namespace Genesis.Shared.TNL
         private static NetClassRepInstance<TNLConnection> _dynClassRep;
         private static NetConnectionRep _connRep;
 
-        private UInt32 _key;
-        private UInt32 _oneTimeKey;
-        private Int64 _playerCOID;
-        private UInt16 _fragmentCounter;
+        private uint _key;
+        private uint _oneTimeKey;
+        private long _playerCOID;
+        private ushort _fragmentCounter;
 
-        public UInt32[] FirstTimeFlags { get; private set; }
-        public UInt64 AccountId { get; private set; }
-        public Byte AccountLevel { get; private set; }
-        public String AccountName { get; private set; }
+        public uint[] FirstTimeFlags { get; private set; }
+        public ulong AccountId { get; private set; }
+        public byte AccountLevel { get; private set; }
+        public string AccountName { get; private set; }
         public Character CurrentCharacter { get; set; }
 
         private readonly SFragmentData _fragmentGuaranteed;
@@ -74,7 +75,7 @@ namespace Genesis.Shared.TNL
 
         public void SendPacket(Packet p, RPCGuaranteeType type)
         {
-            var opcode = (UInt32) p.Opcode;
+            var opcode = (uint) p.Opcode;
             Logger.WriteLog("Outgoing Packet: {0}", LogType.Network, p.Opcode);
 
             var arr = p.ToArray();
@@ -85,20 +86,20 @@ namespace Genesis.Shared.TNL
                 sw.WriteLine();
             }
 
-            var arrLength = (UInt32) arr.Length;
+            var arrLength = (uint) arr.Length;
             if (arrLength > 1400U)
             {
                 ++_fragmentCounter;
 
                 var doneSize = 0U;
-                var count = (UInt16) Math.Ceiling(arrLength / 220.0);
-                for (UInt16 i = 0; i < count; ++i)
+                var count = (ushort) Math.Ceiling(arrLength / 220.0);
+                for (ushort i = 0; i < count; ++i)
                 {
                     var buffSize = 220U;
                     if (buffSize >= arrLength - doneSize)
                         buffSize = arrLength - doneSize;
 
-                    var tempBuff = new Byte[buffSize];
+                    var tempBuff = new byte[buffSize];
 
                     Array.Copy(arr, i * 220, tempBuff, 0, buffSize);
 
@@ -262,7 +263,7 @@ namespace Genesis.Shared.TNL
 
         #endregion
 
-        public void UpdateFirstTimeFlags(UInt32 f1, UInt32 f2, UInt32 f3, UInt32 f4)
+        public void UpdateFirstTimeFlags(uint f1, uint f2, uint f3, uint f4)
         {
             FirstTimeFlags[0] = f1;
             FirstTimeFlags[1] = f2;
@@ -272,7 +273,7 @@ namespace Genesis.Shared.TNL
             DataAccess.Account.UpdateFirstTimeFlags(AccountId, FirstTimeFlags);
         }
 
-        public Boolean LoginAccount(UInt32 oneTimeKey, String user = null, String password = null)
+        public bool LoginAccount(uint oneTimeKey, string user = null, string password = null)
         {
             var data = DataAccess.Account.LoginAccount(oneTimeKey);
             if (data == null)
@@ -284,7 +285,7 @@ namespace Genesis.Shared.TNL
             AccountId = data.Id;
             AccountLevel = data.Level;
             AccountName = data.UserName;
-            FirstTimeFlags = new UInt32[4];
+            FirstTimeFlags = new uint[4];
 
             Array.Copy(data.FirstTimeFlags, FirstTimeFlags, 4);
 
@@ -295,67 +296,67 @@ namespace Genesis.Shared.TNL
 
         // ReSharper disable InconsistentNaming
         // ReSharper disable UnusedMember.Local
-        public void rpcMsgGuaranteed(UInt32 type, ByteBuffer data)
+        public void rpcMsgGuaranteed(uint type, ByteBuffer data)
         #region rpcMsgGuaranteed
         {
             var rpcEvent = new RPCMsgGuaranteed();
-            rpcEvent.Functor.Set(new Object[] { type, data });
+            rpcEvent.Functor.Set(new object[] { type, data });
 
             PostNetEvent(rpcEvent);
         }
 
 // ReSharper disable UnusedParameter.Local
-        private void rpcMsgGuaranteed_remote(UInt32 type, ByteBuffer data)
+        private void rpcMsgGuaranteed_remote(uint type, ByteBuffer data)
 // ReSharper restore UnusedParameter.Local
         #endregion
         {
             HandlePacket(data);
         }
 
-        public void rpcMsgGuaranteedOrdered(UInt32 type, ByteBuffer data)
+        public void rpcMsgGuaranteedOrdered(uint type, ByteBuffer data)
         #region rpcMsgGuaranteedOrdered
         {
             var rpcEvent = new RPCMsgGuaranteedOrdered();
-            rpcEvent.Functor.Set(new Object[] { type, data });
+            rpcEvent.Functor.Set(new object[] { type, data });
 
             PostNetEvent(rpcEvent);
         }
 
 // ReSharper disable UnusedParameter.Local
-        private void rpcMsgGuaranteedOrdered_remote(UInt32 type, ByteBuffer data)
+        private void rpcMsgGuaranteedOrdered_remote(uint type, ByteBuffer data)
 // ReSharper restore UnusedParameter.Local
         #endregion
         {
             HandlePacket(data);
         }
 
-        public void rpcMsgNonGuaranteed(UInt32 type, ByteBuffer data)
+        public void rpcMsgNonGuaranteed(uint type, ByteBuffer data)
         #region rpcMsgNonGuaranteed
         {
             var rpcEvent = new RPCMsgNonGuaranteed();
-            rpcEvent.Functor.Set(new Object[] { type, data });
+            rpcEvent.Functor.Set(new object[] { type, data });
 
             PostNetEvent(rpcEvent);
         }
 
 // ReSharper disable UnusedParameter.Local
-        private void rpcMsgNonGuaranteed_remote(UInt32 type, ByteBuffer data)
+        private void rpcMsgNonGuaranteed_remote(uint type, ByteBuffer data)
 // ReSharper restore UnusedParameter.Local
         #endregion
         {
             HandlePacket(data);
         }
 
-        public void rpcMsgGuaranteedFragmented(UInt32 type, UInt16 fragment, UInt16 fragmentId, UInt16 fragmentCount, ByteBuffer data)
+        public void rpcMsgGuaranteedFragmented(uint type, ushort fragment, ushort fragmentId, ushort fragmentCount, ByteBuffer data)
         #region rpcMsgGuaranteedFragmented
         {
             var rpcEvent = new RPCMsgGuaranteedFragmented();
-            rpcEvent.Functor.Set(new Object[] { type, fragment, fragmentId, fragmentCount, data });
+            rpcEvent.Functor.Set(new object[] { type, fragment, fragmentId, fragmentCount, data });
 
             PostNetEvent(rpcEvent);
         }
 
-        private void rpcMsgGuaranteedFragmented_remote(UInt32 type, UInt16 fragment, UInt16 fragmentId, UInt16 fragmentCount, ByteBuffer data)
+        private void rpcMsgGuaranteedFragmented_remote(uint type, ushort fragment, ushort fragmentId, ushort fragmentCount, ByteBuffer data)
         #endregion
         {
             Console.WriteLine("MsgGuaranteedFragmented | Type: {0} | Fragment: {1} | FragmentId: {2} | FragmentCount: {3}", type, fragment, fragmentId, fragmentCount);
@@ -363,16 +364,16 @@ namespace Genesis.Shared.TNL
             ProcessFragment(data, _fragmentGuaranteed, type, fragment, fragmentId, fragmentCount);
         }
 
-        public void rpcMsgGuaranteedOrderedFragmented(UInt32 type, UInt16 fragment, UInt16 fragmentId, UInt16 fragmentCount, ByteBuffer data)
+        public void rpcMsgGuaranteedOrderedFragmented(uint type, ushort fragment, ushort fragmentId, ushort fragmentCount, ByteBuffer data)
         #region rpcMsgGuaranteedOrderedFragmented
         {
             var rpcEvent = new RPCMsgGuaranteedOrderedFragmented();
-            rpcEvent.Functor.Set(new Object[] { type, fragment, fragmentId, fragmentCount, data });
+            rpcEvent.Functor.Set(new object[] { type, fragment, fragmentId, fragmentCount, data });
 
             PostNetEvent(rpcEvent);
         }
 
-        private void rpcMsgGuaranteedOrderedFragmented_remote(UInt32 type, UInt16 fragment, UInt16 fragmentId, UInt16 fragmentCount, ByteBuffer data)
+        private void rpcMsgGuaranteedOrderedFragmented_remote(uint type, ushort fragment, ushort fragmentId, ushort fragmentCount, ByteBuffer data)
         #endregion
         {
             Console.WriteLine("MsgGuaranteedOrderedFragmented | Type: {0} | Fragment: {1} | FragmentId: {2} | FragmentCount: {3}", type, fragment, fragmentId, fragmentCount);
@@ -380,16 +381,16 @@ namespace Genesis.Shared.TNL
             ProcessFragment(data, _fragmentGuaranteedOrdered, type, fragment, fragmentId, fragmentCount);
         }
 
-        public void rpcMsgNonGuaranteedFragmented(UInt32 type, UInt16 fragment, UInt16 fragmentId, UInt16 fragmentCount, ByteBuffer data)
+        public void rpcMsgNonGuaranteedFragmented(uint type, ushort fragment, ushort fragmentId, ushort fragmentCount, ByteBuffer data)
         #region rpcMsgNonGuaranteedFragmented
         {
             var rpcEvent = new RPCMsgNonGuaranteedFragmented();
-            rpcEvent.Functor.Set(new Object[] { type, fragment, fragmentId, fragmentCount, data });
+            rpcEvent.Functor.Set(new object[] { type, fragment, fragmentId, fragmentCount, data });
 
             PostNetEvent(rpcEvent);
         }
 
-        private void rpcMsgNonGuaranteedFragmented_remote(UInt32 type, UInt16 fragment, UInt16 fragmentId, UInt16 fragmentCount, ByteBuffer data)
+        private void rpcMsgNonGuaranteedFragmented_remote(uint type, ushort fragment, ushort fragmentId, ushort fragmentCount, ByteBuffer data)
         #endregion
         {
             Console.WriteLine("MsgNonGuaranteedFragmented | Type: {0} | Fragment: {1} | FragmentId: {2} | FragmentCount: {3}", type, fragment, fragmentId, fragmentCount);
@@ -406,12 +407,12 @@ namespace Genesis.Shared.TNL
             return _dynClassRep;
         }
 
-        public void SetPlayerCOID(Int64 connId)
+        public void SetPlayerCOID(long connId)
         {
             _playerCOID = connId;
         }
 
-        public Int64 GetPlayerCOID()
+        public long GetPlayerCOID()
         {
             return _playerCOID;
         }
@@ -431,7 +432,7 @@ namespace Genesis.Shared.TNL
             base.PrepareWritePacket();
         }
 
-        public void GetFixedRateParameters(out UInt32 minPacketSendPeriod, out UInt32 minPacketRecvPeriod, out UInt32 maxSendBandwidth, out UInt32 maxRecvBandwidth)
+        public void GetFixedRateParameters(out uint minPacketSendPeriod, out uint minPacketRecvPeriod, out uint maxSendBandwidth, out uint maxRecvBandwidth)
         {
             minPacketSendPeriod = LocalRate.MinPacketSendPeriod;
             minPacketRecvPeriod = LocalRate.MinPacketRecvPeriod;
@@ -452,7 +453,7 @@ namespace Genesis.Shared.TNL
             stream.Write(_playerCOID);
         }
 
-        public override bool ReadConnectRequest(BitStream stream, ref String errorString)
+        public override bool ReadConnectRequest(BitStream stream, ref string errorString)
         {
             if (!base.ReadConnectRequest(stream, ref errorString))
                 return false;
@@ -461,7 +462,7 @@ namespace Genesis.Shared.TNL
             if (tInterface == null)
                 return false;
 
-            Int32 version;
+            int version;
             if (!stream.Read(out version) || version != tInterface.Version)
             {
                 errorString = "Incorrect Version";
@@ -517,13 +518,13 @@ namespace Genesis.Shared.TNL
             return GetScopeObject();
         }
 
-        public Int32 GetTimeSinceLastMessage()
+        public int GetTimeSinceLastMessage()
         {
             return Interface.GetCurrentTime() - LastPacketRecvTime;
         }
 
 // ReSharper disable UnusedParameter.Local
-        private void ProcessFragment(ByteBuffer theData, SFragmentData sFragment, UInt32 type, UInt16 fragment, UInt16 fragmentId, UInt16 fragmentCount)
+        private void ProcessFragment(ByteBuffer theData, SFragmentData sFragment, uint type, ushort fragment, ushort fragmentId, ushort fragmentCount)
 // ReSharper restore UnusedParameter.Local
         {
             if (sFragment.FragmentId != fragment)
@@ -571,15 +572,15 @@ namespace Genesis.Shared.TNL
 
         private class SFragmentData
         {
-            public UInt32 FragmentId { get; set; }
-            public UInt32 TotalSize { get; set; }
-            public readonly Dictionary<Int32, ByteBuffer> MapFragments;
+            public uint FragmentId { get; set; }
+            public uint TotalSize { get; set; }
+            public readonly Dictionary<int, ByteBuffer> MapFragments;
 
             public SFragmentData()
             {
                 FragmentId = 0;
                 TotalSize = 0;
-                MapFragments = new Dictionary<Int32, ByteBuffer>();
+                MapFragments = new Dictionary<int, ByteBuffer>();
             }
         }
 
@@ -590,8 +591,8 @@ namespace Genesis.Shared.TNL
             public static NetClassRepInstance<RPCMsgGuaranteed> DynClassRep;
             public RPCMsgGuaranteed()
                 : base(RPCGuaranteeType.RPCGuaranteed, RPCDirection.RPCDirAny)
-            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteed_remote", new[] { typeof(UInt32), typeof(ByteBuffer) }); }
-            public override Boolean CheckClassType(Object obj) { return (obj as TNLConnection) != null; }
+            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteed_remote", new[] { typeof(uint), typeof(ByteBuffer) }); }
+            public override bool CheckClassType(object obj) { return (obj as TNLConnection) != null; }
             public override NetClassRep GetClassRep() { return DynClassRep; }
         }
 
@@ -600,8 +601,8 @@ namespace Genesis.Shared.TNL
             public static NetClassRepInstance<RPCMsgGuaranteedOrdered> DynClassRep;
             public RPCMsgGuaranteedOrdered()
                 : base(RPCGuaranteeType.RPCGuaranteedOrdered, RPCDirection.RPCDirAny)
-            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteedOrdered_remote", new[] { typeof(UInt32), typeof(ByteBuffer) }); }
-            public override Boolean CheckClassType(Object obj) { return (obj as TNLConnection) != null; }
+            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteedOrdered_remote", new[] { typeof(uint), typeof(ByteBuffer) }); }
+            public override bool CheckClassType(object obj) { return (obj as TNLConnection) != null; }
             public override NetClassRep GetClassRep() { return DynClassRep; }
         }
 
@@ -610,8 +611,8 @@ namespace Genesis.Shared.TNL
             public static NetClassRepInstance<RPCMsgNonGuaranteed> DynClassRep;
             public RPCMsgNonGuaranteed()
                 : base(RPCGuaranteeType.RPCUnguaranteed, RPCDirection.RPCDirAny)
-            { Functor = new FunctorDecl<TNLConnection>("rpcMsgNonGuaranteed_remote", new[] { typeof(UInt32), typeof(ByteBuffer) }); }
-            public override Boolean CheckClassType(Object obj) { return (obj as TNLConnection) != null; }
+            { Functor = new FunctorDecl<TNLConnection>("rpcMsgNonGuaranteed_remote", new[] { typeof(uint), typeof(ByteBuffer) }); }
+            public override bool CheckClassType(object obj) { return (obj as TNLConnection) != null; }
             public override NetClassRep GetClassRep() { return DynClassRep; }
         }
 
@@ -620,8 +621,8 @@ namespace Genesis.Shared.TNL
             public static NetClassRepInstance<RPCMsgGuaranteedFragmented> DynClassRep;
             public RPCMsgGuaranteedFragmented()
                 : base(RPCGuaranteeType.RPCGuaranteed, RPCDirection.RPCDirAny)
-            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteedFragmented_remote", new[] { typeof(UInt32), typeof(UInt16), typeof(UInt16), typeof(UInt16), typeof(ByteBuffer) }); }
-            public override Boolean CheckClassType(Object obj) { return (obj as TNLConnection) != null; }
+            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteedFragmented_remote", new[] { typeof(uint), typeof(ushort), typeof(ushort), typeof(ushort), typeof(ByteBuffer) }); }
+            public override bool CheckClassType(object obj) { return (obj as TNLConnection) != null; }
             public override NetClassRep GetClassRep() { return DynClassRep; }
         }
 
@@ -630,8 +631,8 @@ namespace Genesis.Shared.TNL
             public static NetClassRepInstance<RPCMsgGuaranteedOrderedFragmented> DynClassRep;
             public RPCMsgGuaranteedOrderedFragmented()
                 : base(RPCGuaranteeType.RPCGuaranteedOrdered, RPCDirection.RPCDirAny)
-            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteedOrderedFragmented_remote", new[] { typeof(UInt32), typeof(UInt16), typeof(UInt16), typeof(UInt16), typeof(ByteBuffer) }); }
-            public override Boolean CheckClassType(Object obj) { return (obj as TNLConnection) != null; }
+            { Functor = new FunctorDecl<TNLConnection>("rpcMsgGuaranteedOrderedFragmented_remote", new[] { typeof(uint), typeof(ushort), typeof(ushort), typeof(ushort), typeof(ByteBuffer) }); }
+            public override bool CheckClassType(object obj) { return (obj as TNLConnection) != null; }
             public override NetClassRep GetClassRep() { return DynClassRep; }
         }
 
@@ -640,8 +641,8 @@ namespace Genesis.Shared.TNL
             public static NetClassRepInstance<RPCMsgNonGuaranteedFragmented> DynClassRep;
             public RPCMsgNonGuaranteedFragmented()
                 : base(RPCGuaranteeType.RPCUnguaranteed, RPCDirection.RPCDirAny)
-            { Functor = new FunctorDecl<TNLConnection>("rpcMsgNonGuaranteedFragmented_remote", new[] { typeof(UInt32), typeof(UInt16), typeof(UInt16), typeof(UInt16), typeof(ByteBuffer) }); }
-            public override Boolean CheckClassType(Object obj) { return (obj as TNLConnection) != null; }
+            { Functor = new FunctorDecl<TNLConnection>("rpcMsgNonGuaranteedFragmented_remote", new[] { typeof(uint), typeof(ushort), typeof(ushort), typeof(ushort), typeof(ByteBuffer) }); }
+            public override bool CheckClassType(object obj) { return (obj as TNLConnection) != null; }
             public override NetClassRep GetClassRep() { return DynClassRep; }
         }
 

@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct MapPathPoint
     {
-        public Single AcceptDistance;
+        public float AcceptDistance;
         public Vector3 Position;
-        public UInt64 ReactionCOID;
-        public UInt32 WaitTime;
+        public ulong ReactionCOID;
+        public uint WaitTime;
 
         public static MapPathPoint Read(BinaryReader br)
         {

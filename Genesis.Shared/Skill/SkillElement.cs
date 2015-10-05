@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Skill
 {
     public struct SkillElement
     {
-        public Int32 ElementType;
-        public Byte EquationType;
-        public Int32 SkillId;
-        public Single ValueBase;
-        public Single ValuePerLevel;
+        public int ElementType;
+        public byte EquationType;
+        public int SkillId;
+        public float ValueBase;
+        public float ValuePerLevel;
 
         public static SkillElement Read(BinaryReader br)
         {

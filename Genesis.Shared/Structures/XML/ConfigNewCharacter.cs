@@ -1,45 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Genesis.Shared.Structures.XML
 {
-    using Shared.Manager;
+    using Manager;
 
     public class ConfigNewCharacter
     {
         [XmlElement("IDRace")]
-        public Byte Race;
+        public byte Race;
         [XmlElement("IDClass")]
-        public Byte Class;
+        public byte Class;
         [XmlElement("IDOptionCode")]
-        public Int32 OptionCode;
+        public int OptionCode;
         [XmlElement("CBIDPowerPlant")]
-        public Int32 PowerPlant;
+        public int PowerPlant;
         [XmlElement("CBIDArmor")]
-        public Int32 Armor;
+        public int Armor;
         [XmlElement("CBIDRaceItem")]
-        public Int32 RaceItem;
+        public int RaceItem;
         [XmlElement("IDSkillBattleMode1")]
-        public UInt32 SkillBattleMode1;
+        public uint SkillBattleMode1;
         [XmlElement("IDSkillBattleMode2")]
-        public UInt32 SkillBattleMode2;
+        public uint SkillBattleMode2;
         [XmlElement("IDSkillBattleMode3")]
-        public UInt32 SkillBattleMode3;
+        public uint SkillBattleMode3;
         [XmlElement("IDStartingSkill1")]
-        public UInt32 StartSkill;
+        public uint StartSkill;
         [XmlElement("IDStartingTown")]
-        public Int32 StartTown;
+        public int StartTown;
         [XmlElement("CBIDTrailer")]
-        public Int32 Trailer;
+        public int Trailer;
         [XmlElement("CBIDVehicle")]
-        public Int32 Vehicle;
+        public int Vehicle;
         [XmlElement("CBIDWeapon")]
-        public Int32 Weapon;
+        public int Weapon;
 
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Format("ID: {0} | {1}", Race, Class);
+            return $"ID: {Race} | {Class}";
         }
 
         public void OnDeserialization()

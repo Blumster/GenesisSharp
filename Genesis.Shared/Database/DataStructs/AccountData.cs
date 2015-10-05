@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 
 namespace Genesis.Shared.Database.DataStructs
 {
@@ -7,12 +6,12 @@ namespace Genesis.Shared.Database.DataStructs
 
     public class AccountData
     {
-        public UInt64 Id { get; set; }
-        public String UserName { get; set; }
-        public String Password { get; set; }
-        public UInt32 OneTimeKey { get; set; }
-        public Byte Level { get; set; }
-        public UInt32[] FirstTimeFlags { get; set; }
+        public ulong Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public uint OneTimeKey { get; set; }
+        public byte Level { get; set; }
+        public uint[] FirstTimeFlags { get; set; }
 
         public static AccountData Read(IDataReader reader)
         {

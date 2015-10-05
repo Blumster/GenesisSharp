@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
@@ -7,11 +6,11 @@ namespace Genesis.Shared.Structures
 
     public struct DamageArray
     {
-        public Int16[] Damage;
+        public short[] Damage;
 
         public static DamageArray Read(BinaryReader br)
         {
-            return new DamageArray { Damage = br.Read<Int16>(6) };
+            return new DamageArray { Damage = br.Read<short>(6) };
         }
 
         public void WriteToPacket(Packet packet)

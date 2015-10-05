@@ -10,12 +10,12 @@ namespace Genesis.Shared.Entities
 
     public class MapPath : ClonedObjectBase
     {
-        public UInt32 DefaultMapPath;
+        public uint DefaultMapPath;
         public List<MapPathPoint> MapPathPoints = new List<MapPathPoint>();
-        public String PathName;
-        public Boolean ReverseDirection;
+        public string PathName;
+        public bool ReverseDirection;
 
-        public override void Unserialize(BinaryReader br, UInt32 mapVersion)
+        public override void Unserialize(BinaryReader br, uint mapVersion)
         {
             DefaultMapPath = br.ReadUInt32();
             ReverseDirection = br.ReadBoolean();
@@ -26,7 +26,7 @@ namespace Genesis.Shared.Entities
                 MapPathPoints.Add(MapPathPoint.Read(br));
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             throw new NotSupportedException();
         }

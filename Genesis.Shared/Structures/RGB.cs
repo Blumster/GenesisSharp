@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct RGB
     {
-        public Single B;
-        public Single G;
-        public Single R;
+        public float B;
+        public float G;
+        public float R;
 
         public static RGB Read(BinaryReader br)
         {
@@ -21,7 +20,7 @@ namespace Genesis.Shared.Structures
 
         public override string ToString()
         {
-            return String.Format("R: {0} | G: {1} | B: {2}", R, G, B);
+            return $"R: {R} | G: {G} | B: {B}";
         }
     }
 }

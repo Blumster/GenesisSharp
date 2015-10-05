@@ -8,7 +8,7 @@ namespace Genesis.Shared.Entities.Base
         public GraphicsBase CVOGGraphicsBase = new GraphicsBase();
         public PhysicsBase CVOGPhysicsBase = new PhysicsBase();
 
-        public override void Unserialize(BinaryReader br, UInt32 mapVersion)
+        public override void Unserialize(BinaryReader br, uint mapVersion)
         {
             CVOGGraphicsBase.UnserializeCreateEffect(br, mapVersion);
             CVOGGraphicsBase.UnserializeTooltip(br, mapVersion);
@@ -16,7 +16,7 @@ namespace Genesis.Shared.Entities.Base
             CVOGPhysicsBase.UnSerialize(br, mapVersion);
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             throw new NotSupportedException();
         }

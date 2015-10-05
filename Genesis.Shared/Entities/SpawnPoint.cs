@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Entities
@@ -10,26 +9,26 @@ namespace Genesis.Shared.Entities
 
     public class SpawnPoint : GraphicsBase // stabil pont: -352 == activation range | off: 80 h
     {
-        public Single ActivationRange;
-        public Byte ChampionChance;
-        public Boolean FactionDirty;
-        public Boolean HasChampion;
-        public Single InitialPatrolDistance;
+        public float ActivationRange;
+        public byte ChampionChance;
+        public bool FactionDirty;
+        public bool HasChampion;
+        public float InitialPatrolDistance;
         public Vector4 Location;
-        public Int32 Loot;
-        public Single LootChance;
-        public Single LootPercent;
-        public UInt64 MapPathCOID;
-        public UInt32 OriginalFaction;
+        public int Loot;
+        public float LootChance;
+        public float LootPercent;
+        public ulong MapPathCOID;
+        public uint OriginalFaction;
         public Vector4 Quaternion;
-        public Single Radius;
-        public Byte RandomlyOffsetSpawnPosition;
-        public Single RespawnTime;
-        public Byte SpawnChance;
+        public float Radius;
+        public byte RandomlyOffsetSpawnPosition;
+        public float RespawnTime;
+        public byte SpawnChance;
         public List<SpawnList> SpawnLists = new List<SpawnList>();
-        public Boolean UseGenerator;
+        public bool UseGenerator;
 
-        public override void Unserialize(BinaryReader br, UInt32 mapVersion)
+        public override void Unserialize(BinaryReader br, uint mapVersion)
         {
             ReadTriggerEvents(br, mapVersion);
 

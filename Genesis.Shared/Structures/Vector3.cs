@@ -1,20 +1,18 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct Vector3
     {
-        private Single _x, _y, _z;
-        public Single X { get { return _x; } set { _x = value; } }
-        public Single Y { get { return _y; } set { _y = value; } }
-        public Single Z { get { return _z; } set { _z = value; } }
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
 
-        public Vector3(Single x, Single y, Single z)
+        public Vector3(float x, float y, float z)
         {
-            _x = x;
-            _y = y;
-            _z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         public static Vector3 Read(BinaryReader br)
@@ -29,7 +27,7 @@ namespace Genesis.Shared.Structures
 
         public override string ToString()
         {
-            return String.Format("X: {0} | Y: {1} | Z: {2}", X, Y, Z);
+            return $"X: {X} | Y: {Y} | Z: {Z}";
         }
     }
 }

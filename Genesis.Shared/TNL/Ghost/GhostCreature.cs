@@ -1,5 +1,4 @@
-﻿using System;
-using TNL.NET.Entities;
+﻿using TNL.NET.Entities;
 using TNL.NET.Types;
 using TNL.NET.Utils;
 
@@ -34,7 +33,7 @@ namespace Genesis.Shared.TNL.Ghost
             
         }
 
-        public override UInt64 PackUpdate(GhostConnection connection, UInt64 updateMask, BitStream stream)
+        public override ulong PackUpdate(GhostConnection connection, ulong updateMask, BitStream stream)
         {
             return 0UL;
         }

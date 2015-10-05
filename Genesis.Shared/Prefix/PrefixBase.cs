@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Prefix
 {
@@ -7,29 +6,29 @@ namespace Genesis.Shared.Prefix
 
     public class PrefixBase
     {
-        public Single AttributeRequirementIncrease;
-        public Int32 BaseValue;
-        public Int32 Class;
-        public Int32 Complexity;
-        public UInt32 Id;
-        public Int32[] Ingredients;
-        public Int32 IsComponent;
-        public Int32 IsGadgetOnly;
-        public Int32 IsPrefix;
-        public Int16 ItemRarity;
-        public Int16 LevelOffset;
-        public Single MassPercent;
-        public String Name;
-        public Int32 ObjectType;
-        public String PrefixName;
-        public Int32 Race;
-        public Single Rarity;
-        public Int16 RequiredCombat;
-        public Int16 RequiredPerception;
-        public Int16 RequiredTech;
-        public Int16 RequiredTheory;
-        public Int32 Skill;
-        public Single ValuePercent;
+        public float AttributeRequirementIncrease;
+        public int BaseValue;
+        public int Class;
+        public int Complexity;
+        public uint Id;
+        public int[] Ingredients;
+        public int IsComponent;
+        public int IsGadgetOnly;
+        public int IsPrefix;
+        public short ItemRarity;
+        public short LevelOffset;
+        public float MassPercent;
+        public string Name;
+        public int ObjectType;
+        public string PrefixName;
+        public int Race;
+        public float Rarity;
+        public short RequiredCombat;
+        public short RequiredPerception;
+        public short RequiredTech;
+        public short RequiredTheory;
+        public int Skill;
+        public float ValuePercent;
 
         public PrefixBase(BinaryReader br)
         {
@@ -46,7 +45,7 @@ namespace Genesis.Shared.Prefix
 
             MassPercent = br.ReadSingle();
             Skill = br.ReadInt32();
-            Ingredients = br.Read<Int32>(5);
+            Ingredients = br.Read<int>(5);
             BaseValue = br.ReadInt32();
             IsGadgetOnly = br.ReadInt32();
             LevelOffset = br.ReadInt16();

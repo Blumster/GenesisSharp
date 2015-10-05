@@ -10,7 +10,7 @@ namespace Genesis.Sector
     {
         private static SectorServer _server;
 
-        public static void Main(String[] args)
+        public static void Main(string[] args)
         {
             Initialize(Handler);
 
@@ -31,13 +31,13 @@ namespace Genesis.Sector
             Process.GetCurrentProcess().WaitForExit();
         }
 
-        private static Boolean Handler(Byte sig)
+        private static bool Handler(byte sig)
         {
             Logger.WriteLog("Shutting down the server...", LogType.None);
 
             Logger.WriteLog("Saving players!", LogType.None);
 
-            _server.Shutdown();
+            _server?.Shutdown();
 
             Logger.WriteLog("Press any key to exit...", LogType.None);
 

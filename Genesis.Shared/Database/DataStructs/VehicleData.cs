@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 
 namespace Genesis.Shared.Database.DataStructs
 {
@@ -8,30 +7,30 @@ namespace Genesis.Shared.Database.DataStructs
 
     public class VehicleData
     {
-        public Int64 Coid { get; set; }
-        public Int64 OwnerCoid { get; set; }
-        public Int32 Cbid { get; set; }
-        public Int32 TeamFaction { get; set; }
-        public Single X { get; set; }
-        public Single Y { get; set; }
-        public Single Z { get; set; }
-        public Single Q1 { get; set; }
-        public Single Q2 { get; set; }
-        public Single Q3 { get; set; }
-        public Single Q4 { get; set; }
-        public Int64 Ornament { get; set; }
-        public Int64 RaceItem { get; set; }
-        public Int64 PowerPlant { get; set; }
-        public Int64 Wheelset { get; set; }
-        public Int64 Armor { get; set; }
-        public Int64 MeleeWeapon { get; set; }
-        public Int64 Front { get; set; }
-        public Int64 Turret { get; set; }
-        public Int64 Rear { get; set; }
-        public String Name { get; set; }
-        public UInt32 PrimaryColor { get; set; }
-        public UInt32 SecondaryColor { get; set; }
-        public Byte Trim { get; set; }
+        public long Coid { get; set; }
+        public long OwnerCoid { get; set; }
+        public int Cbid { get; set; }
+        public int TeamFaction { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Z { get; set; }
+        public float Q1 { get; set; }
+        public float Q2 { get; set; }
+        public float Q3 { get; set; }
+        public float Q4 { get; set; }
+        public long Ornament { get; set; }
+        public long RaceItem { get; set; }
+        public long PowerPlant { get; set; }
+        public long Wheelset { get; set; }
+        public long Armor { get; set; }
+        public long MeleeWeapon { get; set; }
+        public long Front { get; set; }
+        public long Turret { get; set; }
+        public long Rear { get; set; }
+        public string Name { get; set; }
+        public uint PrimaryColor { get; set; }
+        public uint SecondaryColor { get; set; }
+        public byte Trim { get; set; }
 
         public static VehicleData Read(IDataReader reader)
         {
@@ -69,19 +68,19 @@ namespace Genesis.Shared.Database.DataStructs
             return null;
         }
 
-        public static String GetQueryString()
+        public static string GetQueryString()
         {
             return "`Coid`, `OwnerCoid`, `Cbid`, `TeamFaction`, `X`, `Y`, `Z`, `Q1`, `Q2`, `Q3`, `Q4`, `Ornament`, `RaceItem`, `PowerPlant`, `Wheelset`, `Armor`, `MeleeWeapon`, `Front`, `Turret`, `Rear`, `Name`, `PrimaryColor`, `SecondaryColor`, `Trim`";
         }
 
-        public String GetInsertString()
+        public string GetInsertString()
         {
-            return String.Format("{0}, {1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}, {9}, {10}, {11}, {12}, {13}, {14}, {15}, {16}, {17}, {18}, {19}, '{20}', {21}, {22}, {23} ", Coid, OwnerCoid, Cbid, TeamFaction, X.ToString(CultureInfo.InvariantCulture), Y.ToString(CultureInfo.InvariantCulture), Z.ToString(CultureInfo.InvariantCulture), Q1.ToString(CultureInfo.InvariantCulture), Q2.ToString(CultureInfo.InvariantCulture), Q3.ToString(CultureInfo.InvariantCulture), Q4.ToString(CultureInfo.InvariantCulture), Ornament, RaceItem, PowerPlant, Wheelset, Armor, MeleeWeapon, Front, Turret, Rear, Name, PrimaryColor, SecondaryColor, Trim);
+            return $"{Coid}, {OwnerCoid}, {Cbid}, {TeamFaction}, {X.ToString(CultureInfo.InvariantCulture)}, {Y.ToString(CultureInfo.InvariantCulture)}, {Z.ToString(CultureInfo.InvariantCulture)}, {Q1.ToString(CultureInfo.InvariantCulture)}, {Q2.ToString(CultureInfo.InvariantCulture)}, {Q3.ToString(CultureInfo.InvariantCulture)}, {Q4.ToString(CultureInfo.InvariantCulture)}, {Ornament}, {RaceItem}, {PowerPlant}, {Wheelset}, {Armor}, {MeleeWeapon}, {Front}, {Turret}, {Rear}, '{Name}', {PrimaryColor}, {SecondaryColor}, {Trim} ";
         }
 
-        public String GetUpdateString()
+        public string GetUpdateString()
         {
-            return String.Format("`Coid` = {0}, `OwnerCoid` = {1}, `Cbid` = {2}, `TeamFaction` = {3}, `X` = {4}, `Y` = {5}, `Z` = {6}, `Q1` = {7}, `Q2` = {8}, `Q3` = {9}, `Q4` = {10}, `Ornament` = {11}, `RaceItem` = {12}, `PowerPlant` = {13}, `Wheelset` = {14}, `Armor` = {15}, `MeleeWeapon` = {16}, `Front` = {17}, `Turret` = {18}, `Rear` = {19}, `Name` = '{20}', `PrimaryColor` = {21}, `SecondaryColor` = {22}, `Trim` = {23}", Coid, OwnerCoid, Cbid, TeamFaction, X.ToString(CultureInfo.InvariantCulture), Y.ToString(CultureInfo.InvariantCulture), Z.ToString(CultureInfo.InvariantCulture), Q1.ToString(CultureInfo.InvariantCulture), Q2.ToString(CultureInfo.InvariantCulture), Q3.ToString(CultureInfo.InvariantCulture), Q4.ToString(CultureInfo.InvariantCulture), Ornament, RaceItem, PowerPlant, Wheelset, Armor, MeleeWeapon, Front, Turret, Rear, Name, PrimaryColor, SecondaryColor, Trim);
+            return $"`Coid` = {Coid}, `OwnerCoid` = {OwnerCoid}, `Cbid` = {Cbid}, `TeamFaction` = {TeamFaction}, `X` = {X.ToString(CultureInfo.InvariantCulture)}, `Y` = {Y.ToString(CultureInfo.InvariantCulture)}, `Z` = {Z.ToString(CultureInfo.InvariantCulture)}, `Q1` = {Q1.ToString(CultureInfo.InvariantCulture)}, `Q2` = {Q2.ToString(CultureInfo.InvariantCulture)}, `Q3` = {Q3.ToString(CultureInfo.InvariantCulture)}, `Q4` = {Q4.ToString(CultureInfo.InvariantCulture)}, `Ornament` = {Ornament}, `RaceItem` = {RaceItem}, `PowerPlant` = {PowerPlant}, `Wheelset` = {Wheelset}, `Armor` = {Armor}, `MeleeWeapon` = {MeleeWeapon}, `Front` = {Front}, `Turret` = {Turret}, `Rear` = {Rear}, `Name` = '{Name}', `PrimaryColor` = {PrimaryColor}, `SecondaryColor` = {SecondaryColor}, `Trim` = {Trim}";
         }
     }
 }

@@ -1,19 +1,18 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct SkillSet
     {
-        public Byte AnimationId;
-        public Int32 MaxHealth;
-        public UInt16 MinCastTime;
-        public Int32 MinHealth;
-        public UInt16 PauseTime;
-        public Int32 SkillId;
-        public UInt16 SkillLevel;
-        public Boolean StopsToAttack;
-        public Single Weight;
+        public byte AnimationId;
+        public int MaxHealth;
+        public ushort MinCastTime;
+        public int MinHealth;
+        public ushort PauseTime;
+        public int SkillId;
+        public ushort SkillLevel;
+        public bool StopsToAttack;
+        public float Weight;
 
         public static SkillSet Read(BinaryReader br)
         {
@@ -33,7 +32,7 @@ namespace Genesis.Shared.Structures
 
         public override string ToString()
         {
-            return String.Format("Id: {0}", SkillId);
+            return $"Id: {SkillId}";
         }
     }
 }

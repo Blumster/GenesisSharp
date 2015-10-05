@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
     public struct TinkeringKitSpecific
     {
-        public Int16 MaxSlotLevel;
-        public UInt32 ObjectTypeRestriction;
+        public short MaxSlotLevel;
+        public uint ObjectTypeRestriction;
 
         public static TinkeringKitSpecific Read(BinaryReader br)
         {

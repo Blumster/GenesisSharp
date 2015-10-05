@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
@@ -7,33 +6,33 @@ namespace Genesis.Shared.Structures.Specifics
 
     public struct WeaponSpecific
     {
-        public Single AccucaryModifier;
-        public Int32 BulletId;
-        public Single DamageBonusPerLevel;
-        public Single DamageScalar;
-        public Int32 DmgMaxMax;
-        public Int32 DmgMaxMin;
-        public Int32 DmgMinMax;
-        public Int32 DmgMinMin;
-        public Int32 DotDuration;
-        public Single ExplosionRadius;
+        public float AccucaryModifier;
+        public int BulletId;
+        public float DamageBonusPerLevel;
+        public float DamageScalar;
+        public int DmgMaxMax;
+        public int DmgMaxMin;
+        public int DmgMinMax;
+        public int DmgMinMin;
+        public int DotDuration;
+        public float ExplosionRadius;
         public Vector3 FirePoint;
-        public Byte Flags;
-        public Int16 Heat;
-        public Single HitBonusPerLevel;
+        public byte Flags;
+        public short Heat;
+        public float HitBonusPerLevel;
         public DamageArray MaxMax;
         public DamageArray MaxMin;
         public DamageArray MinMax;
         public DamageArray MinMin;
-        public Int16 OffenseBonus;
-        public Int16 PenetrationModifier;
-        public Single RangeMax;
-        public Single RangeMin;
-        public Int32 RechargeTime;
-        public Byte SprayTargets;
-        public Byte SubType;
-        public Byte TurretSize;
-        public Single ValidArc;
+        public short OffenseBonus;
+        public short PenetrationModifier;
+        public float RangeMax;
+        public float RangeMin;
+        public int RechargeTime;
+        public byte SprayTargets;
+        public byte SubType;
+        public byte TurretSize;
+        public float ValidArc;
 
         public static WeaponSpecific Read(BinaryReader br)
         {

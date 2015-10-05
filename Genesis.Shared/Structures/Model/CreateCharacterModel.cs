@@ -1,33 +1,31 @@
-﻿using System;
-
-namespace Genesis.Shared.Structures.Model
+﻿namespace Genesis.Shared.Structures.Model
 {
     public class CreateCharacterModel
     {
-        public Int32 CBid { get; set; }
-        public String CharacterName { get; set; }
-        public String AccountName { get; set; }
-        public String VehicleName { get; set; }
-        public Int32 Head { get; set; }
-        public Int32 Body { get; set; }
-        public Int32 HeadDetail { get; set; }
-        public Int32 HeadDetail2 { get; set; }
-        public Int32 Helmet { get; set; }
-        public Int32 Eyes { get; set; }
-        public Int32 Mouth { get; set; }
-        public Int32 Hair { get; set; }
-        public UInt32 PrimaryColor { get; set; }
-        public UInt32 SecondaryColor { get; set; }
-        public UInt32 EyeColor { get; set; }
-        public UInt32 HairColor { get; set; }
-        public UInt32 SkinColor { get; set; }
-        public UInt32 SpecialColor { get; set; }
-        public UInt32 ShardId { get; set; }
-        public UInt32 VehiclePrimaryColor { get; set; }
-        public UInt32 VehicleSecondaryColor { get; set; }
-        public Byte VehicleTrim { get; set; }
-        public Single ScaleOffset { get; set; }
-        public Int32 CBidWheelset { get; set; }
+        public int CBid { get; set; }
+        public string CharacterName { get; set; }
+        public string AccountName { get; set; }
+        public string VehicleName { get; set; }
+        public int Head { get; set; }
+        public int Body { get; set; }
+        public int HeadDetail { get; set; }
+        public int HeadDetail2 { get; set; }
+        public int Helmet { get; set; }
+        public int Eyes { get; set; }
+        public int Mouth { get; set; }
+        public int Hair { get; set; }
+        public uint PrimaryColor { get; set; }
+        public uint SecondaryColor { get; set; }
+        public uint EyeColor { get; set; }
+        public uint HairColor { get; set; }
+        public uint SkinColor { get; set; }
+        public uint SpecialColor { get; set; }
+        public uint ShardId { get; set; }
+        public uint VehiclePrimaryColor { get; set; }
+        public uint VehicleSecondaryColor { get; set; }
+        public byte VehicleTrim { get; set; }
+        public float ScaleOffset { get; set; }
+        public int CBidWheelset { get; set; }
 
         public static CreateCharacterModel Read(Packet packet)
         {

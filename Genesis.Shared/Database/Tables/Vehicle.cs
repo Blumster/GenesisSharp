@@ -7,12 +7,12 @@ namespace Genesis.Shared.Database.Tables
 
     public class Vehicle
     {
-        public VehicleData GetVehicle(Int64 coid)
+        public VehicleData GetVehicle(long coid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT {0}  FROM `vehicle` WHERE `Coid` = {1}", VehicleData.GetQueryString(), coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"SELECT {VehicleData.GetQueryString()}  FROM `vehicle` WHERE `Coid` = {coid}"))
                         using (var reader = comm.ExecuteReader())
                             return VehicleData.Read(reader);
             }
@@ -29,7 +29,7 @@ namespace Genesis.Shared.Database.Tables
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("INSERT INTO `vehicle` ({0}) VALUES ({1})", VehicleData.GetQueryString(), data.GetInsertString())))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"INSERT INTO `vehicle` ({VehicleData.GetQueryString()}) VALUES ({data.GetInsertString()})"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -43,7 +43,7 @@ namespace Genesis.Shared.Database.Tables
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("UPDATE `vehicle` SET {0} WHERE `Coid` = {1}", data.GetUpdateString(), data.Coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"UPDATE `vehicle` SET {data.GetUpdateString()} WHERE `Coid` = {data.Coid}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -52,12 +52,12 @@ namespace Genesis.Shared.Database.Tables
             }
         }
 
-        public void DeleteVehicle(Int64 ownerCoid)
+        public void DeleteVehicle(long ownerCoid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("DELETE FROM `vehicle` WHERE `OwnerCoid` = {0}", ownerCoid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"DELETE FROM `vehicle` WHERE `OwnerCoid` = {ownerCoid}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)

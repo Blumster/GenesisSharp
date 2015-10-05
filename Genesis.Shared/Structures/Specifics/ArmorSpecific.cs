@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
     public struct ArmorSpecific
     {
-        public Int16 ArmorFactor;
-        public Int16 DefenseBonus;
-        public Single DeflectionModifier;
+        public short ArmorFactor;
+        public short DefenseBonus;
+        public float DeflectionModifier;
         public DamageArray Resistances;
 
         public static ArmorSpecific Read(BinaryReader br)

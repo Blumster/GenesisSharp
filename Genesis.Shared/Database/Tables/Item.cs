@@ -8,7 +8,7 @@ namespace Genesis.Shared.Database.Tables
 
     public class Item
     {
-        public Int64 GetNextCoid()
+        public long GetNextCoid()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace Genesis.Shared.Database.Tables
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("INSERT INTO `{0}` (`Coid`, `Cbid`) VALUES ({1}, {2})", item.TableName, item.Coid, item.Cbid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"INSERT INTO `{item.TableName}` (`Coid`, `Cbid`) VALUES ({item.Coid}, {item.Cbid})"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -44,7 +44,7 @@ namespace Genesis.Shared.Database.Tables
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("UPDATE `{0}` SET `Cbid` = {2} WHERE `Coid` = {1}", item.TableName, item.Coid, item.Cbid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(string.Format("UPDATE `{0}` SET `Cbid` = {2} WHERE `Coid` = {1}", item.TableName, item.Coid, item.Cbid)))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -53,12 +53,13 @@ namespace Genesis.Shared.Database.Tables
             }
         }
 
-        public ItemData GetItemFrom(String table, Int64 coid)
+        public ItemData GetItemFrom(string table, long coid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT `Coid`, `Cbid` FROM `{0}` WHERE `Coid` = {1}", table, coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(
+                        $"SELECT `Coid`, `Cbid` FROM `{table}` WHERE `Coid` = {coid}"))
                         using (var reader = comm.ExecuteReader())
                             return ItemData.Read(reader);
             }
@@ -74,12 +75,12 @@ namespace Genesis.Shared.Database.Tables
             DeleteItem(data.TableName, data.Coid);
         }
 
-        public void DeleteItem(String table, Int64 coid)
+        public void DeleteItem(string table, long coid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("DELETE FROM `{0}` WHERE `Coid` = {1}", table, coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"DELETE FROM `{table}` WHERE `Coid` = {coid}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -88,7 +89,7 @@ namespace Genesis.Shared.Database.Tables
             }
         }
 
-        private static String GetMaxCoidQuery()
+        private static string GetMaxCoidQuery()
         {
             var sb = new StringBuilder();
 

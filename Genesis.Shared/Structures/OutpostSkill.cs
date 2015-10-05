@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct OutpostSkill
     {
-        public Byte Layer;
-        public Single RequiredBeaconPercantage;
-        public UInt32 SkillId;
-        public UInt32 SkillLevel;
+        public byte Layer;
+        public float RequiredBeaconPercantage;
+        public uint SkillId;
+        public uint SkillLevel;
 
         public static OutpostSkill Read(BinaryReader br)
         {

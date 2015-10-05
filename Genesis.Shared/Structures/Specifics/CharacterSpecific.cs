@@ -1,16 +1,15 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
     public struct CharacterSpecific
     {
-        public Byte Race;
-        public Byte Class;
-        public Boolean IsMale;
-        public Byte Flags;
-        public Int16 HPFactor;
-        public Int16 HPStart;
+        public byte Race;
+        public byte Class;
+        public bool IsMale;
+        public byte Flags;
+        public short HPFactor;
+        public short HPStart;
 
         public static CharacterSpecific Read(BinaryReader br)
         {

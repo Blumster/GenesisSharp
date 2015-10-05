@@ -1,6 +1,4 @@
-﻿using System;
-
-using TNL.NET.Entities;
+﻿using TNL.NET.Entities;
 
 namespace Genesis.Shared.Manager
 {

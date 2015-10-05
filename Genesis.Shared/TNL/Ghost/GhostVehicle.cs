@@ -1,6 +1,4 @@
-﻿using System;
-
-using TNL.NET.Entities;
+﻿using TNL.NET.Entities;
 using TNL.NET.Types;
 using TNL.NET.Utils;
 
@@ -10,19 +8,19 @@ namespace Genesis.Shared.TNL.Ghost
     {
         private static NetClassRepInstance<GhostVehicle> _dynClassRep;
 
-        private Byte ArmorFlags;
-        private Int32 MaxShields;
-        private Int32 CbidPet;
-        private Int32 MaxHp;
-        private Int32 CurrHp;
-        private Int32 Combat;
-        private Int32 Perception;
-        private Int32 Tech;
-        private Int32 Theory;
-        private String VehicleName;
-        private String ClanName;
-        private Int32 ClanId;
-        private Int32 ClanRank;
+        private byte ArmorFlags;
+        private int MaxShields;
+        private int CbidPet;
+        private int MaxHp;
+        private int CurrHp;
+        private int Combat;
+        private int Perception;
+        private int Tech;
+        private int Theory;
+        private string VehicleName;
+        private string ClanName;
+        private int ClanId;
+        private int ClanRank;
 
         public override NetClassRep GetClassRep()
         {
@@ -49,7 +47,7 @@ namespace Genesis.Shared.TNL.Ghost
             
         }
 
-        public override UInt64 PackUpdate(GhostConnection connection, UInt64 updateMask, BitStream stream)
+        public override ulong PackUpdate(GhostConnection connection, ulong updateMask, BitStream stream)
         {
             return 0UL;
         }
@@ -59,12 +57,12 @@ namespace Genesis.Shared.TNL.Ghost
             
         }
 
-        public void AddEquip(Object createMsg, TFID id, Int32 packetSize)
+        public void AddEquip(object createMsg, TFID id, int packetSize)
         {
             
         }
 
-        public void AddEquip2(Object createMsg, TFID id, Int32 packetSize)
+        public void AddEquip2(object createMsg, TFID id, int packetSize)
         {
             
         }

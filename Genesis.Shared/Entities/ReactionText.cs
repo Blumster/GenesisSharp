@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Entities
@@ -9,14 +8,14 @@ namespace Genesis.Shared.Entities
 
     public class ReactionText
     {
-        public String Main;
-        public Byte TargetType;
+        public string Main;
+        public byte TargetType;
         public List<TextChoice> TextChoices = new List<TextChoice>();
         public List<TextParam> TextParams = new List<TextParam>();
 
-        public Byte Type;
+        public byte Type;
 
-        public ReactionText(BinaryReader br, UInt32 mapVersion)
+        public ReactionText(BinaryReader br, uint mapVersion)
         {
             Type = br.ReadByte();
             TargetType = br.ReadByte();

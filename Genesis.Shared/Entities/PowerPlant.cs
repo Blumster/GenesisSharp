@@ -9,11 +9,11 @@ namespace Genesis.Shared.Entities
     public class PowerPlant : SimpleObject
     {
         private PowerPlantSpecific _powerPlantData;
-        private Single _coolRateVariance;
-        private Single _maximumHeatVariance;
-        private Single _maximumPowerVariance;
-        private Single _powerRegenRateVariance;
-        private Single _skillCooldownPercent;
+        private float _coolRateVariance;
+        private float _maximumHeatVariance;
+        private float _maximumPowerVariance;
+        private float _powerRegenRateVariance;
+        private float _skillCooldownPercent;
 
         public PowerPlant()
         {
@@ -35,42 +35,42 @@ namespace Genesis.Shared.Entities
 
         public void ApplyCoolingRate()
         {
-            _powerPlantData.CoolRate = (Int16)Math.Floor(_powerPlantData.CoolRate * _coolRateVariance);
+            _powerPlantData.CoolRate = (short)Math.Floor(_powerPlantData.CoolRate * _coolRateVariance);
         }
 
-        public void ApplyCoolingRatePercentage(Single f)
+        public void ApplyCoolingRatePercentage(float f)
         {
-            _powerPlantData.CoolRate = (Int16)Math.Ceiling(_powerPlantData.CoolRate * f);
+            _powerPlantData.CoolRate = (short)Math.Ceiling(_powerPlantData.CoolRate * f);
         }
 
         public void ApplyMaximumHeat()
         {
-            _powerPlantData.HeatMaximum = (Int32)Math.Floor(_powerPlantData.HeatMaximum * _maximumHeatVariance);
+            _powerPlantData.HeatMaximum = (int)Math.Floor(_powerPlantData.HeatMaximum * _maximumHeatVariance);
         }
 
-        public void ApplyMaximumHeatPercentage(Single f)
+        public void ApplyMaximumHeatPercentage(float f)
         {
-            _powerPlantData.HeatMaximum = (Int32)Math.Ceiling(_powerPlantData.HeatMaximum * f);
+            _powerPlantData.HeatMaximum = (int)Math.Ceiling(_powerPlantData.HeatMaximum * f);
         }
 
         public void ApplyMaximumPower()
         {
-            _powerPlantData.PowerMaximum = (Int32)Math.Floor(_powerPlantData.PowerMaximum * _maximumPowerVariance);
+            _powerPlantData.PowerMaximum = (int)Math.Floor(_powerPlantData.PowerMaximum * _maximumPowerVariance);
         }
 
-        public void ApplyMaximumPowerPercentage(Single f)
+        public void ApplyMaximumPowerPercentage(float f)
         {
-            _powerPlantData.PowerMaximum = (Int32)Math.Ceiling(_powerPlantData.PowerMaximum * f);
+            _powerPlantData.PowerMaximum = (int)Math.Ceiling(_powerPlantData.PowerMaximum * f);
         }
 
         public void ApplyPowerRegenRate()
         {
-            _powerPlantData.PowerRegenRate = (Int16)Math.Floor(_powerPlantData.PowerRegenRate * _powerRegenRateVariance);
+            _powerPlantData.PowerRegenRate = (short)Math.Floor(_powerPlantData.PowerRegenRate * _powerRegenRateVariance);
         }
 
-        public void ApplyPowerRegenRatePercentage(Single f)
+        public void ApplyPowerRegenRatePercentage(float f)
         {
-            _powerPlantData.PowerRegenRate = (Int16)Math.Ceiling(_powerPlantData.PowerRegenRate * f);
+            _powerPlantData.PowerRegenRate = (short)Math.Ceiling(_powerPlantData.PowerRegenRate * f);
         }
 
         public void ApplyVariances()
@@ -81,7 +81,7 @@ namespace Genesis.Shared.Entities
             ApplyPowerRegenRate();
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             base.WriteToCreatePacket(packet, extended);
 
@@ -122,7 +122,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public override bool LoadFromDB(Int64 coid)
+        public override bool LoadFromDB(long coid)
         {
             var id = DataAccess.Item.GetItemFrom("item_powerplant", coid);
             if (id == null)

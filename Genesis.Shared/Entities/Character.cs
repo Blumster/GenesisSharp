@@ -21,138 +21,138 @@ namespace Genesis.Shared.Entities
         #region Declaration
         // ReSharper disable FieldCanBeMadeReadOnly.Local
         // ReSharper disable NotAccessedField.Local
-        private UInt64 _accountId;
+        private ulong _accountId;
         private Vector4 _lastHeading;
-        public Byte GMLevel { get; private set; }
-        private Byte _level;
-        private Byte _bf297;
-        private Byte _class;
-        private Byte _race;
-        public String Name { get; private set; }
-        public String ClanName { get; private set; }
-        public Int32 ClanId { get; private set; }
-        public Int32 ClanRank { get; private set; }
-        private Boolean _isInHazardMode;
-        private Boolean _isGMFrozen;
-        private Boolean _isGMChatBanned;
-        private Boolean _isPossessingCreature;
-        private Single _kmTravelled;
-        private Single _kmTravelledMarker;
-        public Int32 BodyId { get; private set; }
-        public Int32 HeadId { get; private set; }
-        public Int32 HairId { get; private set; }
-        public Int32 HelmetId { get; private set; }
-        public Int32 AccessoryId1 { get; private set; }
-        public Int32 AccessoryId2 { get; private set; }
-        public Int32 EyesId { get; private set; }
-        public Int32 MouthId { get; private set; }
-        private readonly UInt32[] _characterColors = new UInt32[6];
-        public Single ScaleOffset { get; private set; }
-        private UInt32 _xp;
-        private Int32 _rapidKillTick;
-        private Byte _rapidKillCount;
-        private UInt64 _credits;
-        private UInt64 _creditsDebt;
-        private Int32 _lastTownId;
-        private Int32 _lastStationMapId;
-        private Int32 _lastStationId;
-        private Int32 _worldLocationId;
-        private UInt32 _mapId;
-        private readonly Int32[] _quickBarSkills;
-        private readonly Int64[] _quickBarItems;
-        private Boolean _hasLocker;
-        private Boolean _spectating;
-        private Boolean _hasLevelled;
-        private Boolean _isInFormation;
-        private Boolean _transferPending;
-        private Int32 _arenaId;
-        private Boolean _waitingForArena;
-        private Boolean _dontLeaveArena;
-        private Boolean _foreignChar;
-        private Boolean _preferPVP;
-        private Boolean _gmInvisible;
-        private Boolean _gmUntargetable;
-        private UInt32 _timeLastKilled;
-        private List<Object> _pendingMissions;
-        public Int32 PetCBID { get; private set; }
+        public byte GMLevel { get; }
+        private byte _level;
+        private byte _bf297;
+        private byte _class;
+        private byte _race;
+        public string Name { get; private set; }
+        public string ClanName { get; private set; }
+        public int ClanId { get; private set; }
+        public int ClanRank { get; private set; }
+        private bool _isInHazardMode;
+        private bool _isGMFrozen;
+        private bool _isGMChatBanned;
+        private bool _isPossessingCreature;
+        private float _kmTravelled;
+        private float _kmTravelledMarker;
+        public int BodyId { get; private set; }
+        public int HeadId { get; private set; }
+        public int HairId { get; private set; }
+        public int HelmetId { get; private set; }
+        public int AccessoryId1 { get; private set; }
+        public int AccessoryId2 { get; private set; }
+        public int EyesId { get; private set; }
+        public int MouthId { get; private set; }
+        private readonly uint[] _characterColors = new uint[6];
+        public float ScaleOffset { get; private set; }
+        private uint _xp;
+        private int _rapidKillTick;
+        private byte _rapidKillCount;
+        private ulong _credits;
+        private ulong _creditsDebt;
+        private int _lastTownId;
+        private int _lastStationMapId;
+        private int _lastStationId;
+        private int _worldLocationId;
+        private uint _mapId;
+        private readonly int[] _quickBarSkills;
+        private readonly long[] _quickBarItems;
+        private bool _hasLocker;
+        private bool _spectating;
+        private bool _hasLevelled;
+        private bool _isInFormation;
+        private bool _transferPending;
+        private int _arenaId;
+        private bool _waitingForArena;
+        private bool _dontLeaveArena;
+        private bool _foreignChar;
+        private bool _preferPVP;
+        private bool _gmInvisible;
+        private bool _gmUntargetable;
+        private uint _timeLastKilled;
+        private List<object> _pendingMissions;
+        public int PetCBID { get; private set; }
         private TFID _petTFID;
-        private Boolean _isAllUnlocked;
-        public Boolean GivesToken { get; private set; }
-        private Boolean _hasNewMail;
-        private Int32 _playerChatId;
-        private List<Object> _temporarySkills;
-        private List<Int32> _failedMissions;
-        private List<Int32> _achievements;
-        private Int32 DisciplinePoints;
-        private Int32 _currentTrainerMax;
-        private Int32 _currentTrainerDisciplineId;
-        private Byte _ranksReverseEngineering;
-        private Byte _ranksExperimenting;
-        private Byte _ranksMemorization;
-        private Byte _ranksGadgeting;
-        private Int64[] _memorizedList;
-        private Single _hazardModeCount;
-        private Single _hazardCountBonusPercent;
-        private Single _hazardCountBonusPoints;
-        private UInt16 _mapPoints;
-        private Int32 _arenaBattleKills;
-        private Int32 _arenaBattleObjKills;
-        private Int32 _arenaBattleDeaths;
-        private UInt16 _arenaBattleRank;
-        private UInt32 _timeOfInstantRepair;
-        private Single _mapPositionX;
-        private Single _mapPositionY;
-        private Single _mapPositionZ;
-        private Int32 _lastMapSaved;
-        private Int32 _dirtyBits;
-        private Byte[] _userData;
-        private Int32 _respecsBought;
-        private Int64 _lastRespecTime;
-        private Int32 _freeRespecs;
-        private Int32 _specialMode;
+        private bool _isAllUnlocked;
+        public bool GivesToken { get; private set; }
+        private bool _hasNewMail;
+        private int _playerChatId;
+        private List<object> _temporarySkills;
+        private List<int> _failedMissions;
+        private List<int> _achievements;
+        private int DisciplinePoints;
+        private int _currentTrainerMax;
+        private int _currentTrainerDisciplineId;
+        private byte _ranksReverseEngineering;
+        private byte _ranksExperimenting;
+        private byte _ranksMemorization;
+        private byte _ranksGadgeting;
+        private long[] _memorizedList;
+        private float _hazardModeCount;
+        private float _hazardCountBonusPercent;
+        private float _hazardCountBonusPoints;
+        private ushort _mapPoints;
+        private int _arenaBattleKills;
+        private int _arenaBattleObjKills;
+        private int _arenaBattleDeaths;
+        private ushort _arenaBattleRank;
+        private uint _timeOfInstantRepair;
+        private float _mapPositionX;
+        private float _mapPositionY;
+        private float _mapPositionZ;
+        private int _lastMapSaved;
+        private int _dirtyBits;
+        private byte[] _userData;
+        private int _respecsBought;
+        private long _lastRespecTime;
+        private int _freeRespecs;
+        private int _specialMode;
         private CombatMode _combatMode;
-        private Boolean _dieIfHazardDies;
-        private Boolean _strafing;
-        private Int16 SkillPoints;
-        private Int16 AttributePoints;
-        private Int32 _pendingTorunamentId;
-        private Int16 _identify;
-        private Int32 _shardId;
-        private Int64 _lifeTimeAtLogin;
-        private Int64 _lifeTimeMS;
-        private Int32 _maxLevel;
-        private Single _xpModifier;
-        private Single _lootBonusModifier;
-        private Single _lootEnhanceBonusModifier;
-        private Single _clinkBonusModifier;
-        private Single _clinkAmountBonusModifier;
-        private Single _powerToHPModifier;
-        private Single _powerToHeatModifier;
-        private Boolean _activeProgressBar;
-        private Boolean _progressBarInterruptable;
-        private Single _missionUseTimer;
+        private bool _dieIfHazardDies;
+        private bool _strafing;
+        private short SkillPoints;
+        private short AttributePoints;
+        private int _pendingTorunamentId;
+        private short _identify;
+        private int _shardId;
+        private long _lifeTimeAtLogin;
+        private long _lifeTimeMS;
+        private int _maxLevel;
+        private float _xpModifier;
+        private float _lootBonusModifier;
+        private float _lootEnhanceBonusModifier;
+        private float _clinkBonusModifier;
+        private float _clinkAmountBonusModifier;
+        private float _powerToHPModifier;
+        private float _powerToHeatModifier;
+        private bool _activeProgressBar;
+        private bool _progressBarInterruptable;
+        private float _missionUseTimer;
         private TFID _missionUseObject;
-        private Single _kmTravelledAtProgressStart;
-        private UInt64 _convoyCOID;
-        private Boolean _tradeRequestPending;
-        private Boolean _trading;
-        private Int64 _tradingWithCOID;
-        private Boolean _tradeApprove;
-        private Int64 _tradeCredits;
-        private Boolean _toHitStats;
-        private Boolean _damageStats;
-        private Boolean _lootRollStats;
-        private Single _combatModeBoost;
-        private Single _combatModeOffense;
-        private Single _combatModeDefense;
+        private float _kmTravelledAtProgressStart;
+        private ulong _convoyCOID;
+        private bool _tradeRequestPending;
+        private bool _trading;
+        private long _tradingWithCOID;
+        private bool _tradeApprove;
+        private long _tradeCredits;
+        private bool _toHitStats;
+        private bool _damageStats;
+        private bool _lootRollStats;
+        private float _combatModeBoost;
+        private float _combatModeOffense;
+        private float _combatModeDefense;
         private DateTime _combatModeLastChanged;
-        private Int16 _currentBattleMode;
-        private Boolean _toggleDebugTokens;
-        private Int32[] _arenaRank;
-        private UInt32 _lastLifeTimeTick;
-        private Int32[] _battleModes;
-        private Boolean _postTransform;
-        private Boolean _viewingTarget;
+        private short _currentBattleMode;
+        private bool _toggleDebugTokens;
+        private int[] _arenaRank;
+        private uint _lastLifeTimeTick;
+        private int[] _battleModes;
+        private bool _postTransform;
+        private bool _viewingTarget;
         private Inventory _inventory;
         private Inventory _tradeInventory;
         private Vehicle _vehicle;
@@ -280,14 +280,14 @@ namespace Genesis.Shared.Entities
 
             SetCombatMode(_combatMode);
 
-            _arenaRank = new Int32[7];
-            _lastLifeTimeTick = (UInt32) DateTime.Now.Ticks;
+            _arenaRank = new int[7];
+            _lastLifeTimeTick = (uint) DateTime.Now.Ticks;
             _battleModes = new[] {-1, -1, -1};
 
             ResetPossibleRewards(false, -1);
 
-            _quickBarItems = new Int64[100];
-            _quickBarSkills = new Int32[100];
+            _quickBarItems = new long[100];
+            _quickBarSkills = new int[100];
 
             for (var i = 0; i < 100; ++i)
             {
@@ -295,7 +295,7 @@ namespace Genesis.Shared.Entities
                 _quickBarSkills[i] = -1;
             }
 
-            _memorizedList = new Int64[8];
+            _memorizedList = new long[8];
             for (var i = 0; i < 8; ++i)
                 _memorizedList[i] = -1L;
 
@@ -332,7 +332,7 @@ namespace Genesis.Shared.Entities
             _tradeInventory.SetMap(GetMap());
         }
 
-        private void ResetPossibleRewards(Boolean cleanupItems, Int32 missionId)
+        private void ResetPossibleRewards(bool cleanupItems, int missionId)
         {
             if (missionId == -1)
             {
@@ -348,7 +348,7 @@ namespace Genesis.Shared.Entities
 
             _combatModeLastChanged = DateTime.Now;
 
-            Single boost, offense, defense;
+            float boost, offense, defense;
             GetCombatModeValues(combatMode, out boost, out offense, out defense);
 
             UpdateVehicleStatus();
@@ -404,7 +404,7 @@ namespace Genesis.Shared.Entities
                 ScaleOffset = ScaleOffset,
                 ActiveVehicleCOID = CurrentVehicleId,
                 Scale = Scale,
-                CombatMode = (UInt32) _combatMode,
+                CombatMode = (uint) _combatMode,
                 BattleMode = _currentBattleMode,
                 Credits = _credits,
                 CreditsDebt = _creditsDebt,
@@ -428,57 +428,57 @@ namespace Genesis.Shared.Entities
             return _vehicle;
         }
 
-        public override Character GetSuperCharacter(Boolean inclSummons)
+        public override Character GetSuperCharacter(bool inclSummons)
         {
             return this;
         }
 
-        public void SetClanID(Int32 clanId)
+        public void SetClanID(int clanId)
         {
             // TODO: missing
             ClanId = clanId;
             GhostObject.SetMaskBits(0x20000000UL);
         }
 
-        public void SetClanRank(Int32 rank)
+        public void SetClanRank(int rank)
         {
             // TODO: missing
             ClanRank = rank;
             GhostObject.SetMaskBits(0x20000000UL);
         }
 
-        public void SetClanName(String clanName)
+        public void SetClanName(string clanName)
         {
             ClanName = clanName;
             GhostObject.SetMaskBits(0x20000000UL);
         }
 
-        public override UInt32 GetMapId()
+        public override uint GetMapId()
         {
             return _mapId;
         }
 
-        public Byte GetRace()
+        public byte GetRace()
         {
             return _race;
         }
 
-        public Single GetPositionX()
+        public float GetPositionX()
         {
             return Position.X;
         }
 
-        public Single GetPositionY()
+        public float GetPositionY()
         {
             return Position.Y;
         }
 
-        public Single GetPositionZ()
+        public float GetPositionZ()
         {
             return Position.Z;
         }
 
-        public Boolean LoadFromDB(CharacterData data, Int64 charCoid = 0)
+        public bool LoadFromDB(CharacterData data, long charCoid = 0)
         {
             if (data == null)
                 data = DataAccess.Character.GetCharacter(charCoid);
@@ -510,6 +510,9 @@ namespace Genesis.Shared.Entities
             _lastStationMapId = data.LastStationMapId;
 
             var map = MapManager.GetMap(data.LastMapId);
+            if (map == null)
+                return false;
+
             SetMap(map);
 
             EyesId = data.Eyes;
@@ -551,27 +554,27 @@ namespace Genesis.Shared.Entities
             _vehicle = vehicle;
         }
 
-        public Boolean IsVehicleActive()
+        public bool IsVehicleActive()
         {
             return GetVehicle() != null;
         }
 
-        public override Boolean LoadFromDB(Int64 coid)
+        public override bool LoadFromDB(long coid)
         {
             return LoadFromDB(null, coid);
         }
 
-        public UInt32 GetCustomColor(CustomCharacterColor color)
+        public uint GetCustomColor(CustomCharacterColor color)
         {
-            return _characterColors[(Int32) color];
+            return _characterColors[(int) color];
         }
 
-        public void SetCustomColor(CustomCharacterColor color, UInt32 value)
+        public void SetCustomColor(CustomCharacterColor color, uint value)
         {
-            _characterColors[(Int32) color] = value;
+            _characterColors[(int) color] = value;
         }
 
-        public override void InitializeFromCBID(Int32 cbid, SectorMap map)
+        public override void InitializeFromCBID(int cbid, SectorMap map)
         {
             base.InitializeFromCBID(cbid, map);
         }
@@ -581,7 +584,7 @@ namespace Genesis.Shared.Entities
             return this;
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             base.WriteToCreatePacket(packet, extended);
 
@@ -663,11 +666,11 @@ namespace Genesis.Shared.Entities
             packet.WriteShort(Mana); // mana
             packet.WriteShort(MaxMana); // mana max
             packet.WriteShort(AttributePoints); // attrib points
-            packet.WriteShort((Int16)AttribTech); // attrib tech
-            packet.WriteShort((Int16)AttribCombat); // attrib combat
-            packet.WriteShort((Int16)AttribTheory); // attrib theory
-            packet.WriteShort((Int16)AttribPerception); // attrib perception
-            packet.WriteShort((Int16)DisciplinePoints); // discipline points
+            packet.WriteShort((short)AttribTech); // attrib tech
+            packet.WriteShort((short)AttribCombat); // attrib combat
+            packet.WriteShort((short)AttribTheory); // attrib theory
+            packet.WriteShort((short)AttribPerception); // attrib perception
+            packet.WriteShort((short)DisciplinePoints); // discipline points
             packet.WriteShort(SkillPoints); // skill points
 
             packet.WriteByte(_ranksReverseEngineering); // reverse engineering rank
@@ -708,7 +711,7 @@ namespace Genesis.Shared.Entities
             #endregion Create Character Extended
         }
 
-        public void InitNewCharacter(CreateCharacterModel model, ConfigNewCharacter newCharEntry, SectorMap map, Int64 charCoid, Int64 vehicleCoid)
+        public void InitNewCharacter(CreateCharacterModel model, ConfigNewCharacter newCharEntry, SectorMap map, long charCoid, long vehicleCoid)
         {
             _accountId = Connection.AccountId;
 
@@ -734,7 +737,7 @@ namespace Genesis.Shared.Entities
             _race = newCharEntry.Race;
             _class = newCharEntry.Class;
             _lastTownId = newCharEntry.StartTown;
-            _lastStationMapId = (Int32) map.ContinentId;
+            _lastStationMapId = (int) map.ContinentId;
             SetCustomColor(CustomCharacterColor.Primary, model.PrimaryColor);
             SetCustomColor(CustomCharacterColor.Secondary, model.SecondaryColor);
             SetCustomColor(CustomCharacterColor.Eye, model.EyeColor);
@@ -757,7 +760,7 @@ namespace Genesis.Shared.Entities
                 _vehicle.SetMap(map);
         }
 
-        public void EnterMap(Boolean createGhost = true)
+        public void EnterMap(bool createGhost = true)
         {
             GetMap().AddObjectToMap(this);
 
@@ -800,7 +803,7 @@ namespace Genesis.Shared.Entities
             GetVehicle().CreateGhost();
         }
 
-        public static void GetCombatModeValues(CombatMode combatMode, out Single boost, out Single offense, out Single defense)
+        public static void GetCombatModeValues(CombatMode combatMode, out float boost, out float offense, out float defense)
         {
             boost = 0.0f;
             offense = 0.0f;

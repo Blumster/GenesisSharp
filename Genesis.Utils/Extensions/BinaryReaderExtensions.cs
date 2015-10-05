@@ -8,13 +8,13 @@ namespace Genesis.Utils.Extensions
     {
         public delegate T ReadFunction<out T>();
 
-        public static String ReadLengthedString(this BinaryReader br)
+        public static string ReadLengthedString(this BinaryReader br)
         {
             var size = br.ReadInt32();
-            return size > 0 ? br.ReadUtf8StringOn(size) : String.Empty;
+            return size > 0 ? br.ReadUtf8StringOn(size) : string.Empty;
         }
 
-        public static String ReadUnicodeString(this BinaryReader br, Int32 size)
+        public static string ReadUnicodeString(this BinaryReader br, int size)
         {
             if (size > 0)
             {
@@ -27,10 +27,10 @@ namespace Genesis.Utils.Extensions
                 return Encoding.Unicode.GetString(buff);
             }
 
-            return String.Empty;
+            return string.Empty;
         }
 
-        public static String ReadLineOn(this BinaryReader br, Int32 size)
+        public static string ReadLineOn(this BinaryReader br, int size)
         {
             if (size <= 0)
                 return null;
@@ -38,7 +38,7 @@ namespace Genesis.Utils.Extensions
             try
             {
                 var i = 0;
-                Char ch;
+                char ch;
                 var sb = new StringBuilder();
                 while (i++ < size && (ch = br.ReadChar()) != '\n')
                     sb.Append(ch);
@@ -51,7 +51,7 @@ namespace Genesis.Utils.Extensions
             }
         }
 
-        public static String ReadUtf8StringOn(this BinaryReader br, Int32 size)
+        public static string ReadUtf8StringOn(this BinaryReader br, int size)
         {
             if (size > 0)
             {
@@ -64,12 +64,12 @@ namespace Genesis.Utils.Extensions
                 return Encoding.UTF8.GetString(buff);
             }
 
-            return String.Empty;
+            return string.Empty;
         }
 
-        public static String ReadUtf8StringNull(this BinaryReader br)
+        public static string ReadUtf8StringNull(this BinaryReader br)
         {
-            Char c;
+            char c;
             var sb = new StringBuilder();
 
             while (br.BaseStream.Position + 1 < br.BaseStream.Length && (c = br.ReadChar()) != '\0')
@@ -78,7 +78,7 @@ namespace Genesis.Utils.Extensions
             return sb.ToString();
         }
 
-        public static String ReadUtf16StringNull(this BinaryReader br)
+        public static string ReadUtf16StringNull(this BinaryReader br)
         {
             var sb = new StringBuilder();
 
@@ -88,13 +88,13 @@ namespace Genesis.Utils.Extensions
                 if (b == 0)
                     break;
 
-                sb.Append((Char)b);
+                sb.Append((char)b);
             }
 
             return sb.ToString();
         }
 
-        public static T[] Read<T>(this BinaryReader br, Int32 count)
+        public static T[] Read<T>(this BinaryReader br, int count)
         {
             var arr = new T[count];
 
@@ -103,55 +103,55 @@ namespace Genesis.Utils.Extensions
             switch (typeof(T).Name)
             {
                 case "Single":
-                    func = () => (T)(Object)br.ReadSingle();
+                    func = () => (T)(object)br.ReadSingle();
                     break;
 
                 case "Double":
-                    func = () => (T)(Object)br.ReadDouble();
+                    func = () => (T)(object)br.ReadDouble();
                     break;
 
                 case "Byte":
-                    func = () => (T)(Object)br.ReadByte();
+                    func = () => (T)(object)br.ReadByte();
                     break;
 
                 case "UInt16":
-                    func = () => (T)(Object)br.ReadUInt16();
+                    func = () => (T)(object)br.ReadUInt16();
                     break;
 
                 case "UInt32":
-                    func = () => (T)(Object)br.ReadUInt32();
+                    func = () => (T)(object)br.ReadUInt32();
                     break;
 
                 case "UInt64":
-                    func = () => (T)(Object)br.ReadUInt64();
+                    func = () => (T)(object)br.ReadUInt64();
                     break;
 
                 case "SByte":
-                    func = () => (T)(Object)br.ReadSByte();
+                    func = () => (T)(object)br.ReadSByte();
                     break;
 
                 case "Int16":
-                    func = () => (T)(Object)br.ReadInt16();
+                    func = () => (T)(object)br.ReadInt16();
                     break;
 
                 case "Int32":
-                    func = () => (T)(Object)br.ReadInt32();
+                    func = () => (T)(object)br.ReadInt32();
                     break;
 
                 case "Int64":
-                    func = () => (T)(Object)br.ReadInt64();
+                    func = () => (T)(object)br.ReadInt64();
                     break;
 
                 case "String":
-                    func = () => (T)(Object)br.ReadString();
+                    func = () => (T)(object)br.ReadString();
                     break;
 
                 case "Decimal":
-                    func = () => (T)(Object)br.ReadDecimal();
+                    func = () => (T)(object)br.ReadDecimal();
                     break;
 
                 case "Boolean":
-                    func = () => (T)(Object)br.ReadBoolean();
+                    func = () => (T)(object)br.ReadBoolean();
                     break;
 
                 default:
@@ -165,7 +165,7 @@ namespace Genesis.Utils.Extensions
             return arr;
         }
 
-        public static BinaryReader ReadPadding(this BinaryReader br, Int32 count)
+        public static BinaryReader ReadPadding(this BinaryReader br, int count)
         {
             br.BaseStream.Position += count;
             return br;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Entities
@@ -11,9 +10,9 @@ namespace Genesis.Shared.Entities
     {
         public List<Vector3> Directions = new List<Vector3>();
         public List<Vector3> Positions = new List<Vector3>();
-        public Single Rotation;
+        public float Rotation;
 
-        public override void UnSerialize(BinaryReader br, UInt32 mapVersion)
+        public override void UnSerialize(BinaryReader br, uint mapVersion)
         {
             base.UnSerialize(br, mapVersion);
 

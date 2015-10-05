@@ -1,19 +1,18 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Prefix
 {
     public class PrefixPowerPlant : PrefixBase
     {
-        public Single CoolDownPercent;
-        public Int32 CoolingRateAdjust;
-        public Single CoolingRatePercent;
-        public Int32 HeadAdjust;
-        public Single HeatPercent;
-        public Int32 PowerAdjust;
-        public Single PowerPercent;
-        public Int32 PowerRegenRateAdjust;
-        public Single PowerRegenRatePercent;
+        public float CoolDownPercent;
+        public int CoolingRateAdjust;
+        public float CoolingRatePercent;
+        public int HeadAdjust;
+        public float HeatPercent;
+        public int PowerAdjust;
+        public float PowerPercent;
+        public int PowerRegenRateAdjust;
+        public float PowerRegenRatePercent;
 
         public PrefixPowerPlant(BinaryReader br)
             : base(br)

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -54,7 +53,7 @@ namespace Genesis.Shared.TNL
             SendLoginResponse(0x1000000);
         }
 
-        private void SendLoginResponse(Int32 response)
+        private void SendLoginResponse(int response)
         {
             var packet = new Packet(Opcode.LoginResponse);
             packet.WriteInteger(response);
@@ -67,7 +66,7 @@ namespace Genesis.Shared.TNL
             var language = p.ReadUInteger();
             p.ReadUInteger();
 
-            const String news = "Welcome everybody to the world first [$emote]Auto Assault Private Server[$/emote]!\nHave fun, and enjoy your stay! :)";
+            const string news = "Welcome everybody to the world first [$emote]Auto Assault Private Server[$/emote]!\nHave fun, and enjoy your stay! :)";
 
             var pack = new Packet(Opcode.News);
             pack.WriteInteger(language);
@@ -79,7 +78,7 @@ namespace Genesis.Shared.TNL
 
         private void HandleLoginNewCharacter(Packet packet)
         {
-            Int64 coid;
+            long coid;
             var succ = CharacterManager.CreateCharacterFromRequest(this, CreateCharacterModel.Read(packet), out coid);
 
             var pack = new Packet(Opcode.LoginNewCharacterResponse);

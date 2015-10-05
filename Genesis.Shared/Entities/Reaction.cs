@@ -10,29 +10,29 @@ namespace Genesis.Shared.Entities
 
     public class Reaction : ClonedObjectBase
     {
-        public Boolean ActOnActivator;
-        public Boolean AllConditionsNeeded;
-        public Boolean DoForAllPlayers;
-        public Boolean DoForConvoy;
-        public Single GenericVar1;
-        public Single GenericVar2;
-        public Single GenericVar3;
-        public Byte MapTransferType;
-        public UInt32 MapTrasferData;
-        public String MiscText;
-        public List<Int32> MissionTypes = new List<Int32>();
-        public List<Int32> Missions = new List<Int32>();
-        public String Name;
-        public Int32 ObjectiveIDCheck;
-        public List<UInt64> Objects = new List<UInt64>();
+        public bool ActOnActivator;
+        public bool AllConditionsNeeded;
+        public bool DoForAllPlayers;
+        public bool DoForConvoy;
+        public float GenericVar1;
+        public float GenericVar2;
+        public float GenericVar3;
+        public byte MapTransferType;
+        public uint MapTrasferData;
+        public string MiscText;
+        public List<int> MissionTypes = new List<int>();
+        public List<int> Missions = new List<int>();
+        public string Name;
+        public int ObjectiveIDCheck;
+        public List<ulong> Objects = new List<ulong>();
         public ReactionText ReactionText;
-        public Byte ReactionType;
-        public List<UInt64> Reactions = new List<UInt64>();
+        public byte ReactionType;
+        public List<ulong> Reactions = new List<ulong>();
         public List<TriggerConditional> TriggerConditionals = new List<TriggerConditional>();
-        public String WaypointText;
-        public UInt32 WaypointType;
+        public string WaypointText;
+        public uint WaypointType;
 
-        public override void Unserialize(BinaryReader br, UInt32 mapVersion)
+        public override void Unserialize(BinaryReader br, uint mapVersion)
         {
             Name = br.ReadUtf8StringOn(65);
             ReactionType = br.ReadByte();
@@ -103,7 +103,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             throw new NotSupportedException();
         }

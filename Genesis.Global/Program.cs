@@ -31,13 +31,13 @@ namespace Genesis.Global
             Process.GetCurrentProcess().WaitForExit();
         }
 
-        private static Boolean Handler(Byte sig)
+        private static bool Handler(byte sig)
         {
             Logger.WriteLog("Shutting down the server...", LogType.None);
 
             Logger.WriteLog("Saving players!", LogType.None);
 
-            _server.Shutdown();
+            _server?.Shutdown();
 
             Logger.WriteLog("Press any key to exit...", LogType.None);
 

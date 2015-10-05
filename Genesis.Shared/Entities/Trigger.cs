@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Entities
@@ -10,27 +9,27 @@ namespace Genesis.Shared.Entities
 
     public class Trigger : GraphicsPhysicsBase
     {
-        public Single ActivateDelay;
-        public Int32 ActivationCount;
-        public Boolean AllConditionNeeded;
-        public Boolean ApplyToAllColliders;
-        public UInt32 Color;
-        public Boolean DoCollision;
-        public Boolean DoConditionals;
-        public Boolean DoOnActivate;
+        public float ActivateDelay;
+        public int ActivationCount;
+        public bool AllConditionNeeded;
+        public bool ApplyToAllColliders;
+        public uint Color;
+        public bool DoCollision;
+        public bool DoConditionals;
+        public bool DoOnActivate;
         public Vector4 Location;
-        public String Name;
+        public string Name;
         public Vector4 Quaternion;
-        public Single Radius;
-        public List<UInt64> Reactions = new List<UInt64>();
-        public Single RetriggerDelay;
-        public Boolean ShowMapTransitionDecals;
-        public Byte TargetType;
+        public float Radius;
+        public List<ulong> Reactions = new List<ulong>();
+        public float RetriggerDelay;
+        public bool ShowMapTransitionDecals;
+        public byte TargetType;
         public List<TFID> Targets = new List<TFID>();
         public List<TriggerConditional> TriggerConditionals = new List<TriggerConditional>();
-        public UInt32 TriggerId;
+        public uint TriggerId;
 
-        public override void Unserialize(BinaryReader br, UInt32 mapVersion)
+        public override void Unserialize(BinaryReader br, uint mapVersion)
         {
             Location = Vector4.Read(br);
             Quaternion = Vector4.Read(br);

@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct SpawnList
     {
-        public Boolean IsTemplate;
-        public Byte LevelOffset;
-        public Byte LowerNumberOfSpawns;
-        public Int32 SpawnType;
-        public Byte UpperNumberOfSpawns;
+        public bool IsTemplate;
+        public byte LevelOffset;
+        public byte LowerNumberOfSpawns;
+        public int SpawnType;
+        public byte UpperNumberOfSpawns;
 
         public static SpawnList Read(BinaryReader br)
         {

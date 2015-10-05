@@ -16,7 +16,7 @@ namespace Genesis.Utils
 
     public class Logger
     {
-        public static void WriteLog(String log, LogType type)
+        public static void WriteLog(string log, LogType type)
         {
             switch (type)
             {
@@ -60,9 +60,9 @@ namespace Genesis.Utils
             Console.ResetColor();
         }
 
-        public static void WriteLog(String format, LogType type, params Object[] args)
+        public static void WriteLog(string format, LogType type, params object[] args)
         {
-            WriteLog(String.Format(format, args), type);
+            WriteLog(string.Format(format, args), type);
         }
     }
 }

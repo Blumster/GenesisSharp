@@ -1,21 +1,20 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
     public struct CommoditySpecific
     {
-        public Int32 CommodityGroupType;
-        public Single DropChance;
-        public Int32 Group;
-        public Byte MaterialDifficulty;
-        public Int32 MaxLevel;
-        public Int32 MinLevel;
-        public Byte Purity;
-        public Byte PurityFrom;
-        public Int32 RefineTarget;
-        public Int32 RefinesFrom;
-        public Int32 Value;
+        public int CommodityGroupType;
+        public float DropChance;
+        public int Group;
+        public byte MaterialDifficulty;
+        public int MaxLevel;
+        public int MinLevel;
+        public byte Purity;
+        public byte PurityFrom;
+        public int RefineTarget;
+        public int RefinesFrom;
+        public int Value;
 
         public static CommoditySpecific Read(BinaryReader br)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Prefix
 {
@@ -8,21 +7,21 @@ namespace Genesis.Shared.Prefix
 
     public class PrefixWeapon : PrefixBase
     {
-        public Single AccucaryBonusPercent;
+        public float AccucaryBonusPercent;
         public DamageArray DamageAdjustMaximum;
         public DamageArray DamageAdjustMinimum;
-        public Single DamagePercentAll;
-        public Single[] DamagePercentMaximum;
-        public Single[] DamagePercentMinimum;
-        public Single FiringArcPercent;
-        public Int16 HeatAdjust;
-        public Single HeatPercent;
-        public Int16 OffenseBonus;
-        public Single OffenseBonusPercent;
-        public Int16 PenetrationBonus;
-        public Int16 PowerPerShot;
-        public Single RangePercent;
-        public Single RechargeTimePercent;
+        public float DamagePercentAll;
+        public float[] DamagePercentMaximum;
+        public float[] DamagePercentMinimum;
+        public float FiringArcPercent;
+        public short HeatAdjust;
+        public float HeatPercent;
+        public short OffenseBonus;
+        public float OffenseBonusPercent;
+        public short PenetrationBonus;
+        public short PowerPerShot;
+        public float RangePercent;
+        public float RechargeTimePercent;
 
         public PrefixWeapon(BinaryReader br)
             : base(br)
@@ -34,8 +33,8 @@ namespace Genesis.Shared.Prefix
             HeatAdjust = br.ReadInt16();
             PowerPerShot = br.ReadInt16();
             DamagePercentAll = br.ReadSingle();
-            DamagePercentMinimum = br.Read<Single>(6);
-            DamagePercentMaximum = br.Read<Single>(6);
+            DamagePercentMinimum = br.Read<float>(6);
+            DamagePercentMaximum = br.Read<float>(6);
             DamageAdjustMinimum = DamageArray.Read(br);
             DamageAdjustMaximum = DamageArray.Read(br);
             OffenseBonus = br.ReadInt16();

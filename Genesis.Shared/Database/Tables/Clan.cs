@@ -6,12 +6,12 @@ namespace Genesis.Shared.Database.Tables
 
     public class Clan
     {
-        public void RemoveFromClan(Int64 coid)
+        public void RemoveFromClan(long coid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("DELETE FROM `clan_member` WHERE `CharCoid` = {0}", coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"DELETE FROM `clan_member` WHERE `CharCoid` = {coid}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)

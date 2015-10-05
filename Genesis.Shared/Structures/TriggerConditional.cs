@@ -1,13 +1,12 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct TriggerConditional
     {
-        public UInt32 LeftId;
-        public UInt32 RightId;
-        public Byte Type;
+        public uint LeftId;
+        public uint RightId;
+        public byte Type;
 
         public static TriggerConditional Read(BinaryReader br)
         {

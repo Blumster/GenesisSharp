@@ -7,12 +7,12 @@ namespace Genesis.Shared.Entities.Base
 
     public class GraphicsBase : ClonedObjectBase
     {
-        public String FxCreateExtraName;
-        public String ToolTip;
-        public UInt32 Unk;
-        public Byte UnkFlagByte;
+        public string FxCreateExtraName;
+        public string ToolTip;
+        public uint Unk;
+        public byte UnkFlagByte;
 
-        public void UnserializeCreateEffect(BinaryReader br, UInt32 mapVersion)
+        public void UnserializeCreateEffect(BinaryReader br, uint mapVersion)
         {
             if (mapVersion >= 21)
                 FxCreateExtraName = br.ReadLengthedString();
@@ -24,7 +24,7 @@ namespace Genesis.Shared.Entities.Base
                 Unk = br.ReadUInt32();
         }
 
-        public void UnserializeTooltip(BinaryReader br, UInt32 mapVersion)
+        public void UnserializeTooltip(BinaryReader br, uint mapVersion)
         {
             if (mapVersion >= 22)
                 ToolTip = br.ReadLengthedString();
@@ -35,7 +35,7 @@ namespace Genesis.Shared.Entities.Base
 
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             throw new NotSupportedException();
         }

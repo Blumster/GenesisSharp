@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace Genesis.Shared.Entities.Base
 {
@@ -11,7 +10,7 @@ namespace Genesis.Shared.Entities.Base
 
     public abstract partial class ClonedObjectBase
     {
-        public virtual void InitializeFromCBID(Int32 cbid, SectorMap map)
+        public virtual void InitializeFromCBID(int cbid, SectorMap map)
         {
             CloneBaseObject = AssetManager.AssetContainer.GetCloneBaseObjectForCBID(cbid);
 
@@ -20,47 +19,47 @@ namespace Genesis.Shared.Entities.Base
             SetMap(map);
         }
 
-        public virtual Int32 GetQuantity()
+        public virtual int GetQuantity()
         {
             return 0;
         }
 
-        public virtual UInt32 GetAvatarCurrentHP()
+        public virtual uint GetAvatarCurrentHP()
         {
             return GetCurrentHP();
         }
 
-        public virtual UInt32 GetAvatarMaximumHP()
+        public virtual uint GetAvatarMaximumHP()
         {
             return GetMaximumHP();
         }
 
-        public virtual UInt32 GetCurrentHP()
+        public virtual uint GetCurrentHP()
         {
             return 0;
         }
 
-        public virtual UInt32 GetMaximumHP()
+        public virtual uint GetMaximumHP()
         {
             return 0;
         }
 
-        public virtual void SetMaximumHP(UInt32 maximumHP)
+        public virtual void SetMaximumHP(uint maximumHP)
         {
 
         }
 
-        public virtual void SetCurrentHP(UInt32 currentHP)
+        public virtual void SetCurrentHP(uint currentHP)
         {
 
         }
 
-        public virtual void AdjustHPSkillScalar(Single scalar)
+        public virtual void AdjustHPSkillScalar(float scalar)
         {
             HPSkillScalar += scalar;
         }
 
-        public virtual void AdjustHPSkillAdd(Int32 hp)
+        public virtual void AdjustHPSkillAdd(int hp)
         {
             HPSkillAdd += hp;
         }
@@ -78,38 +77,38 @@ namespace Genesis.Shared.Entities.Base
             SetGhosted(true);
         }
 
-        public virtual void SetGhosted(Boolean ghosted)
+        public virtual void SetGhosted(bool ghosted)
         {
             Bf380 ^= (Bf380 ^ 8U * (ghosted ? 1U : 0U)) & 8U;
         }
 
-        public virtual Int16 GetArmor(Int32 damageType)
+        public virtual short GetArmor(int damageType)
         {
             Debug.Assert(damageType < 6);
             return CloneBaseObject.SimpleObjectSpecific.DamageArmor.Damage[damageType];
         }
 
-        public virtual Int64 CalculateTotalValue()
+        public virtual long CalculateTotalValue()
         {
             return Value;
         }
 
-        public virtual Single CalculateWorth()
+        public virtual float CalculateWorth()
         {
             return 1.0f;
         }
 
-        public virtual Boolean GetIsCorpse()
+        public virtual bool GetIsCorpse()
         {
             return (UnkFlags & UnkFlags.IsCorpse) != 0;
         }
 
-        public virtual Boolean HasOnKill()
+        public virtual bool HasOnKill()
         {
             return HbKill > 0;
         }
 
-        public virtual void InitializeFromGlobalCOID(Int64 coid)
+        public virtual void InitializeFromGlobalCOID(long coid)
         {
             // TODO: MOAR
         }
@@ -129,12 +128,12 @@ namespace Genesis.Shared.Entities.Base
             RequiredLevel = StoredRequiredLevel;
         }
 
-        public virtual void SetIsInvincible(Boolean invincible)
+        public virtual void SetIsInvincible(bool invincible)
         {
-            UnkFlags ^= (UnkFlags)((UInt32)UnkFlags ^ ((invincible ? 1U : 0U) << 10)) & UnkFlags.IsInvincible;
+            UnkFlags ^= (UnkFlags)((uint)UnkFlags ^ ((invincible ? 1U : 0U) << 10)) & UnkFlags.IsInvincible;
         }
 
-        public virtual void SetIDFaction(Int32 faction)
+        public virtual void SetIDFaction(int faction)
         {
             Faction = faction;
 
@@ -142,7 +141,7 @@ namespace Genesis.Shared.Entities.Base
                 Owner.SetIDFaction(faction);
         }
 
-        public virtual Boolean GetIsIncapacitated()
+        public virtual bool GetIsIncapacitated()
         {
             return Owner != null ? Owner.GetIsIncapacitated() : GetIsCorpse();
         }
@@ -151,7 +150,7 @@ namespace Genesis.Shared.Entities.Base
         {
             Value = CloneBaseObject.CloneBaseSpecific.BaseValue;
             GameMass = CloneBaseObject.SimpleObjectSpecific.Mass;
-            UnkFlags ^= (UnkFlags ^ (UnkFlags)(((UInt32)UnkFlags >> 12) << 10)) & UnkFlags.IsInvincible;
+            UnkFlags ^= (UnkFlags ^ (UnkFlags)(((uint)UnkFlags >> 12) << 10)) & UnkFlags.IsInvincible;
             RequiredLevel = CloneBaseObject.SimpleObjectSpecific.RequiredLevel;
             RequiredCombat = CloneBaseObject.SimpleObjectSpecific.RequiredCombat;
             RequiredPerception = CloneBaseObject.SimpleObjectSpecific.RequiredPerception;
@@ -183,7 +182,7 @@ namespace Genesis.Shared.Entities.Base
             return default(Vector4);
         }
 
-        public virtual Character GetSuperCharacter(Boolean inclSummons)
+        public virtual Character GetSuperCharacter(bool inclSummons)
         {
             return Owner != null ? Owner.GetSuperCharacter(inclSummons) : null;
         }
@@ -225,7 +224,7 @@ namespace Genesis.Shared.Entities.Base
 
         }
 
-        public virtual void SetScale(Single scale)
+        public virtual void SetScale(float scale)
         {
             Scale = scale;
         }
@@ -235,7 +234,7 @@ namespace Genesis.Shared.Entities.Base
             Map = map;
         }
 
-        public virtual Int32 GetBareTeamFaction()
+        public virtual int GetBareTeamFaction()
         {
             return BareTeamFaction;
         }
@@ -256,17 +255,17 @@ namespace Genesis.Shared.Entities.Base
             return TargetObject;
         }
 
-        public virtual void SetBareTeamFaction(Int32 faction)
+        public virtual void SetBareTeamFaction(int faction)
         {
             BareTeamFaction = faction;
         }
 
-        public virtual UInt16 GetPrefix(UInt32 position)
+        public virtual ushort GetPrefix(uint position)
         {
             return 0;
         }
 
-        public virtual Single DeriveOffensiveModifier(ClonedObjectBase target)
+        public virtual float DeriveOffensiveModifier(ClonedObjectBase target)
         {
             return 1.0f;
         }
@@ -281,7 +280,7 @@ namespace Genesis.Shared.Entities.Base
             UnkFlags &= ~UnkFlags.UnkEnabled;
         }
 
-        public virtual void ClearGhost(Boolean a)
+        public virtual void ClearGhost(bool a)
         {
             if (GhostObject != null)
             {

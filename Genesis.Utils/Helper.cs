@@ -10,13 +10,13 @@ namespace Genesis.Utils
 
     public static class Helper
     {
-        public static Byte[] GetByteArrayFromString(String val)
+        public static byte[] GetByteArrayFromString(string val)
         {
             var split = val.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-            var key = new Byte[split.Length];
+            var key = new byte[split.Length];
 
             for (var i = 0; i < split.Length; ++i)
-                key[i] = Byte.Parse(split[i]);
+                key[i] = byte.Parse(split[i]);
 
             return key;
         }

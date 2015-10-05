@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Genesis.Shared.Entities
+﻿namespace Genesis.Shared.Entities
 {
     using Clonebase;
     using Database;
@@ -9,39 +7,39 @@ namespace Genesis.Shared.Entities
 
     public class Weapon : SimpleObject
     {
-        private Boolean _inventoryBody;
-        private Boolean _lightOn;
-        private Boolean _lightInitialized;
-        private Boolean _equipped;
-        private Boolean _weaponDisabled;
-        private Boolean _isFiring;
-        private Boolean _wasFiring;
-        private Boolean _firingRequest;
-        private Boolean _continousFiring;
-        private Boolean _recharging;
-        private Boolean _alwaysHits;
-        private Int16 _frameCount;
-        private Int16 _heatPerShot;
-        private Int16 _powerPerShot;
-        private Int16 _varianceOffensiveBonus;
-        private Int16 _storedVarianceOffensiveBonus;
-        private Int16 _prefixPenetrationBonus;
-        private Byte _flags;
-        private Int32 _rechargeInterval;
-        private Single _rechargeTimePassed;
-        private Single _validArc;
-        private Single _explosionRadius;
-        private Single _rangeMinimum;
-        private Single _rangeMaximum;
-        private Single _damageScalar;
-        private Single _varianceRange;
-        private Single _varianceRefireRate;
-        private Single _varianceDamageMinimum;
-        private Single _varianceDamageMaximum;
-        private Single _prefixAccurayBonus;
-        private Single _prefixOffensiveBonus;
-        private Single _hitBonusPerLevel;
-        private Single _damageBonusPerLevel;
+        private bool _inventoryBody;
+        private bool _lightOn;
+        private bool _lightInitialized;
+        private bool _equipped;
+        private bool _weaponDisabled;
+        private bool _isFiring;
+        private bool _wasFiring;
+        private bool _firingRequest;
+        private bool _continousFiring;
+        private bool _recharging;
+        private bool _alwaysHits;
+        private short _frameCount;
+        private short _heatPerShot;
+        private short _powerPerShot;
+        private short _varianceOffensiveBonus;
+        private short _storedVarianceOffensiveBonus;
+        private short _prefixPenetrationBonus;
+        private byte _flags;
+        private int _rechargeInterval;
+        private float _rechargeTimePassed;
+        private float _validArc;
+        private float _explosionRadius;
+        private float _rangeMinimum;
+        private float _rangeMaximum;
+        private float _damageScalar;
+        private float _varianceRange;
+        private float _varianceRefireRate;
+        private float _varianceDamageMinimum;
+        private float _varianceDamageMaximum;
+        private float _prefixAccurayBonus;
+        private float _prefixOffensiveBonus;
+        private float _hitBonusPerLevel;
+        private float _damageBonusPerLevel;
         private Vector3 _firePoint;
         private DamageArray _dmgMinimum;
         private DamageArray _dmgMaximum;
@@ -111,7 +109,7 @@ namespace Genesis.Shared.Entities
             _firePoint = cbw.WeaponSpecific.FirePoint;
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             base.WriteToCreatePacket(packet, extended);
 
@@ -172,7 +170,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public override bool LoadFromDB(Int64 coid)
+        public override bool LoadFromDB(long coid)
         {
             var id = DataAccess.Item.GetItemFrom("item_weapon", coid);
             if (id == null)
@@ -186,7 +184,7 @@ namespace Genesis.Shared.Entities
             return true;
         }
 
-        public Boolean IsHeatOk()
+        public bool IsHeatOk()
         {
             return true;
         }

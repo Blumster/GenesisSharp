@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
@@ -7,13 +6,13 @@ namespace Genesis.Shared.Structures
 
     public struct HeadDetail
     {
-        public Int32 CloneBase;
-        public Int32 DisableHair;
-        public String FileName;
-        public Int32 HeadBody;
-        public Int32 Id;
-        public Int32 MaxTextures;
-        public Byte Type;
+        public int CloneBase;
+        public int DisableHair;
+        public string FileName;
+        public int HeadBody;
+        public int Id;
+        public int MaxTextures;
+        public byte Type;
 
         public static HeadDetail Read(BinaryReader br)
         {
@@ -36,7 +35,7 @@ namespace Genesis.Shared.Structures
 
         public override string ToString()
         {
-            return String.Format("Id: {0} | File: {1} ", Id, FileName);
+            return $"Id: {Id} | File: {FileName} ";
         }
     }
 }

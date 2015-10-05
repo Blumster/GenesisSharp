@@ -1,33 +1,32 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Prefix
 {
     public class PrefixVehicle : PrefixBase
     {
-        public Single AVDCollisionSpinDampeningAdjust;
-        public Single AVDNormalSpinDampeningAdjust;
-        public Int32 ArmorAdjust;
-        public Single ArmorAdjustPercent;
-        public Single BrakesMaxTorqueFrontAdjustPercent;
-        public Single BrakesMaxTorqueRearAdjustPercent;
-        public Int32 CooldownAdjust;
-        public Single CooldownAdjustPercent;
-        public Int32 HeatMaximumAdjust;
-        public Single HeatMaximumAdjustPercent;
-        public Int16 InventorySlotsAdjust;
-        public Single MaxWtArmorAdjustPercent;
-        public Single MaxWtPowerplantAdjustPercent;
-        public Single MaxWtWeaponFrontAdjustPercent;
-        public Single MaxWtWeaponRearAdjustPercent;
-        public Single MaxWtWeaponTurretAdjustPercent;
-        public Int32 PowerAdjust;
-        public Single PowerAdjustPercent;
-        public Single SpeedAdjustPercent;
-        public Single SteeringFullSpeedLimitAdjust;
-        public Single SteeringMaxAngleAdjust;
-        public Int32 TorqueMaxAdjust;
-        public Single TorqueMaxAdjustPercent;
+        public float AVDCollisionSpinDampeningAdjust;
+        public float AVDNormalSpinDampeningAdjust;
+        public int ArmorAdjust;
+        public float ArmorAdjustPercent;
+        public float BrakesMaxTorqueFrontAdjustPercent;
+        public float BrakesMaxTorqueRearAdjustPercent;
+        public int CooldownAdjust;
+        public float CooldownAdjustPercent;
+        public int HeatMaximumAdjust;
+        public float HeatMaximumAdjustPercent;
+        public short InventorySlotsAdjust;
+        public float MaxWtArmorAdjustPercent;
+        public float MaxWtPowerplantAdjustPercent;
+        public float MaxWtWeaponFrontAdjustPercent;
+        public float MaxWtWeaponRearAdjustPercent;
+        public float MaxWtWeaponTurretAdjustPercent;
+        public int PowerAdjust;
+        public float PowerAdjustPercent;
+        public float SpeedAdjustPercent;
+        public float SteeringFullSpeedLimitAdjust;
+        public float SteeringMaxAngleAdjust;
+        public int TorqueMaxAdjust;
+        public float TorqueMaxAdjustPercent;
 
         public PrefixVehicle(BinaryReader br)
             : base(br)

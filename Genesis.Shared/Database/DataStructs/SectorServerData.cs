@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Net;
 
 namespace Genesis.Shared.Database.DataStructs
@@ -8,11 +7,11 @@ namespace Genesis.Shared.Database.DataStructs
 
     public class SectorServerData
     {
-        public Byte Id { get; set; }
+        public byte Id { get; set; }
         public IPAddress Address { get; set; }
-        public UInt16 Port { get; set; }
-        public UInt16 CurrentPlayers { get; set; }
-        public Byte Status { get; set; }
+        public ushort Port { get; set; }
+        public ushort CurrentPlayers { get; set; }
+        public byte Status { get; set; }
 
         public static SectorServerData Read(IDataReader reader)
         {

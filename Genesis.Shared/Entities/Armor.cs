@@ -17,10 +17,10 @@ namespace Genesis.Shared.Entities
             private set { _armorspec = value; }
         }
 
-        private Single _varianceArmorFactor;
-        private Single _varianceResistance;
-        private UInt16 _varianceDefenseBonus;
-        private UInt16 _storedVarianceDefenseBonus;
+        private float _varianceArmorFactor;
+        private float _varianceResistance;
+        private ushort _varianceDefenseBonus;
+        private ushort _storedVarianceDefenseBonus;
 
         public Armor()
         {
@@ -38,7 +38,7 @@ namespace Genesis.Shared.Entities
                 ArmorSpecific = (CloneBaseObject as CloneBaseArmor).ArmorSpecific;
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             base.WriteToCreatePacket(packet, extended);
 
@@ -58,7 +58,7 @@ namespace Genesis.Shared.Entities
             WriteEmptyObjectToPacket(packet, 128);
         }
 
-        public void ApplyResistanceModification(DamageArray dmg, Boolean reverse)
+        public void ApplyResistanceModification(DamageArray dmg, bool reverse)
         {
             for (var i = 0; i < 6; ++i)
             {
@@ -69,13 +69,13 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public void ApplyResistancePercentage(Single percent)
+        public void ApplyResistancePercentage(float percent)
         {
             if (percent <= 0.99000001f || percent >= 1.01)
             {
                 for (var i = 0; i < 6; ++i)
                 {
-                    ArmorSpecific.Resistances.Damage[i] = (Int16)Math.Floor(ArmorSpecific.Resistances.Damage[i] * percent);
+                    ArmorSpecific.Resistances.Damage[i] = (short)Math.Floor(ArmorSpecific.Resistances.Damage[i] * percent);
 
                     if (ArmorSpecific.Resistances.Damage[i] < 0)
                         ArmorSpecific.Resistances.Damage[i] = 0;
@@ -83,12 +83,12 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public void ApplyArmorFactorPrecentage(Single pct)
+        public void ApplyArmorFactorPrecentage(float pct)
         {
 
         }
 
-        public void ApplyArmorFactorAdjust(Int16 adjust)
+        public void ApplyArmorFactorAdjust(short adjust)
         {
             _armorspec.ArmorFactor += adjust;
 
@@ -101,7 +101,7 @@ namespace Genesis.Shared.Entities
             return ArmorSpecific.Resistances;
         }
 
-        public void ApplyMassPercent(Single pct)
+        public void ApplyMassPercent(float pct)
         {
             GameMass *= pct;
         }
@@ -129,7 +129,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public override bool LoadFromDB(Int64 coid)
+        public override bool LoadFromDB(long coid)
         {
             var id = DataAccess.Item.GetItemFrom("item_armor", coid);
             if (id == null)

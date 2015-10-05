@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Genesis.Shared.Mission.Requirements
 {
@@ -7,8 +6,8 @@ namespace Genesis.Shared.Mission.Requirements
 
     public class ObjectiveRequirementCharacterLevel : ObjectiveRequirement
     {
-        public Int32 RequiredLevel;
-        public Int32 PreviousLevel;
+        public int RequiredLevel;
+        public int PreviousLevel;
 
         public ObjectiveRequirementCharacterLevel(MissionObjective owner)
             : base(owner)
@@ -19,11 +18,11 @@ namespace Genesis.Shared.Mission.Requirements
 
         public override void UnSerialize(XElement elem)
         {
-            FirstStateSlot = (Byte)(Int32)elem.Attribute("slot");
+            FirstStateSlot = (byte)(int)elem.Attribute("slot");
 
             var reqLevel = elem.Element("CharacterLevel");
             if (reqLevel != null && !reqLevel.IsEmpty)
-                RequiredLevel = (Int32)reqLevel;
+                RequiredLevel = (int)reqLevel;
         }
     }
 }

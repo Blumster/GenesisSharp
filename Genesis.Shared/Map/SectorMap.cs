@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using Genesis.Utils;
+
 using TNL.NET.Entities;
 
 namespace Genesis.Shared.Map
@@ -12,26 +11,27 @@ namespace Genesis.Shared.Map
     using Entities.Base;
     using Manager;
     using Structures.XML;
+    using Utils;
 
     public class SectorMap
     {
         #region Declaration
-        private Single _outpostTakenChance;
+        private float _outpostTakenChance;
         private ContinentObject _continentObject;
-        private Int64[] _skillTriggers;
-        private Int32 _playerCount;
-        private readonly Int32[] _playerByRaceCount = { 0, 0, 0 };
+        private long[] _skillTriggers;
+        private int _playerCount;
+        private readonly int[] _playerByRaceCount = { 0, 0, 0 };
         private readonly Dictionary<TFID, ClonedObjectBase> _coList;
         #endregion
 
-        public SectorMap(UInt32 continentId)
+        public SectorMap(uint continentId)
         {
             _outpostTakenChance = 0.0f;
             ContinentId = continentId;
             _continentObject = AssetManager.AssetContainer.GetContinentObjectById(ContinentId);
             _coList = new Dictionary<TFID, ClonedObjectBase>();
 
-            MapEntry = AssetManager.LoadMap(String.Format("{0}.fam", _continentObject.MapFileName));
+            MapEntry = AssetManager.LoadMap($"{_continentObject.MapFileName}.fam");
         }
 
         public void AddObjectToMap(ClonedObjectBase obj)
@@ -58,7 +58,7 @@ namespace Genesis.Shared.Map
             return _coList;
         }
 
-        public Int64 SkillTrigger(UInt32 x)
+        public long SkillTrigger(uint x)
         {
             return x < _skillTriggers.Length ? _skillTriggers[x] : 0L;
         }
@@ -69,12 +69,12 @@ namespace Genesis.Shared.Map
                 obj.Value.Activate(null);
         }
 
-        public Single GetCriticalHitMultiplier(Single level)
+        public float GetCriticalHitMultiplier(float level)
         {
             return level * 0.01200000047683716f;
         }
 
-        public Single GetOutpostTokenChance()
+        public float GetOutpostTokenChance()
         {
             return _outpostTakenChance;
         }
@@ -89,16 +89,16 @@ namespace Genesis.Shared.Map
             ++_playerByRaceCount[character.GetRace()]; // race
         }
 
-        public UInt32 ContinentId { get; private set; }
+        public uint ContinentId { get; }
 
-        public MapEntry MapEntry { get; private set; }
+        public MapEntry MapEntry { get; }
 
-        public Int32 GetNumberOfTerrainGridsPerObjectGrid()
+        public int GetNumberOfTerrainGridsPerObjectGrid()
         {
             return 1;
         }
 
-        public Single GetGridSize()
+        public float GetGridSize()
         {
             return 1.0f;
         }
@@ -116,7 +116,7 @@ namespace Genesis.Shared.Map
 
             packet.WriteInteger(0); // Layer Id
             packet.WriteInteger(_continentObject.Objective); // Objective Index
-            packet.WriteUtf8StringOn(String.Format("{0}.fam", _continentObject.MapFileName), 65); // Map Name
+            packet.WriteUtf8StringOn($"{_continentObject.MapFileName}.fam", 65); // Map Name
             packet.WriteBoolean(_continentObject.IsTown); // Is Town
             packet.WriteBoolean(_continentObject.IsArena); // Is Arena
 
@@ -162,16 +162,8 @@ namespace Genesis.Shared.Map
 
         public void BroadcastChat(ChatType type, Packet packet, ClonedObjectBase source)
         {
-            foreach (var pair in _coList)
+            foreach (var pair in from pair in _coList where pair.Value is Character let dX = pair.Value.Position.X - source.Position.X let dY = pair.Value.Position.X - source.Position.Y let dist = Math.Sqrt(dX * dX + dY * dY) select pair)
             {
-                if (!(pair.Value is Character))
-                    continue;
-
-                var dX = pair.Value.Position.X - source.Position.X;
-                var dY = pair.Value.Position.X - source.Position.Y;
-
-                var dist = Math.Sqrt(dX * dX + dY * dY);
-
                 switch (type)
                 {
                     default:
@@ -179,7 +171,7 @@ namespace Genesis.Shared.Map
                         break;
                 }
                 
-                (pair.Value as Character).Connection.SendPacket(packet, RPCGuaranteeType.RPCGuaranteedOrdered);
+                (pair.Value as Character)?.Connection.SendPacket(packet, RPCGuaranteeType.RPCGuaranteedOrdered);
             }
         }
     }

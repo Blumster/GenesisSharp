@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 
 namespace Genesis.Shared.Clonebase
@@ -16,7 +15,7 @@ namespace Genesis.Shared.Clonebase
             SimpleObjectSpecific = SimpleObjectSpecific.Read(br);
         }
 
-        public Int32 GetRecipeSize()
+        public int GetRecipeSize()
         {
             return SimpleObjectSpecific.Ingredients.Count(i => i != -1);
         }

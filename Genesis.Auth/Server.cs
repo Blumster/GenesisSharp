@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 using UniversalAuth.Data;
@@ -18,12 +17,12 @@ namespace Genesis.Auth
             OnDisconnect += c => Logger.WriteLog("*** Client disconnected! Ip: {0}", LogType.Network, c.Socket.RemoteAddress);
         }
 
-        public override Boolean ValidateServer(Client c, Byte serverId)
+        public override bool ValidateServer(Client c, byte serverId)
         {
             return GlobalServerHandler.GlobalServers.Any(s => s.ServerId == serverId && s.Status == 1);
         }
 
-        public override Boolean ValidateLogin(Client c, String user, String password, UInt32 subscription, UInt16 cdkey)
+        public override bool ValidateLogin(Client c, string user, string password, uint subscription, ushort cdkey)
         {
             var data = DataAccess.Account.LoginAccount(user, password);
             if (data != null)
@@ -32,7 +31,7 @@ namespace Genesis.Auth
             return data != null;
         }
 
-        public override Boolean GetServerInfos(Client c, out List<ServerInfoEx> servers)
+        public override bool GetServerInfos(Client c, out List<ServerInfoEx> servers)
         {
             servers = GlobalServerHandler.GlobalServers;
 

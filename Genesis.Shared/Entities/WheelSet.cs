@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Genesis.Shared.Entities
+﻿namespace Genesis.Shared.Entities
 {
     using Clonebase;
     using Database;
@@ -8,16 +6,16 @@ namespace Genesis.Shared.Entities
 
     public class WheelSet : SimpleObject
     {
-        private Byte _numOfWheels;
-        private Single _frictionGravel;
-        private Single _frictionIce;
-        private Single _frictionMud;
-        private Single _frictionPaved;
-        private Single _frictionPlains;
-        private Single _frictionSand;
-        private Boolean _isDefault;
-        private Int32 _numAxles;
-        private Boolean _wheelsVisible;
+        private byte _numOfWheels;
+        private float _frictionGravel;
+        private float _frictionIce;
+        private float _frictionMud;
+        private float _frictionPaved;
+        private float _frictionPlains;
+        private float _frictionSand;
+        private bool _isDefault;
+        private int _numAxles;
+        private bool _wheelsVisible;
 
         public WheelSet()
         {
@@ -43,7 +41,7 @@ namespace Genesis.Shared.Entities
             _numAxles = (CloneBaseObject as CloneBaseWheelSet).WheelSetSpecific.NumWheelsAxle[0] + (CloneBaseObject as CloneBaseWheelSet).WheelSetSpecific.NumWheelsAxle[1];
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             base.WriteToCreatePacket(packet, extended);
 
@@ -83,7 +81,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public override bool LoadFromDB(Int64 coid)
+        public override bool LoadFromDB(long coid)
         {
             var id = DataAccess.Item.GetItemFrom("item_wheelset", coid);
             if (id == null)

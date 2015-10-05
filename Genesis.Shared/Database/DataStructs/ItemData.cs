@@ -1,13 +1,12 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 
 namespace Genesis.Shared.Database.DataStructs
 {
     public class ItemData
     {
-        public Int64 Coid { get; set; }
-        public Int32 Cbid { get; set; }
-        public String TableName { get; set; }
+        public long Coid { get; set; }
+        public int Cbid { get; set; }
+        public string TableName { get; set; }
 
         public static ItemData Read(IDataReader reader)
         {

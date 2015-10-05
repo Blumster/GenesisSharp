@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Entities.Base
 {
@@ -7,7 +6,7 @@ namespace Genesis.Shared.Entities.Base
 
     public class PhysicsBase
     {
-        public void UnSerialize(BinaryReader br, UInt32 mapVersion)
+        public void UnSerialize(BinaryReader br, uint mapVersion)
         {
             var a = Vector4.Read(br);
             var b = Vector4.Read(br);

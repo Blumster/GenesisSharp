@@ -50,15 +50,13 @@ namespace Genesis.Auth
             Process.GetCurrentProcess().WaitForExit();
         }
 
-        private static Boolean Handler(Byte sig)
+        private static bool Handler(byte sig)
         {
             Logger.WriteLog("Shutting down the server...", LogType.None);
 
             GlobalServerHandler.Shutdown();
 
-            if (_server != null)
-                _server.Stop();
-
+            _server?.Stop();
             return false;
         }
     }

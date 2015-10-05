@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
@@ -7,47 +6,47 @@ namespace Genesis.Shared.Structures.Specifics
 
     public struct SimpleObjectSpecific
     {
-        public Single Alpha;
-        public Int32 Armor;
-        public Int32 CustomColor;
+        public float Alpha;
+        public int Armor;
+        public int CustomColor;
         public DamageArray DamageArmor;
-        public Int32 DisciplineRanks;
-        public Int32 DisciplineRequirement;
-        public Boolean DropBrokenOnly;
-        public Int32 Faction;
-        public Int16 Flags;
-        public Int32[] Ingredients;
-        public Byte InvSizeX;
-        public Byte InvSizeY;
-        public Boolean IsNotTradeable;
-        public Int16 ItemRarity;
-        public Single Mass;
-        public Int16 MaxHitPoint;
-        public UInt16 MaxUses;
-        public Byte MaximumEnhancements;
-        public Int16 MaximumGadgets;
-        public Int16 MinHitPoints;
-        public String PhysicsName;
-        public Int32 Prefix;
-        public Int16 RaceRegenRate;
-        public Int16 RaceShieldFactor;
-        public Int16 RaceShieldRegenerate;
-        public Byte RenderType;
-        public Int32 RequiredClass;
-        public Int16 RequiredCombat;
-        public Int16 RequiredLevel;
-        public Int16 RequiredPerception;
-        public Int16 RequiredTech;
-        public Int16 RequiredTheory;
-        public Single Scale;
-        public Int32 Skill1;
-        public Int32 Skill2;
-        public Int32 Skill3;
-        public Int32 SkillGroup1;
-        public Int32 SkillGroup2;
-        public Int32 SkillGroup3;
-        public UInt16 StackSize;
-        public Int16 SubType;
+        public int DisciplineRanks;
+        public int DisciplineRequirement;
+        public bool DropBrokenOnly;
+        public int Faction;
+        public short Flags;
+        public int[] Ingredients;
+        public byte InvSizeX;
+        public byte InvSizeY;
+        public bool IsNotTradeable;
+        public short ItemRarity;
+        public float Mass;
+        public short MaxHitPoint;
+        public ushort MaxUses;
+        public byte MaximumEnhancements;
+        public short MaximumGadgets;
+        public short MinHitPoints;
+        public string PhysicsName;
+        public int Prefix;
+        public short RaceRegenRate;
+        public short RaceShieldFactor;
+        public short RaceShieldRegenerate;
+        public byte RenderType;
+        public int RequiredClass;
+        public short RequiredCombat;
+        public short RequiredLevel;
+        public short RequiredPerception;
+        public short RequiredTech;
+        public short RequiredTheory;
+        public float Scale;
+        public int Skill1;
+        public int Skill2;
+        public int Skill3;
+        public int SkillGroup1;
+        public int SkillGroup2;
+        public int SkillGroup3;
+        public ushort StackSize;
+        public short SubType;
 
         public static SimpleObjectSpecific Read(BinaryReader br)
         {
@@ -84,7 +83,7 @@ namespace Genesis.Shared.Structures.Specifics
                 MaximumEnhancements = br.ReadByte(),
                 PhysicsName = br.ReadUnicodeString(65),
                 DamageArmor = DamageArray.Read(br),
-                Ingredients = br.Read<Int32>(5),
+                Ingredients = br.Read<int>(5),
                 DisciplineRequirement = br.ReadInt32(),
                 DisciplineRanks = br.ReadInt32(),
                 MaximumGadgets = br.ReadInt16(),

@@ -15,10 +15,10 @@ namespace Genesis.Shared.TNL.Ghost
         private static NetClassRepInstance<GhostObject> _dynClassRep;
 
         protected ClonedObjectBase Parent;
-        protected Boolean WaitingForParent;
-        protected Single UpdatePriorityScalar;
-        protected Object MsgCreate;
-        protected Object MsgCreateOwner;
+        protected bool WaitingForParent;
+        protected float UpdatePriorityScalar;
+        protected object MsgCreate;
+        protected object MsgCreateOwner;
 
         public TFID Guid { get; private set; }
 
@@ -38,10 +38,10 @@ namespace Genesis.Shared.TNL.Ghost
             WaitingForParent = true;
             UpdatePriorityScalar = 0.1f;
             NetFlags = new BitSet();
-            NetFlags.Set((UInt32) NetFlag.Ghostable);
+            NetFlags.Set((uint) NetFlag.Ghostable);
         }
 
-        public Boolean IsGhostVIsibleToMe(NetObject ghost)
+        public bool IsGhostVIsibleToMe(NetObject ghost)
         {
             return OwningConnection != null && OwningConnection.GetGhostIndex(ghost) != -1;
         }
@@ -79,7 +79,7 @@ namespace Genesis.Shared.TNL.Ghost
 
         public virtual void CreatePacket()
         {
-            MsgCreate = new Object();
+            MsgCreate = new object();
         }
 
         public virtual void RecreateForExisting()
@@ -90,7 +90,7 @@ namespace Genesis.Shared.TNL.Ghost
             }
         }
 
-        public override Single GetUpdatePriority(NetObject scopeObject, UInt64 updateMask, Int32 updateSkips)
+        public override float GetUpdatePriority(NetObject scopeObject, ulong updateMask, int updateSkips)
         {
             if (Parent == null || !(scopeObject is GhostObject) || (scopeObject as GhostObject).Parent == null)
                 return updateSkips * 0.02f;
@@ -103,7 +103,7 @@ namespace Genesis.Shared.TNL.Ghost
                 var otherAvPos = otherParent.GetAvatarPosition();
                 var thisAvPos = Parent.GetAvatarPosition();
 
-                var val = (Single) Math.Sqrt((otherAvPos.X - thisAvPos.X) * (otherAvPos.X - thisAvPos.X) + (otherAvPos.Y - thisAvPos.Y) * (otherAvPos.Y - thisAvPos.Y));
+                var val = (float) Math.Sqrt((otherAvPos.X - thisAvPos.X) * (otherAvPos.X - thisAvPos.X) + (otherAvPos.Y - thisAvPos.Y) * (otherAvPos.Y - thisAvPos.Y));
                 return UpdatePriorityScalar *
                         (((1.0F -
                             (val / ((otherParent.GetMap().GetNumberOfTerrainGridsPerObjectGrid() * 100.0F) * 1.2F))) *
@@ -118,17 +118,17 @@ namespace Genesis.Shared.TNL.Ghost
             
         }
 
-        public void UnpackCommon(BitStream stream, Object msgCreate)
+        public void UnpackCommon(BitStream stream, object msgCreate)
         {
             
         }
 
-        public void PackSingleSkill(BitStream stream, Object skill, Int32 size, Int32 skillTargetType)
+        public void PackSingleSkill(BitStream stream, object skill, int size, int skillTargetType)
         {
             
         }
 
-        public void UnpackSingleSkill(BitStream stream, Object skill, Int32 size)
+        public void UnpackSingleSkill(BitStream stream, object skill, int size)
         {
             
         }
@@ -138,28 +138,28 @@ namespace Genesis.Shared.TNL.Ghost
             
         }
 
-        public override UInt64 PackUpdate(GhostConnection connection, UInt64 updateMask, BitStream stream)
+        public override ulong PackUpdate(GhostConnection connection, ulong updateMask, BitStream stream)
         {
             return 0UL;
         }
 
-        public Int32 GetCreatePacketSize(Int32 cbidObject)
+        public int GetCreatePacketSize(int cbidObject)
         {
             return 0;
         }
 
-        public void UnpackSkills(BitStream stream, Boolean isOwner)
+        public void UnpackSkills(BitStream stream, bool isOwner)
         {
             
         }
 
-        public Object MallocCreatePacket(Int32 cbidObject, out Int32 size)
+        public object MallocCreatePacket(int cbidObject, out int size)
         {
             size = 0;
             return null;
         }
 
-        public void PackSkills(BitStream stream, Object pBase)
+        public void PackSkills(BitStream stream, object pBase)
         {
             
         }

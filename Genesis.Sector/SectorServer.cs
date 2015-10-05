@@ -13,15 +13,15 @@ namespace Genesis.Sector
     {
         public static SectorServer Instance { get; private set; }
 
-        public UInt16 CurrentPlayerCount { get; set; }
-        public Byte ServerId { get; set; }
-        public UInt32 Port { get; private set; }
+        public ushort CurrentPlayerCount { get; set; }
+        public byte ServerId { get; set; }
+        public uint Port { get; private set; }
 
         public TNLInterface Interface { get; private set; }
 
         public Thread ListenThread { get; private set; }
 
-        private readonly Object _interfaceLock = new Object();
+        private readonly object _interfaceLock = new object();
         private Timer _updateTimer;
 
         public SectorServer()
@@ -29,7 +29,7 @@ namespace Genesis.Sector
             Logger.WriteLog("+++ Initializing Server for Sector", LogType.Initialize);
         }
 
-        public Boolean Initialize()
+        public bool Initialize()
         {
             Config.Initialize();
 
@@ -54,7 +54,7 @@ namespace Genesis.Sector
             CurrentPlayerCount = 0;
 
             lock (_interfaceLock)
-                Interface = new TNLInterface((Int32) Port, false, 175, false);
+                Interface = new TNLInterface((int) Port, false, 175, false);
 
             Instance = this;
 
@@ -62,7 +62,7 @@ namespace Genesis.Sector
             return true;
         }
 
-        private void UpdatePlayers(Object o)
+        private void UpdatePlayers(object o)
         {
             DataAccess.Realmlist.UpdateSectorStatus(ServerId, CurrentPlayerCount, 1);
         }
@@ -85,7 +85,7 @@ namespace Genesis.Sector
             }
         }
 
-        public Boolean Start()
+        public bool Start()
         {
             try
             {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -9,36 +8,36 @@ namespace Genesis.Shared.Mission.Requirements
 
     public class ObjectiveRequirementMission : ObjectiveRequirement
     {
-        public List<Int32> MissionIds;
-        public Int32 CountNeeded;
-        public Boolean IdsAreMedals;
+        public List<int> MissionIds;
+        public int CountNeeded;
+        public bool IdsAreMedals;
 
         public ObjectiveRequirementMission(MissionObjective owner)
             : base(owner)
         {
             RequirementType = RequirementType.Mission;
-            MissionIds = new List<Int32>();
+            MissionIds = new List<int>();
         }
 
         public override void UnSerialize(XElement elem)
         {
-            FirstStateSlot = (Byte)(Int32)elem.Attribute("slot");
+            FirstStateSlot = (byte)(int)elem.Attribute("slot");
 
             var ids = elem.Element("IDs");
             if (ids != null && !ids.IsEmpty)
             {
-                var str = (String)ids;
-                foreach (var id in str.Split(new[] { '|' }).Where(id => !String.IsNullOrWhiteSpace(id)))
-                    MissionIds.Add(Int32.Parse(id));
+                var str = (string)ids;
+                foreach (var id in str.Split(new[] { '|' }).Where(id => !string.IsNullOrWhiteSpace(id)))
+                    MissionIds.Add(int.Parse(id));
             }
 
             var countNeeded = elem.Element("CountNeeded");
             if (countNeeded != null && !countNeeded.IsEmpty)
-                CountNeeded = (Int32)countNeeded;
+                CountNeeded = (int)countNeeded;
 
             var idsAreMedals = elem.Element("IDsAreMedals");
             if (idsAreMedals != null && !idsAreMedals.IsEmpty)
-                IdsAreMedals = (Int32)idsAreMedals != 0;
+                IdsAreMedals = (int)idsAreMedals != 0;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Genesis.Shared.Database.Tables
             {
                 lock (DataAccess.DatabaseAccess)
                 { 
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT `Id`, `Address`, `Port`, `AgeLimit`, `PKFlag`, `CurrentPlayers`, `MaxPlayers`, `Status` FROM `realmlist_global` LIMIT 16;")))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand("SELECT `Id`, `Address`, `Port`, `AgeLimit`, `PKFlag`, `CurrentPlayers`, `MaxPlayers`, `Status` FROM `realmlist_global` LIMIT 16;"))
                     {
                         using (var reader = comm.ExecuteReader())
                         {
@@ -42,14 +42,14 @@ namespace Genesis.Shared.Database.Tables
             return l;
         }
 
-        public ServerInfoEx GetGlobalServerData(Byte sId)
+        public ServerInfoEx GetGlobalServerData(byte sId)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT `Id`, `Address`, `Port`, `AgeLimit`, `PKFlag`, `CurrentPlayers`, `MaxPlayers`, `Status` FROM `realmlist_global` WHERE `Id` = {0}", sId)))
-                    using (var reader = comm.ExecuteReader())
-                        return reader.ReadServerInfoEx();
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"SELECT `Id`, `Address`, `Port`, `AgeLimit`, `PKFlag`, `CurrentPlayers`, `MaxPlayers`, `Status` FROM `realmlist_global` WHERE `Id` = {sId}"))
+                        using (var reader = comm.ExecuteReader())
+                            return reader.ReadServerInfoEx();
             }
             catch (Exception e)
             {
@@ -59,12 +59,12 @@ namespace Genesis.Shared.Database.Tables
             return null;
         }
 
-        public SectorServerData GetSectorServerData(Byte sId)
+        public SectorServerData GetSectorServerData(byte sId)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT `Id`, `Address`, `Port`, `CurrentPlayers`, `Status` FROM `realmlist_sector` WHERE `Id` = {0}", sId)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"SELECT `Id`, `Address`, `Port`, `CurrentPlayers`, `Status` FROM `realmlist_sector` WHERE `Id` = {sId}"))
                         using (var reader = comm.ExecuteReader())
                             return SectorServerData.Read(reader);
             }
@@ -76,12 +76,12 @@ namespace Genesis.Shared.Database.Tables
             return null;
         }
 
-        public void UpdateGlobalStatus(Byte sId, UInt16 currPlayers, Byte status)
+        public void UpdateGlobalStatus(byte sId, ushort currPlayers, byte status)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("UPDATE `realmlist_global` SET `Status` = {0}, `CurrentPlayers` = {1} WHERE `Id` = {2}", status, currPlayers, sId)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"UPDATE `realmlist_global` SET `Status` = {status}, `CurrentPlayers` = {currPlayers} WHERE `Id` = {sId}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -90,12 +90,12 @@ namespace Genesis.Shared.Database.Tables
             }
         }
 
-        public void UpdateSectorStatus(Byte sId, UInt16 currPlayers, Byte status)
+        public void UpdateSectorStatus(byte sId, ushort currPlayers, byte status)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("UPDATE `realmlist_sector` SET `Status` = {0}, `CurrentPlayers` = {1} WHERE `Id` = {2}", status, currPlayers, sId)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"UPDATE `realmlist_sector` SET `Status` = {status}, `CurrentPlayers` = {currPlayers} WHERE `Id` = {sId}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)

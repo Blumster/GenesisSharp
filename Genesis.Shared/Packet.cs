@@ -10,13 +10,13 @@ namespace Genesis.Shared
 
     public class Packet
     {
-        public Opcode Opcode { get; private set; }
+        public Opcode Opcode { get; }
 
         private readonly MemoryStream _stream;
         private readonly BinaryReader _reader;
         private readonly BinaryWriter _writer;
 
-        public Packet(Opcode opcode, Boolean writeOpcode = true)
+        public Packet(Opcode opcode, bool writeOpcode = true)
         {
             Opcode = opcode;
             _stream = new MemoryStream();
@@ -26,7 +26,7 @@ namespace Genesis.Shared
                 WriteOpcode(Opcode);
         }
 
-        public Packet(Byte[] data)
+        public Packet(byte[] data)
         {
             _stream = new MemoryStream(data);
             _reader = new BinaryReader(_stream);
@@ -34,84 +34,81 @@ namespace Genesis.Shared
             Opcode = (Opcode) _reader.ReadUInt32();
         }
 
-        public Packet ReadPadding(Int32 length)
+        public Packet ReadPadding(int length)
         {
             _reader.ReadBytes(length);
             return this;
         }
 
-        public Packet WritePadding(Int32 length)
+        public Packet WritePadding(int length)
         {
             for (var i = 0; i < length; ++i)
-                _writer.Write((Byte) 0);
+                _writer.Write((byte) 0);
 
             return this;
         }
 
-        public Byte[] ToArray()
+        public byte[] ToArray()
         {
             return _stream.ToArray();
         }
 
-        public Boolean IsFinished()
+        public bool IsFinished()
         {
-            if (_reader != null)
-                return _reader.BaseStream.Length == _reader.BaseStream.Position;
-
-            return false;
+            return _reader?.BaseStream.Length == _reader?.BaseStream.Position && _reader != null;
         }
 
-        public Byte[] ReadBytes(Int32 length)
+        public byte[] ReadBytes(int length)
         {
             return _reader.ReadBytes(length);
         }
 
-        public UInt64 ReadULong()
+        public ulong ReadULong()
         {
             return _reader.ReadUInt64();
         }
 
-        public Int64 ReadLong()
+        public long ReadLong()
         {
             return _reader.ReadInt64();
         }
 
-        public UInt32 ReadUInteger()
+        public uint ReadUInteger()
         {
             return _reader.ReadUInt32();
         }
 
-        public Int32 ReadInteger()
+        public int ReadInteger()
         {
             return _reader.ReadInt32();
         }
 
-        public UInt16 ReadUShort()
+        public ushort ReadUShort()
         {
             return _reader.ReadUInt16();
         }
 
-        public Int16 ReadShort()
+        public short ReadShort()
         {
             return _reader.ReadInt16();
         }
 
-        public Byte ReadByte()
+        public byte ReadByte()
         {
             return _reader.ReadByte();
         }
 
-        public SByte ReadSByte()
+        public sbyte ReadSByte()
         {
             return _reader.ReadSByte();
         }
 
-        public Single ReadSingle()
+        public float ReadSingle()
         {
             return _reader.ReadSingle();
         }
 
-        public Double ReadDouble()
+        public double ReadDouble()
         {
             return _reader.ReadDouble();
         }
@@ -127,114 +124,114 @@ namespace Genesis.Shared
             return id;
         }
 
-        public String ReadUtf16NullString()
+        public string ReadUtf16NullString()
         {
             return _reader.ReadUtf16StringNull();
         }
 
-        public String ReadUtf8NullString()
+        public string ReadUtf8NullString()
         {
             return _reader.ReadUtf8StringNull();
         }
 
-        public String ReadUtf8StringOn(Int32 length)
+        public string ReadUtf8StringOn(int length)
         {
             return _reader.ReadUtf8StringOn(length);
         }
 
-        public Boolean ReadBoolean()
+        public bool ReadBoolean()
         {
             return _reader.ReadBoolean();
         }
 
         public void WriteOpcode(Opcode opcode)
         {
-            _writer.Write((UInt32) opcode);
+            _writer.Write((uint) opcode);
         }
 
-        public void WriteBytes(Byte[] value)
+        public void WriteBytes(byte[] value)
         {
             _writer.Write(value);
         }
 
-        public void WriteBytes(Byte[] value, Int32 offset, Int32 length)
+        public void WriteBytes(byte[] value, int offset, int length)
         {
             _writer.Write(value, offset, length);
         }
 
-        public void WriteLong(UInt64 value)
+        public void WriteLong(ulong value)
         {
             _writer.Write(value);
         }
 
-        public void WriteLong(Int64 value)
+        public void WriteLong(long value)
         {
             _writer.Write(value);
         }
 
-        public void WriteInteger(UInt32 value)
+        public void WriteInteger(uint value)
         {
             _writer.Write(value);
         }
 
-        public void WriteInteger(Int32 value)
+        public void WriteInteger(int value)
         {
             _writer.Write(value);
         }
 
-        public void WriteShort(UInt16 value)
+        public void WriteShort(ushort value)
         {
             _writer.Write(value);
         }
 
-        public void WriteShort(Int16 value)
+        public void WriteShort(short value)
         {
             _writer.Write(value);
         }
 
-        public void WriteByte(Byte value)
+        public void WriteByte(byte value)
         {
             _writer.Write(value);
         }
 
-        public void WriteByte(SByte value)
+        public void WriteByte(sbyte value)
         {
             _writer.Write(value);
         }
 
-        public void WriteDouble(Double value)
+        public void WriteDouble(double value)
         {
             _writer.Write(value);
         }
 
-        public void WriteSingle(Single value)
+        public void WriteSingle(float value)
         {
             _writer.Write(value);
         }
 
-        public void WriteUtf8NullString(String value)
+        public void WriteUtf8NullString(string value)
         {
             _writer.Write(Encoding.UTF8.GetBytes(value));
-            _writer.Write((Byte)0);
+            _writer.Write((byte)0);
         }
 
-        public void WriteUtf8StringOn(String value, Int32 len)
+        public void WriteUtf8StringOn(string value, int len)
         {
             Debug.Assert(value.Length <= len);
             _writer.Write(Encoding.UTF8.GetBytes(value));
 
             for (var i = 0; i < len - value.Length; ++i)
-                _writer.Write((Byte)0);
+                _writer.Write((byte)0);
         }
 
-        public void WriteTFID(Int64 coid, Boolean global)
+        public void WriteTFID(long coid, bool global)
         {
             WriteLong(coid);
             WriteBoolean(global);
             WritePadding(7);
         }
 
-        public void WriteBoolean(Boolean value)
+        public void WriteBoolean(bool value)
         {
             _writer.Write(value);
         }
@@ -244,25 +241,21 @@ namespace Genesis.Shared
             WriteTFID(tfid.Coid, tfid.Global);
         }
 
-        public override String ToString()
+        public override string ToString()
         {
-            return String.Format("Opc: {0} | Length: {1}", Opcode, _stream.Length);
+            return $"Opc: {Opcode} | Length: {_stream.Length}";
         }
 
 
-        public String ToHexString()
+        public string ToHexString()
         {
-            return BitConverter.ToString(_stream.GetBuffer(), 0, (Int32)_stream.Position);
+            return BitConverter.ToString(_stream.GetBuffer(), 0, (int)_stream.Position);
         }
 
         public void Dispose()
         {
-            if (_reader != null)
-                _reader.Close();
-
-            if (_writer != null)
-                _writer.Close();
-
+            _reader?.Close();
+            _writer?.Close();
             _stream.Close();
         }
     }

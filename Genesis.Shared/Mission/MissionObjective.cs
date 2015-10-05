@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
@@ -11,32 +10,32 @@ namespace Genesis.Shared.Mission
 
     public class MissionObjective
     {
-        public Int32 AttribPoints;
-        public Int32 ContinentObject;
-        public Single CreditScaler;
-        public Int32 Credits;
-        public Int16 CreditsIndex;
-        public Byte LayerIndex;
-        public String MapName;
-        public Int32 ObjectiveId;
-        public String ObjectiveName;
-        public Int32 QuestId;
-        public Int32 ReturnToNPC;
-        public Byte Sequence;
-        public Int32 SkillPoints;
-        public Int32 WorldPosition;
-        public Int32 XP;
-        public Single XPBalanceScaler;
-        public Int16 XPIndex;
-        public Single XPScaler;
+        public int AttribPoints;
+        public int ContinentObject;
+        public float CreditScaler;
+        public int Credits;
+        public short CreditsIndex;
+        public byte LayerIndex;
+        public string MapName;
+        public int ObjectiveId;
+        public string ObjectiveName;
+        public int QuestId;
+        public int ReturnToNPC;
+        public byte Sequence;
+        public int SkillPoints;
+        public int WorldPosition;
+        public int XP;
+        public float XPBalanceScaler;
+        public short XPIndex;
+        public float XPScaler;
 
         #region Extra Data
         public List<ObjectiveRequirement> Requirements;
         public Mission Owner { get; private set; }
-        public String ExternalMapText { get; private set; }
-        public String DefaultMapText { get; private set; }
-        public String Title { get; private set; }
-        public Int32 CompleteCount { get; private set; }
+        public string ExternalMapText { get; private set; }
+        public string DefaultMapText { get; private set; }
+        public string Title { get; private set; }
+        public int CompleteCount { get; private set; }
         #endregion
 
         public static MissionObjective Read(BinaryReader br, Mission owner, XElement elem)
@@ -76,22 +75,19 @@ namespace Genesis.Shared.Mission
             mo.XPBalanceScaler = br.ReadSingle();
             mo.CreditScaler = br.ReadSingle();
 
-            if (elem != null)
-            {
-                var obj = elem.Elements("Objective").SingleOrDefault(e => (UInt32)e.Attribute("sequence") == mo.Sequence);
-                if (obj != null)
-                {
-                    mo.ExternalMapText = (String)obj.Element("ExternalText");
-                    mo.Title = (String)obj.Element("Title");
-                    mo.DefaultMapText = (String)obj.Element("DefaultText");
-                    var cCountElem = obj.Element("CompleteCount");
-                    mo.CompleteCount = (cCountElem == null || String.IsNullOrEmpty((String)cCountElem)) ? 0 : (Int32)cCountElem;
+            var obj = elem?.Elements("Objective").SingleOrDefault(e => (uint) e.Attribute("sequence") == mo.Sequence);
+            if (obj == null)
+                return mo;
 
-                    var req = obj.Elements("Requirement").ToList();
-                    if (req.Any())
-                        mo.Requirements.AddRange(req.Select(xElem => ObjectiveRequirement.Create(mo, xElem)).Where(requirement => requirement != null));
-                }
-            }
+            mo.ExternalMapText = (string)obj.Element("ExternalText");
+            mo.Title = (string)obj.Element("Title");
+            mo.DefaultMapText = (string)obj.Element("DefaultText");
+            var cCountElem = obj.Element("CompleteCount");
+            mo.CompleteCount = (cCountElem == null || string.IsNullOrEmpty((string)cCountElem)) ? 0 : (int)cCountElem;
+
+            var req = obj.Elements("Requirement").ToList();
+            if (req.Any())
+                mo.Requirements.AddRange(req.Select(xElem => ObjectiveRequirement.Create(mo, xElem)).Where(requirement => requirement != null));
 
             return mo;
         }

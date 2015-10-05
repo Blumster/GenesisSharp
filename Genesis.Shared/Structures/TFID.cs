@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared
 {
     public class TFID
     {
-        public Int64 Coid { get; set; }
-        public Boolean Global { get; set; }
+        public long Coid { get; set; }
+        public bool Global { get; set; }
 
         public TFID()
         {
@@ -14,7 +13,7 @@ namespace Genesis.Shared
             Global = false;
         }
 
-        public TFID(Int64 coid, Boolean global)
+        public TFID(long coid, bool global)
         {
             Coid = coid;
             Global = global;
@@ -29,7 +28,7 @@ namespace Genesis.Shared
             };
         }
 
-        public override Boolean Equals(Object obj)
+        public override bool Equals(object obj)
         {
             if (!(obj is TFID))
                 return false;
@@ -39,27 +38,27 @@ namespace Genesis.Shared
             return Coid == other.Coid && Global == other.Global;
         }
 
-        public override Int32 GetHashCode()
+        public override int GetHashCode()
         {
             return 37 * Coid.GetHashCode() + Global.GetHashCode();
         }
 
-        public static Boolean operator ==(TFID a, TFID b)
+        public static bool operator ==(TFID a, TFID b)
         {
             return !ReferenceEquals(a, null) && !ReferenceEquals(b, null) && a.Coid == b.Coid && a.Global == b.Global;
         }
 
-        public static Boolean operator !=(TFID a, TFID b)
+        public static bool operator !=(TFID a, TFID b)
         {
             return ReferenceEquals(a, null) || ReferenceEquals(b, null) || a.Coid != b.Coid || a.Global != b.Global;
         }
 
-        public static Boolean operator <(TFID a, TFID b)
+        public static bool operator <(TFID a, TFID b)
         {
             return !ReferenceEquals(a, null) && !ReferenceEquals(b, null) && a.Coid < b.Coid;
         }
 
-        public static Boolean operator >(TFID a, TFID b)
+        public static bool operator >(TFID a, TFID b)
         {
             return !ReferenceEquals(a, null) && !ReferenceEquals(b, null) && a.Coid > b.Coid;
         }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace Genesis.Utils
 {
-    public delegate Boolean ExitEventHandler(Byte sig);
+    public delegate bool ExitEventHandler(byte sig);
 
     public abstract class ExitableProgram
     {
@@ -34,6 +33,6 @@ namespace Genesis.Utils
     internal class NativeMethods
     {
         [DllImport("Kernel32")]
-        public static extern Boolean SetConsoleCtrlHandler(ExitEventHandler handler, Boolean add);
+        public static extern bool SetConsoleCtrlHandler(ExitEventHandler handler, bool add);
     }
 }

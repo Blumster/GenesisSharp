@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 
 namespace Genesis.Shared.Social
 {
@@ -8,16 +7,16 @@ namespace Genesis.Shared.Social
 
     public class SocialEntry
     {
-        public Int64 Character { get; set; }
-        public Int64 OtherCharacter { get; set; }
-        public Int32 Level { get; set; }
-        public UInt32 LastContinentId { get; set; }
-        public Byte Class { get; set; }
-        public Boolean Online { get; set; }
-        public String Name { get; set; }
+        public long Character { get; set; }
+        public long OtherCharacter { get; set; }
+        public int Level { get; set; }
+        public uint LastContinentId { get; set; }
+        public byte Class { get; set; }
+        public bool Online { get; set; }
+        public string Name { get; set; }
         public SocialType Type { get; set; }
 
-        public static SocialEntry Read(Int64 character, IDataReader reader, SocialType type)
+        public static SocialEntry Read(long character, IDataReader reader, SocialType type)
         {
             if (!reader.Read())
                 return null;

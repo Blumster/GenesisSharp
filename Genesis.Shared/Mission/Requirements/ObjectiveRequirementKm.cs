@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Genesis.Shared.Mission.Requirements
 {
@@ -7,7 +6,7 @@ namespace Genesis.Shared.Mission.Requirements
 
     public class ObjectiveRequirementKm : ObjectiveRequirement
     {
-        public Single DistanceNeeded;
+        public float DistanceNeeded;
         public KmMode Mode;
 
         public ObjectiveRequirementKm(MissionObjective owner)
@@ -18,15 +17,15 @@ namespace Genesis.Shared.Mission.Requirements
 
         public override void UnSerialize(XElement elem)
         {
-            FirstStateSlot = (Byte)(Int32)elem.Attribute("slot");
+            FirstStateSlot = (byte)(int)elem.Attribute("slot");
 
             var distNeeded = elem.Element("DistanceNeeded");
             if (distNeeded != null && !distNeeded.IsEmpty)
-                DistanceNeeded = (Single)distNeeded;
+                DistanceNeeded = (float)distNeeded;
 
             var kmMode = elem.Element("Mode");
             if (kmMode != null && !kmMode.IsEmpty)
-                Mode = (KmMode)(Int32)kmMode;
+                Mode = (KmMode)(int)kmMode;
         }
     }
 }

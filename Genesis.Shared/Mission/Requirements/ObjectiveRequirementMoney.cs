@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Genesis.Shared.Mission.Requirements
 {
@@ -7,7 +6,7 @@ namespace Genesis.Shared.Mission.Requirements
 
     public class ObjectiveRequirementMoney : ObjectiveRequirement
     {
-        public UInt32 MoneyNeeded;
+        public uint MoneyNeeded;
 
         public ObjectiveRequirementMoney(MissionObjective owner)
             : base(owner)
@@ -17,11 +16,11 @@ namespace Genesis.Shared.Mission.Requirements
 
         public override void UnSerialize(XElement elem)
         {
-            FirstStateSlot = (Byte)(Int32)elem.Attribute("slot");
+            FirstStateSlot = (byte)(int)elem.Attribute("slot");
 
             var moneyNeeded = elem.Element("MoneyNeeded");
             if (moneyNeeded != null && !moneyNeeded.IsEmpty)
-                MoneyNeeded = (UInt32)moneyNeeded;
+                MoneyNeeded = (uint)moneyNeeded;
         }
     }
 }

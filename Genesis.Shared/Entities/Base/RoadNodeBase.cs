@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Entities.Base
@@ -9,12 +8,12 @@ namespace Genesis.Shared.Entities.Base
 
     public class RoadNodeBase
     {
-        public String FileName;
-        public List<Int32> NodeIds = new List<Int32>();
+        public string FileName;
+        public List<int> NodeIds = new List<int>();
         public Vector3 Position;
-        public UInt32 UniqueId;
+        public uint UniqueId;
 
-        public virtual void UnSerialize(BinaryReader br, UInt32 mapVersion)
+        public virtual void UnSerialize(BinaryReader br, uint mapVersion)
         {
             UniqueId = br.ReadUInt32();
             Position = Vector3.Read(br);

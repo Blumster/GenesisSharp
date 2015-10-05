@@ -13,25 +13,25 @@ namespace Genesis.Shared.Entities.Base
     public abstract partial class ClonedObjectBase
     {
         #region Declaration
-        public ObjectType Type { get { return CloneBaseObject.Type; } }
-        protected Int32 CBID { get { return CloneBaseObject.CloneBaseSpecific.CloneBaseId; } }
+        public ObjectType Type => CloneBaseObject.Type;
+        protected int CBID => CloneBaseObject.CloneBaseSpecific.CloneBaseId;
 
-        protected Int32 Faction;
-        protected UInt32 Bf380;
-        protected UInt32 Bf388;
-        protected UInt32 LastServerUpdate;
-        protected UInt32 TimeOfDeath;
-        protected Byte HbOnReceiveHit;
-        protected Byte HbOnDoHit;
-        protected Byte HbCollision;
-        protected Byte HbDeath;
-        protected Byte HbKill;
-        protected Byte HbStealth;
-        protected Byte HbCancelSkills;
-        protected Int64[] TriggerEvents;
+        protected int Faction;
+        protected uint Bf380;
+        protected uint Bf388;
+        protected uint LastServerUpdate;
+        protected uint TimeOfDeath;
+        protected byte HbOnReceiveHit;
+        protected byte HbOnDoHit;
+        protected byte HbCollision;
+        protected byte HbDeath;
+        protected byte HbKill;
+        protected byte HbStealth;
+        protected byte HbCancelSkills;
+        protected long[] TriggerEvents;
         protected TFID Murderer;
         protected TFID LastMurderer;
-        protected Single DamageByMurderer;
+        protected float DamageByMurderer;
         public Vector3 Position { get; set; }
         public Vector4 Rotation { get; set; }
         public Vector3 Velocity { get; set; }
@@ -39,39 +39,37 @@ namespace Genesis.Shared.Entities.Base
         protected SectorMap Map;
         public CloneBaseObject CloneBaseObject;
         public ClonedObjectBase Owner { get; private set; }
-        protected UInt32 StatusBitField;
-        protected Single Scale;
-        protected Single TerrainOffset;
-        protected Single GameMass;
-        protected Int32 Value;
-        protected Int32 CustomValue;
+        protected uint StatusBitField;
+        protected float Scale;
+        protected float TerrainOffset;
+        protected float GameMass;
+        protected int Value;
+        protected int CustomValue;
         protected DeathType DeathType;
-        protected Single HPSkillScalar;
-        protected Int32 HPSkillAdd;
-        protected Int32 RequiredLevelPrefixOffset;
-        protected Int32 RequiredLevel;
-        protected Int32 RequiredCombat;
-        protected Int32 RequiredPerception;
-        protected Int32 RequiredTech;
-        protected Int32 RequiredTheory;
-        protected Int32 StoredRequiredLevel;
-        protected Int64 CoidCustomizedBy;
-        protected Boolean MadeFromMemory;
-        protected String CustomizedName;
-        protected Int32 DistanceDrawOverride;
-        protected Single OverheadOffset;
-        protected UInt32 DamageState;
-        protected String MangledName;
+        protected float HPSkillScalar;
+        protected int HPSkillAdd;
+        protected int RequiredLevelPrefixOffset;
+        protected int RequiredLevel;
+        protected int RequiredCombat;
+        protected int RequiredPerception;
+        protected int RequiredTech;
+        protected int RequiredTheory;
+        protected int StoredRequiredLevel;
+        protected long CoidCustomizedBy;
+        protected bool MadeFromMemory;
+        protected string CustomizedName;
+        protected int DistanceDrawOverride;
+        protected float OverheadOffset;
+        protected uint DamageState;
+        protected string MangledName;
         protected TFID COID { get; set; }
-        protected UInt64 CoidAssignedTo;
-        public Byte Layer { get; set; }
+        protected ulong CoidAssignedTo;
+        public byte Layer { get; set; }
         protected UnkFlags UnkFlags;
-        protected UInt16 UsesLeft;
+        protected ushort UsesLeft;
         protected GhostObject GhostObject { get; private set; }
         protected ClonedObjectBase TargetObject { get; private set; }
-
-        //asd
-        protected Int32 BareTeamFaction;
+        protected int BareTeamFaction;
         #endregion
 
         protected ClonedObjectBase()
@@ -132,12 +130,12 @@ namespace Genesis.Shared.Entities.Base
             GhostObject = ghost;
         }
 
-        public void ReadTriggerEvents(BinaryReader br, UInt32 mapVersion)
+        public void ReadTriggerEvents(BinaryReader br, uint mapVersion)
         {
-            TriggerEvents = br.Read<Int64>(3);
+            TriggerEvents = br.Read<long>(3);
         }
 
-        public void SetCOID(Int64 coid, Boolean global = true)
+        public void SetCOID(long coid, bool global = true)
         {
             COID = new TFID
             {
@@ -151,32 +149,32 @@ namespace Genesis.Shared.Entities.Base
             return COID;
         }
 
-        public Int64 GetCOID()
+        public long GetCOID()
         {
             return COID.Coid;
         }
 
-        public Int32 GetCBID()
+        public int GetCBID()
         {
             return CBID;
         }
 
-        public UInt16 GetMaxStackSize()
+        public ushort GetMaxStackSize()
         {
-            return CloneBaseObject.Type == ObjectType.QuestObject ? (UInt16)16959 : CloneBaseObject.SimpleObjectSpecific.StackSize;
+            return CloneBaseObject.Type == ObjectType.QuestObject ? (ushort)16959 : CloneBaseObject.SimpleObjectSpecific.StackSize;
         }
 
-        public Boolean CanAddQuantitiy(UInt16 quantity)
+        public bool CanAddQuantitiy(ushort quantity)
         {
             return GetQuantity() + quantity <= GetMaxStackSize();
         }
 
-        public Int32 GetMemorizeCraftValue()
+        public int GetMemorizeCraftValue()
         {
-            return (Int32)Math.Ceiling(GetSellValue() * 0.85000002D);
+            return (int)Math.Ceiling(GetSellValue() * 0.85000002D);
         }
 
-        public Int32 GetSellValue()
+        public int GetSellValue()
         {
             if (IsSellable())
             {
@@ -188,27 +186,27 @@ namespace Genesis.Shared.Entities.Base
                 if (price <= 0.0D)
                     price = 1.0D;
 
-                return (Int32)price;
+                return (int)price;
             }
 
             return 0;
         }
 
-        public Single GetModifierValue()
+        public float GetModifierValue()
         {
             return 0.0f; // TODO: Based on Prefixes
         }
 
-        public Int16 GetRequiredLevel()
+        public short GetRequiredLevel()
         {
-            var lvl = (Int16)(RequiredLevelPrefixOffset + RequiredLevel); // TODO: MOAR
+            var lvl = (short)(RequiredLevelPrefixOffset + RequiredLevel); // TODO: MOAR
             if (lvl > 80)
                 lvl = 80;
 
             return lvl;
         }
 
-        public void SetRequiredLevel(Int16 level)
+        public void SetRequiredLevel(short level)
         {
             RequiredLevel = level <= 80 ? level : 80;
         }
@@ -218,12 +216,12 @@ namespace Genesis.Shared.Entities.Base
             return Murderer;
         }
 
-        public Int32 GetOriginalFaction()
+        public int GetOriginalFaction()
         {
             return CloneBaseObject.SimpleObjectSpecific.Faction;
         }
 
-        public void SetDamageByMurderer(Single damage)
+        public void SetDamageByMurderer(float damage)
         {
             if (Owner != null)
                 Owner.SetDamageByMurderer(damage);
@@ -231,7 +229,7 @@ namespace Genesis.Shared.Entities.Base
                 DamageByMurderer = damage;
         }
 
-        public Int64 GetSouvenirValue()
+        public long GetSouvenirValue()
         {
             var val = 3L * GetValue() / 200L;
             if (val < 0L)
@@ -240,9 +238,9 @@ namespace Genesis.Shared.Entities.Base
             return val;
         }
 
-        public Int32 GetApproximateLevelWorth()
+        public int GetApproximateLevelWorth()
         {
-            var val = (Double)Value; // TODO: MOAR
+            var val = (double)Value; // TODO: MOAR
             if (val <= 0.0D)
                 return 0;
 
@@ -250,23 +248,22 @@ namespace Genesis.Shared.Entities.Base
             if (val <= 0.0D)
                 return 0;
 
-            return (Int32)val;
+            return (int)val;
         }
 
-        public Int32 GetIDFaction()
+        public int GetIDFaction()
         {
-            return Owner != null ? Owner.GetIDFaction() : Faction;
+            return Owner?.GetIDFaction() ?? Faction;
         }
 
         public void SetDirtyState()
         {
             UnkFlags |= UnkFlags.Dirty;
 
-            if (Owner != null)
-                Owner.SetDirtyState();
+            Owner?.SetDirtyState();
         }
 
-        public Boolean GetIsDirtyState()
+        public bool GetIsDirtyState()
         {
             return (UnkFlags & UnkFlags.Dirty) != 0;
         }
@@ -276,7 +273,7 @@ namespace Genesis.Shared.Entities.Base
             UnkFlags &= ~UnkFlags.Dirty;
         }
 
-        public Boolean IsPickupable(Boolean checkOwner)
+        public bool IsPickupable(bool checkOwner)
         {
             if (checkOwner && Owner != null)
                 return false;
@@ -307,12 +304,12 @@ namespace Genesis.Shared.Entities.Base
             }
         }
 
-        public Boolean IsSellable()
+        public bool IsSellable()
         {
             return CloneBaseObject.CloneBaseSpecific.IsSellable;
         }
 
-        public Boolean CanUseTinkeringKitOnObject(TinkeringKit kit)
+        public bool CanUseTinkeringKitOnObject(TinkeringKit kit)
         {
             if (kit.Type == CloneBaseObject.Type)
                 return true;
@@ -331,12 +328,12 @@ namespace Genesis.Shared.Entities.Base
             return DeathType;
         }
 
-        public Boolean GetCanBeKit()
+        public bool GetCanBeKit()
         {
             return CloneBaseObject.GetRecipeSize() > 0;
         }
 
-        public Boolean GetCanBeEnhanced()
+        public bool GetCanBeEnhanced()
         {
             switch (CloneBaseObject.Type)
             {
@@ -356,31 +353,31 @@ namespace Genesis.Shared.Entities.Base
             }
         }
 
-        public void SetIsKit(Boolean kit)
+        public void SetIsKit(bool kit)
         {
             if (((UnkFlags & UnkFlags.IsKit) != 0) != kit)
                 SetDirtyState();
 
-            UnkFlags ^= (UnkFlags)((UInt32)UnkFlags ^ ((kit ? 1U : 0U) << 19)) & UnkFlags.IsKit;
+            UnkFlags ^= (UnkFlags)((uint)UnkFlags ^ ((kit ? 1U : 0U) << 19)) & UnkFlags.IsKit;
 
             //if ((_unkFlags & UnkFlags.IsKit) != 0)
             //SetMaximumNumberOfGadgets();
         }
 
-        public void SetIsBound(Boolean bound)
+        public void SetIsBound(bool bound)
         {
             if (((UnkFlags & UnkFlags.IsBound) != 0) != bound)
                 SetDirtyState();
 
-            UnkFlags ^= (UnkFlags)((UInt32)UnkFlags ^ ((bound ? 1U : 0U) << 20)) & UnkFlags.IsBound;
+            UnkFlags ^= (UnkFlags)((uint)UnkFlags ^ ((bound ? 1U : 0U) << 20)) & UnkFlags.IsBound;
         }
 
-        public Boolean GetIsStackable()
+        public bool GetIsStackable()
         {
             return CloneBaseObject.Type == ObjectType.QuestObject || ((CloneBaseObject.SimpleObjectSpecific.Flags & 0x40) != 0 && (UnkFlags & UnkFlags.IsKit) == 0);
         }
 
-        public Boolean WillObjectCostumize(ClonedObjectBase other)
+        public bool WillObjectCostumize(ClonedObjectBase other)
         {
             if (other == null)
                 return false;
@@ -388,12 +385,12 @@ namespace Genesis.Shared.Entities.Base
             return false; // TODO: MOAR
         }
 
-        public Int32 GetValue()
+        public int GetValue()
         {
             if (Value == -1)
                 return 0;
 
-            var val = Value + (Double)GetModifierValue();
+            var val = Value + (double)GetModifierValue();
 
             if ((UnkFlags & UnkFlags.IsKit) != 0)
                 val = Math.Floor(Value * 0.079999998D);
@@ -401,7 +398,7 @@ namespace Genesis.Shared.Entities.Base
             if (val <= 0.0D)
                 val = 1.0D;
 
-            return (Int32)val;
+            return (int)val;
         }
 
         public SectorMap GetMap()

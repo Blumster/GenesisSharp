@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Entities
@@ -9,25 +8,25 @@ namespace Genesis.Shared.Entities
 
     public class Store : SimpleObject
     {
-        public Boolean IsJunkyard;
-        public Boolean IsSouvenirStore;
-        public Boolean IsVehicleStore;
+        public bool IsJunkyard;
+        public bool IsSouvenirStore;
+        public bool IsVehicleStore;
         public List<ItemType> ItemsTypes = new List<ItemType>();
 
         public Vector4 Location;
-        public UInt32 MaxLevel;
-        public UInt32 MinLevel;
+        public uint MaxLevel;
+        public uint MinLevel;
         public Vector4 Quaternion;
-        public String StoreName;
+        public string StoreName;
 
-        public override void Unserialize(BinaryReader br, UInt32 mapVersion)
+        public override void Unserialize(BinaryReader br, uint mapVersion)
         {
             Location = Vector4.Read(br);
             Quaternion = Vector4.Read(br);
 
             if (((((mapVersion <= 50) ? 1 : 0) - 1) & 20) + 10 > 0)
             {
-                var count = (UInt32)(((((mapVersion <= 50) ? 1 : 0) - 1) & 20) + 10);
+                var count = (uint)(((((mapVersion <= 50) ? 1 : 0) - 1) & 20) + 10);
                 for (var i = 0U; i < count; ++i)
                     ItemsTypes.Add(ItemType.Read(br));
             }

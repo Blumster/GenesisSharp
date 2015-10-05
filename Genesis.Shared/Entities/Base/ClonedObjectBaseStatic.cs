@@ -9,26 +9,26 @@ namespace Genesis.Shared.Entities.Base
     public abstract partial class ClonedObjectBase
     {
         // Constant datas
-        public const Single BaseHP = 60.0f;
-        public const Single HPPerTech = 3.0f;
-        public static readonly Single[] HPPerLevel = { 9.5f, 8.5f, 8.0f, 8.0f };
-        public static readonly Single[] HPRaceMultiplier = { 1.0f, 1.1f, 1.2f };
+        public const float BaseHP = 60.0f;
+        public const float HPPerTech = 3.0f;
+        public static readonly float[] HPPerLevel = { 9.5f, 8.5f, 8.0f, 8.0f };
+        public static readonly float[] HPRaceMultiplier = { 1.0f, 1.1f, 1.2f };
 
-        public const Single PowerPerTheory = 2.0f;
-        public static readonly Single[] PowerPerLevel = { 0.60000002f, 1.0f, 1.0f, 0.75f };
+        public const float PowerPerTheory = 2.0f;
+        public static readonly float[] PowerPerLevel = { 0.60000002f, 1.0f, 1.0f, 0.75f };
 
-        public const Single HeatPerTech = 0.5f;
-        public static readonly Single[] HeatPerLevel = { 1.0f, 1.0f, 1.0f, 1.0f };
-        public static readonly Single[] HeatRaceMultiplier = { 1.0f, 1.0f, 1.0f };
+        public const float HeatPerTech = 0.5f;
+        public static readonly float[] HeatPerLevel = { 1.0f, 1.0f, 1.0f, 1.0f };
+        public static readonly float[] HeatRaceMultiplier = { 1.0f, 1.0f, 1.0f };
 
-        public const Single MaxCombatModeBoost = 0.2f;
-        public const Single MaxCombatModeOffense = 0.2f;
-        public const Single MaxCombatModeDefense = 0.2f;
+        public const float MaxCombatModeBoost = 0.2f;
+        public const float MaxCombatModeOffense = 0.2f;
+        public const float MaxCombatModeDefense = 0.2f;
 
-        public static readonly Int32[] DisciplinesPerDifficulty = { 4, 2, 1 };
-        public static readonly Int32[] DisciplineDifficultyLevel = { 0, 0, 0 };
+        public static readonly int[] DisciplinesPerDifficulty = { 4, 2, 1 };
+        public static readonly int[] DisciplineDifficultyLevel = { 0, 0, 0 };
 
-        public static ClonedObjectBase AllocateNewObjectFromCBID(Int32 cbid)
+        public static ClonedObjectBase AllocateNewObjectFromCBID(int cbid)
         {
             var clonebaseobj = AssetManager.AssetContainer.GetCloneBaseObjectForCBID(cbid);
             if (clonebaseobj == null)
@@ -99,7 +99,7 @@ namespace Genesis.Shared.Entities.Base
             return null;
         }
 
-        public static Int32 GetMoneyCBIDFromCredits(Int64 credits)
+        public static int GetMoneyCBIDFromCredits(long credits)
         {
             if (credits >= 0x3B9ACA00) // Money Orb
                 return 2827;

@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Prefix
 {
@@ -7,8 +6,8 @@ namespace Genesis.Shared.Prefix
 
     public class PrefixArmor : PrefixBase
     {
-        public Int16 ArmorFactorAdjust;
-        public Single ArmorFactorPercent;
+        public short ArmorFactorAdjust;
+        public float ArmorFactorPercent;
         public DamageArray ResistAdjust;
 
         public PrefixArmor(BinaryReader br)

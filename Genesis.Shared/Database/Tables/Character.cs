@@ -8,12 +8,12 @@ namespace Genesis.Shared.Database.Tables
 
     public class Character
     {
-        public CharacterData GetCharacter(Int64 coid)
+        public CharacterData GetCharacter(long coid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT {0} FROM `character` WHERE `Coid` = {1}", CharacterData.GetQueryString(), coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"SELECT {CharacterData.GetQueryString()} FROM `character` WHERE `Coid` = {coid}"))
                         using (var reader = comm.ExecuteReader())
                             return CharacterData.Read(reader);
             }
@@ -24,15 +24,15 @@ namespace Genesis.Shared.Database.Tables
             return null;
         }
 
-        public IDictionary<Int64, CharacterData> GetCharacters(UInt64 accId)
+        public IDictionary<long, CharacterData> GetCharacters(ulong accId)
         {
-            var dict = new Dictionary<Int64, CharacterData>();
+            var dict = new Dictionary<long, CharacterData>();
 
             try
             {
                 lock (DataAccess.DatabaseAccess)
                 {
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT {0} FROM `character` WHERE `AccountId` = {1} ORDER BY `Coid` ASC LIMIT 16", CharacterData.GetQueryString(), accId)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"SELECT {CharacterData.GetQueryString()} FROM `character` WHERE `AccountId` = {accId} ORDER BY `Coid` ASC LIMIT 16"))
                     {
                         using (var reader = comm.ExecuteReader())
                         {
@@ -56,12 +56,12 @@ namespace Genesis.Shared.Database.Tables
             return dict;
         }
 
-        public void DeleteCharacter(UInt64 accId, Int64 charCoid)
+        public void DeleteCharacter(ulong accId, long charCoid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("DELETE FROM `character` WHERE `Coid` = {0} AND `AccountId` = {1}", charCoid, accId)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"DELETE FROM `character` WHERE `Coid` = {charCoid} AND `AccountId` = {accId}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -75,7 +75,7 @@ namespace Genesis.Shared.Database.Tables
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("INSERT INTO `character` ({0}) VALUES ({1})", CharacterData.GetQueryString(), data.GetInsertString())))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"INSERT INTO `character` ({CharacterData.GetQueryString()}) VALUES ({data.GetInsertString()})"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -89,7 +89,7 @@ namespace Genesis.Shared.Database.Tables
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("UPDATE `character` SET {0} WHERE `Coid` = {1} AND `AccountId` = {2}", data.GetUpdateString(), data.Coid, data.AccountId)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"UPDATE `character` SET {data.GetUpdateString()} WHERE `Coid` = {data.Coid} AND `AccountId` = {data.AccountId}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)

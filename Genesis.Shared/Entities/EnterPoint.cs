@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Entities
 {
@@ -8,10 +7,10 @@ namespace Genesis.Shared.Entities
     public class EnterPoint : SimpleObject
     {
         public Vector4 Location;
-        public UInt32 MapTransferData;
-        public Byte MapTransferType;
+        public uint MapTransferData;
+        public byte MapTransferType;
         public Vector4 Quaternion;
-        public Int32 Unk;
+        public int Unk;
 
         public override void Unserialize(BinaryReader br, uint mapVersion)
         {

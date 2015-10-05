@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Entities.Base
 {
     public abstract partial class ClonedObjectBase
     {
-        public abstract void Unserialize(BinaryReader br, UInt32 mapVersion);
+        public abstract void Unserialize(BinaryReader br, uint mapVersion);
 
-        public abstract void WriteToCreatePacket(Packet packet, Boolean extended = false);
+        public abstract void WriteToCreatePacket(Packet packet, bool extended = false);
     }
 }

@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct FrontRear
     {
-        public Single Front;
-        public Single Rear;
+        public float Front;
+        public float Rear;
 
         public static FrontRear Read(BinaryReader br)
         {

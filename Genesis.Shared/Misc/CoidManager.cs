@@ -1,20 +1,18 @@
-﻿using System;
-
-namespace Genesis.Shared.Misc
+﻿namespace Genesis.Shared.Misc
 {
     using Database;
 
     public static class CoidManager
     {
-        private static readonly Object _lock = new Object();
+        private static readonly object Lock = new object();
 
-        private static Int64 _nextCOID;
+        private static long _nextCOID;
 
-        public static Int64 NextCOID
+        public static long NextCOID
         {
             get
             {
-                lock (_lock)
+                lock (Lock)
                     return _nextCOID++;
             }
         }

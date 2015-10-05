@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
@@ -8,36 +7,36 @@ namespace Genesis.Shared.Structures.Specifics
 
     public class CreatureSpecific
     {
-        public Int32 AIBehavior;
-        public Int16 AttributeCombat;
-        public Int16 AttributePerception;
-        public Int16 AttributeTech;
-        public Int16 AttributeTheory;
-        public Int16 BaseLevel;
-        public Byte BaseLootChance;
-        public Byte BossType;
-        public Int32 Color1;
-        public Int32 Color2;
-        public Int32 Color3;
-        public Int16 DefensiveBonus;
-        public Int16 DifficultyAdjust;
-        public Byte Flags;
-        public Single FlyingHeight;
-        public Int32 HasTurret;
-        public Single HearingRange;
-        public Int32 IsNPC;
-        public Int32 LootTableId;
-        public Int32 NPCCanGamble;
-        public String NPCIntro;
-        public Int16 OffensiveBonus;
-        public Single PhysicsScale;
-        public Single RotationSpeed;
-        public Dictionary<Byte, List<SkillSet>> Skills;
-        public Single Speed;
-        public Int16 TransformTime;
-        public Single VisionArc;
-        public Single VisionRange;
-        public Single XPPercent;
+        public int AIBehavior;
+        public short AttributeCombat;
+        public short AttributePerception;
+        public short AttributeTech;
+        public short AttributeTheory;
+        public short BaseLevel;
+        public byte BaseLootChance;
+        public byte BossType;
+        public int Color1;
+        public int Color2;
+        public int Color3;
+        public short DefensiveBonus;
+        public short DifficultyAdjust;
+        public byte Flags;
+        public float FlyingHeight;
+        public int HasTurret;
+        public float HearingRange;
+        public int IsNPC;
+        public int LootTableId;
+        public int NPCCanGamble;
+        public string NPCIntro;
+        public short OffensiveBonus;
+        public float PhysicsScale;
+        public float RotationSpeed;
+        public Dictionary<byte, List<SkillSet>> Skills;
+        public float Speed;
+        public short TransformTime;
+        public float VisionArc;
+        public float VisionRange;
+        public float XPPercent;
 
         public static CreatureSpecific Read(BinaryReader br)
         {
@@ -64,7 +63,7 @@ namespace Genesis.Shared.Structures.Specifics
                 BossType = br.ReadByte(),
                 DifficultyAdjust = br.ReadInt16(),
                 BaseLootChance = br.ReadByte(),
-                Skills = new Dictionary<Byte, List<SkillSet>>()
+                Skills = new Dictionary<byte, List<SkillSet>>()
             };
 
             br.ReadBytes(3);

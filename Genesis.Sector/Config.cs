@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Genesis.Sector
 {
@@ -9,13 +8,13 @@ namespace Genesis.Sector
         {
             IsDebugMode = ConfigurationManager.AppSettings["IsDebugMode"] != "false";
             DBConnectionString = ConfigurationManager.AppSettings["ConnectionString"];
-            ServerId = Byte.Parse(ConfigurationManager.AppSettings["ServerID"]);
+            ServerId = byte.Parse(ConfigurationManager.AppSettings["ServerID"]);
             AssetPath = ConfigurationManager.AppSettings["AssetPath"];
         }
 
-        public static Boolean IsDebugMode { get; private set; }
-        public static Byte ServerId { get; private set; }
-        public static String DBConnectionString { get; private set; }
-        public static String AssetPath { get; private set; }
+        public static bool IsDebugMode { get; private set; }
+        public static byte ServerId { get; private set; }
+        public static string DBConnectionString { get; private set; }
+        public static string AssetPath { get; private set; }
     }
 }

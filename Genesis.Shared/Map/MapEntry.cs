@@ -17,43 +17,43 @@ namespace Genesis.Shared.Map
     public class MapEntry
     {
         #region Declarations
-        public UInt32 HighestCoid;
-        public Int64 CreatorLoadTrigger;
-        public Single CullingStyle;
-        public Single EntryW;
-        public Single EntryX;
-        public Single EntryY;
-        public Single EntryZ;
-        public String FileName;
-        public UInt32 Flags;
-        public Single GridSize;
-        public UInt32 IterationVersion;
-        public Int64 LastTeamTrigger;
-        public String MapFileName;
-        public UInt32 MapVersion;
-        public UInt16[] Music;
-        public Int32 NumModulePlacements;
-        public Int32 NumOfClientVOGOs;
-        public UInt32 NumOfImports;
-        public Int32 NumOfVOGOs;
-        public Int64 OnKillTrigger;
-        public Int64 PerPlayerLoadTrigger;
+        public uint HighestCoid;
+        public long CreatorLoadTrigger;
+        public float CullingStyle;
+        public float EntryW;
+        public float EntryX;
+        public float EntryY;
+        public float EntryZ;
+        public string FileName;
+        public uint Flags;
+        public float GridSize;
+        public uint IterationVersion;
+        public long LastTeamTrigger;
+        public string MapFileName;
+        public uint MapVersion;
+        public ushort[] Music;
+        public int NumModulePlacements;
+        public int NumOfClientVOGOs;
+        public uint NumOfImports;
+        public int NumOfVOGOs;
+        public long OnKillTrigger;
+        public long PerPlayerLoadTrigger;
         public SeaPlane SeaPlane;
-        public Byte TileSet;
-        public Boolean UseClouds;
-        public Boolean UseRoad;
-        public Boolean UseTimeOfDay;
-        public String WeatherStrEffect;
+        public byte TileSet;
+        public bool UseClouds;
+        public bool UseRoad;
+        public bool UseTimeOfDay;
+        public string WeatherStrEffect;
 
-        public UInt32 ContinentId;
-        public String Description;
-        public String Name;
+        public uint ContinentId;
+        public string Description;
+        public string Name;
 
-        public IDictionary<UInt32, MissionString> MissionStrings = new Dictionary<UInt32, MissionString>();
+        public IDictionary<uint, MissionString> MissionStrings = new Dictionary<uint, MissionString>();
         public IDictionary<ObjectType, IList<ClonedObjectBase>> ObjectBasesByType = new Dictionary<ObjectType, IList<ClonedObjectBase>>();
-        public IDictionary<UInt32, Variable> Variables = new Dictionary<UInt32, Variable>();
-        public IDictionary<UInt32, VisualWaypoint> VisualWaypoints = new Dictionary<UInt32, VisualWaypoint>();
-        public IDictionary<Byte, WeatherContainer> WeatherInfos = new Dictionary<Byte, WeatherContainer>();
+        public IDictionary<uint, Variable> Variables = new Dictionary<uint, Variable>();
+        public IDictionary<uint, VisualWaypoint> VisualWaypoints = new Dictionary<uint, VisualWaypoint>();
+        public IDictionary<byte, WeatherContainer> WeatherInfos = new Dictionary<byte, WeatherContainer>();
         public IList<RoadNodeBase> Roads = new List<RoadNodeBase>();
         #endregion
 
@@ -73,7 +73,7 @@ namespace Genesis.Shared.Map
             t.GridSize = br.ReadSingle();
             t.TileSet = br.ReadByte();
             t.UseRoad = br.ReadBoolean();
-            t.Music = br.Read<UInt16>(3);
+            t.Music = br.Read<ushort>(3);
 
             if (t.MapVersion >= 11)
             {
@@ -189,7 +189,7 @@ namespace Genesis.Shared.Map
             #region VOGOs
             for (var i = 0; i < t.NumOfClientVOGOs + t.NumOfVOGOs; ++i)
             {
-                Byte layer = 0;
+                byte layer = 0;
                 if (t.MapVersion > 5)
                     layer = br.ReadByte();
 
@@ -353,12 +353,12 @@ namespace Genesis.Shared.Map
                     Debug.Assert(doc != null);
 
                     var element = doc.Element("Map");
-                    if (element != null)
-                    {
-                        t.ContinentId = (UInt32)element.Attribute("continentObjectID");
-                        t.Name = (String)element.Element("Name");
-                        t.Description = (String)element.Element("Description");
-                    }
+                    if (element == null)
+                        return t;
+
+                    t.ContinentId = (uint)element.Attribute("continentObjectID");
+                    t.Name = (string)element.Element("Name");
+                    t.Description = (string)element.Element("Description");
                 }
             }
             else

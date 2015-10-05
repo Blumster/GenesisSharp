@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+
 using TNL.NET.Entities;
 
 namespace Genesis.Shared.TNL
@@ -9,17 +9,17 @@ namespace Genesis.Shared.TNL
 
     public class TNLInterface : NetInterface
     {
-        private readonly Object _lock = new Object();
+        private readonly object _lock = new object();
 
         public static TNLInterface Instance { get; private set; }
 
-        public Boolean UnlimitedBandwith { get; private set; }
-        public Boolean Adaptive { get; private set; }
-        public Int32 Version { get; private set; }
-        public UInt16 FragmentSize { get; private set; }
-        public Int64 ConnectionId { get; private set; }
-        public Dictionary<Int64, TNLConnection> MapConnections { get; private set; }
-        public Dictionary<Int64, NetObject> Ghosts { get; private set; }
+        public bool UnlimitedBandwith { get; }
+        public bool Adaptive { get; private set; }
+        public int Version { get; private set; }
+        public ushort FragmentSize { get; private set; }
+        public long ConnectionId { get; private set; }
+        public Dictionary<long, TNLConnection> MapConnections { get; }
+        public Dictionary<long, NetObject> Ghosts { get; }
 
         public static void RegisterNetClassReps()
         {
@@ -31,7 +31,7 @@ namespace Genesis.Shared.TNL
             TNLConnection.RegisterNetClassReps();
         }
 
-        public TNLInterface(Int32 port, Boolean adaptive, Int32 version, Boolean unlimitedBandwith)
+        public TNLInterface(int port, bool adaptive, int version, bool unlimitedBandwith)
             : base(port)
         {
             Adaptive = adaptive;
@@ -39,13 +39,13 @@ namespace Genesis.Shared.TNL
             UnlimitedBandwith = unlimitedBandwith;
             FragmentSize = 220;
             ConnectionId = 0;
-            MapConnections = new Dictionary<Int64, TNLConnection>();
-            Ghosts = new Dictionary<Int64, NetObject>();
+            MapConnections = new Dictionary<long, TNLConnection>();
+            Ghosts = new Dictionary<long, NetObject>();
 
             Instance = this;
         }
 
-        public TNLConnection FindConnection(Int64 connectionId)
+        public TNLConnection FindConnection(long connectionId)
         {
             lock (_lock)
                 return MapConnections.ContainsKey(connectionId) ? MapConnections[connectionId] : null;

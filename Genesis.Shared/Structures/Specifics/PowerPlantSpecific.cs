@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
     public struct PowerPlantSpecific
     {
-        public Int16 CoolRate;
-        public Int32 HeatMaximum;
-        public Int32 PowerMaximum;
-        public Int16 PowerRegenRate;
+        public short CoolRate;
+        public int HeatMaximum;
+        public int PowerMaximum;
+        public short PowerRegenRate;
 
         public static PowerPlantSpecific Read(BinaryReader br)
         {

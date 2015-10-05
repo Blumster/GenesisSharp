@@ -13,16 +13,16 @@ namespace Genesis.Global
     {
         public static GlobalServer Instance { get; private set; }
 
-        public UInt16 CurrentPlayerCount { get; set; }
-        public UInt16 MaxPlayerCount { get; set; }
-        public Byte ServerId { get; set; }
-        public UInt32 Port { get; private set; }
+        public ushort CurrentPlayerCount { get; set; }
+        public ushort MaxPlayerCount { get; set; }
+        public byte ServerId { get; set; }
+        public uint Port { get; private set; }
 
         public TNLInterface Interface { get; private set; }
 
         public Thread ListenThread { get; private set; }
 
-        private readonly Object _interfaceLock = new Object();
+        private readonly object _interfaceLock = new object();
         private Timer _updateTimer;
 
         public GlobalServer()
@@ -56,14 +56,14 @@ namespace Genesis.Global
             MaxPlayerCount = data.MaxPlayers;
 
             lock (_interfaceLock)
-                Interface = new TNLInterface((Int32) Port, true, 175, false);
+                Interface = new TNLInterface((int) Port, true, 175, false);
 
             Instance = this;
 
             _updateTimer = new Timer(UpdatePlayers, null, 30000, 30000);
         }
 
-        private void UpdatePlayers(Object o)
+        private void UpdatePlayers(object o)
         {
             DataAccess.Realmlist.UpdateGlobalStatus(ServerId, CurrentPlayerCount, 1);
         }
@@ -85,7 +85,7 @@ namespace Genesis.Global
             }
         }
 
-        public Boolean Start()
+        public bool Start()
         {
             try
             {

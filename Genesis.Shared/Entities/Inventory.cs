@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Genesis.Shared.Entities
+﻿namespace Genesis.Shared.Entities
 {
     using Base;
     using Constant;
@@ -8,20 +6,20 @@ namespace Genesis.Shared.Entities
 
     public class Inventory
     {
-        private Int32 _x;
-        private Int32 _y;
-        private Int32 _numPages;
+        private int _x;
+        private int _y;
+        private int _numPages;
         private ClonedObjectBase _owner;
-        private Boolean _doubleCheckBlock;
-        private Boolean _dirty;
-        private Int64[] _gridSpace;
+        private bool _doubleCheckBlock;
+        private bool _dirty;
+        private long[] _gridSpace;
         private InventoryType _inventoryType;
-        private Int32 _maxItems;
-        private Int32 _colsPerPage;
-        private Int32 _rowsPerPage;
+        private int _maxItems;
+        private int _colsPerPage;
+        private int _rowsPerPage;
         private SectorMap _map;
 
-        public Inventory(Int32 x, Int32 y, Int32 numPages)
+        public Inventory(int x, int y, int numPages)
         {
             _map = null;
             _gridSpace = null;
@@ -50,7 +48,7 @@ namespace Genesis.Shared.Entities
             _maxItems = _y * _x;
             _colsPerPage = _y;
             _rowsPerPage = (_y * _x) / _numPages;
-            _gridSpace = new Int64[_maxItems];
+            _gridSpace = new long[_maxItems];
 
             for (var i = 0; i < _maxItems; ++i)
                 _gridSpace[i] = -1;
@@ -73,7 +71,7 @@ namespace Genesis.Shared.Entities
             _map = map;
         }
 
-        public static Boolean FitsInTempInventoryAtPosition(Byte sizeX, Byte sizeY, Byte posX, Byte posY, Int64[] tempInventory, Int32 totalX, Int32 totalY, Int32 rowsPerPage)
+        public static bool FitsInTempInventoryAtPosition(byte sizeX, byte sizeY, byte posX, byte posY, long[] tempInventory, int totalX, int totalY, int rowsPerPage)
         {
             var sizeXa = sizeX + posX;
             if (sizeXa > totalX)
@@ -102,23 +100,23 @@ namespace Genesis.Shared.Entities
             _dirty = true;
         }
 
-        public Character GetSuperCharacter(Boolean includeSummons)
+        public Character GetSuperCharacter(bool includeSummons)
         {
             return _owner != null ? _owner.GetSuperCharacter(includeSummons) : null;
         }
 
-        public void FindPositionByCOID(Int64 coidItem, out Byte posX, out Byte posY)
+        public void FindPositionByCOID(long coidItem, out byte posX, out byte posY)
         {
             posX = 0;
             posY = 0;
 
-            Byte loopy = 0;
+            byte loopy = 0;
 
-            Byte currY = 0;
+            byte currY = 0;
 
             if (_y > 0)
             {
-                Byte currX;
+                byte currX;
 
                 while (true)
                 {
@@ -147,7 +145,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public Boolean FitsInInventoryAtPosition(Byte sizeX, Byte sizeY, Byte posX, Byte posY, out Int64 coid)
+        public bool FitsInInventoryAtPosition(byte sizeX, byte sizeY, byte posX, byte posY, out long coid)
         {
             coid = -1;
             return false;

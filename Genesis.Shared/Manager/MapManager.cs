@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Genesis.Shared.Manager
 {
@@ -7,10 +6,10 @@ namespace Genesis.Shared.Manager
 
     public static class MapManager
     {
-        private static readonly Dictionary<UInt32, SectorMap> Maps = new Dictionary<UInt32, SectorMap>();
-        private static readonly Object LockObject = new Object();
+        private static readonly Dictionary<uint, SectorMap> Maps = new Dictionary<uint, SectorMap>();
+        private static readonly object LockObject = new object();
 
-        public static SectorMap GetMap(UInt32 id)
+        public static SectorMap GetMap(uint id)
         {
             lock (LockObject)
             {
@@ -18,6 +17,8 @@ namespace Genesis.Shared.Manager
                     return Maps[id];
 
                 var sm = new SectorMap(id);
+                if (sm.MapEntry == null) // failed to load map
+                    return null;
 
                 Maps.Add(id, sm);
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 
 using UniversalAuth.Data;
@@ -11,9 +10,9 @@ namespace Genesis.Auth
     public class GlobalServerHandler
     {
         public static List<ServerInfoEx> GlobalServers { get; private set; }
-        public static ReaderWriterLockSlim ListLock { get; private set; }
+        public static ReaderWriterLockSlim ListLock { get; }
 
-        public static Timer RefreshTimer { get; private set; }
+        public static Timer RefreshTimer { get; }
 
         static GlobalServerHandler()
         {
@@ -29,7 +28,7 @@ namespace Genesis.Auth
             RefreshTimer.Dispose();
         }
 
-        private static void ReloadServerDatas(Object o)
+        private static void ReloadServerDatas(object o)
         {
             ListLock.EnterWriteLock();
 

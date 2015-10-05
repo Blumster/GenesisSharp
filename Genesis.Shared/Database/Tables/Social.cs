@@ -9,12 +9,12 @@ namespace Genesis.Shared.Database.Tables
 
     public class Social
     {
-        public void AddEntry(Int64 coid, Int64 friendCoid, SocialType type)
+        public void AddEntry(long coid, long friendCoid, SocialType type)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("INSERT INTO `social` (`OwnerCoid`, `Coid`, `Type`) VALUES ({0}, {1}, {2})", coid, friendCoid, (Byte)type)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"INSERT INTO `social` (`OwnerCoid`, `Coid`, `Type`) VALUES ({coid}, {friendCoid}, {(byte) type})"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -23,12 +23,12 @@ namespace Genesis.Shared.Database.Tables
             }
         }
 
-        public void RemoveEntry(Int64 coid, Int64 friendCoid, SocialType type)
+        public void RemoveEntry(long coid, long friendCoid, SocialType type)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("DELETE FROM `social` WHERE `OwnerCoid` = {0} AND `Coid` = {1} AND `Type` = {2}", coid, friendCoid, (Byte)type)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"DELETE FROM `social` WHERE `OwnerCoid` = {coid} AND `Coid` = {friendCoid} AND `Type` = {(byte) type}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -37,7 +37,7 @@ namespace Genesis.Shared.Database.Tables
             }
         }
 
-        public IList<SocialEntry> GetEntries(Int64 coid, SocialType type)
+        public IList<SocialEntry> GetEntries(long coid, SocialType type)
         {
             var list = new List<SocialEntry>();
 
@@ -45,7 +45,7 @@ namespace Genesis.Shared.Database.Tables
             {
                 lock (DataAccess.DatabaseAccess)
                 {
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("SELECT `s`.`Coid`, `c`.`Race`, `c`.`Class`, `c`.`Level`, `c`.`LastMapId`, `c`.`Name`, `s`.`Type` FROM `social` AS `s` LEFT JOIN `vehicle` AS `v` ON `s`.`Coid` = `v`.`OwnerCoid` LEFT JOIN `character` AS `c` ON `c`.`Coid` = `v`.`OwnerCoid` WHERE `s`.`OwnerCoid` = {0}{1}", coid, (type != SocialType.All ? String.Format(" AND `s`.`Type` = {0}", (Byte)type) : ""))))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"SELECT `s`.`Coid`, `c`.`Race`, `c`.`Class`, `c`.`Level`, `c`.`LastMapId`, `c`.`Name`, `s`.`Type` FROM `social` AS `s` LEFT JOIN `vehicle` AS `v` ON `s`.`Coid` = `v`.`OwnerCoid` LEFT JOIN `character` AS `c` ON `c`.`Coid` = `v`.`OwnerCoid` WHERE `s`.`OwnerCoid` = {coid}{(type != SocialType.All ? $" AND `s`.`Type` = {(byte) type}" : "")}"))
                     {
                         using (var reader = comm.ExecuteReader())
                         {
@@ -69,12 +69,12 @@ namespace Genesis.Shared.Database.Tables
             return list;
         }
 
-        public void DeleteEntriesByCharacter(Int64 coid)
+        public void DeleteEntriesByCharacter(long coid)
         {
             try
             {
                 lock (DataAccess.DatabaseAccess)
-                    using (var comm = DataAccess.DatabaseAccess.CreateCommand(String.Format("DELETE FROM `social` WHERE `OwnerCoid` = {0}", coid)))
+                    using (var comm = DataAccess.DatabaseAccess.CreateCommand($"DELETE FROM `social` WHERE `OwnerCoid` = {coid}"))
                         comm.ExecuteNonQuery();
             }
             catch (Exception e)

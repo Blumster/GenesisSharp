@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Genesis.Shared.Entities
 {
@@ -9,86 +8,86 @@ namespace Genesis.Shared.Entities
     public class Creature : SimpleObject
     {
         #region Declaration
-        protected Boolean Encountered;
-        protected Boolean IsMoving;
-        protected Boolean StoppedToAttack;
-        protected Boolean FixatedOnTarget;
-        protected Boolean Transforming;
-        protected Boolean Falling;
-        protected Boolean CanGiveXPAndLoot;
-        protected Boolean GivesSharedXPAndLoot;
-        public Boolean IsElite { get; private set; }
-        protected Boolean IsUsingVehicle;
-        protected Single TetherRange;
-        protected Boolean PacketOverride;
-        protected Boolean CanUsePowerDump;
-        protected UInt32 StatusEffectInvincibilityBitField;
-        protected Int32[] StatusEffectInvincibility;
-        protected Int32[] StatusEffectCountingMutexCancelable;
-        protected Int32[] StatusEffectCountingMutexNonCancelable;
-        protected Int32 TurretBoneId;
-        protected Int32 AttackingAnimation;
-        protected Byte TreasureRolls;
+        protected bool Encountered;
+        protected bool IsMoving;
+        protected bool StoppedToAttack;
+        protected bool FixatedOnTarget;
+        protected bool Transforming;
+        protected bool Falling;
+        protected bool CanGiveXPAndLoot;
+        protected bool GivesSharedXPAndLoot;
+        public bool IsElite { get; }
+        protected bool IsUsingVehicle;
+        protected float TetherRange;
+        protected bool PacketOverride;
+        protected bool CanUsePowerDump;
+        protected uint StatusEffectInvincibilityBitField;
+        protected int[] StatusEffectInvincibility;
+        protected int[] StatusEffectCountingMutexCancelable;
+        protected int[] StatusEffectCountingMutexNonCancelable;
+        protected int TurretBoneId;
+        protected int AttackingAnimation;
+        protected byte TreasureRolls;
         protected TFID Possessor;
-        protected Single DrivingTerrain;
-        protected Single TurretDirection;
-        protected Single FlyingHeight;
-        protected Single PreferredAttackRange;
-        public Int32 EnhancementId { get; private set; }
-        public UInt16 Mana { get; private set; }
-        protected UInt16 MaxMana;
-        protected Single ManaModifier;
-        protected Single ManaSkillScalar;
-        protected Int32 ManaSkillAdd;
-        public Int32 AttribTech { get; private set; }
-        public Int32 AttribCombat { get; private set; }
-        public Int32 AttribTheory { get; private set; }
-        public Int32 AttribPerception { get; private set; }
-        protected Int32 AttribTechModified;
-        protected Int32 AttribCombatModified;
-        protected Int32 AttribTheoryModified;
-        protected Int32 AttribPerceptionModified;
-        protected Int32 AngularDirection;
-        public UInt32 Level { get; private set; }
-        protected Int32 Analyzed;
-        protected Single[] Accucary;
-        protected Int16[] DamageAddMax;
-        protected Int16[] DamageAddEquippedMax;
-        protected Int16[] DamageAddMin;
-        protected Int16[] DamageAddEquippedMin;
-        protected Int16[] Resists;
+        protected float DrivingTerrain;
+        protected float TurretDirection;
+        protected float FlyingHeight;
+        protected float PreferredAttackRange;
+        public int EnhancementId { get; }
+        public ushort Mana { get; private set; }
+        protected ushort MaxMana;
+        protected float ManaModifier;
+        protected float ManaSkillScalar;
+        protected int ManaSkillAdd;
+        public int AttribTech { get; private set; }
+        public int AttribCombat { get; private set; }
+        public int AttribTheory { get; private set; }
+        public int AttribPerception { get; private set; }
+        protected int AttribTechModified;
+        protected int AttribCombatModified;
+        protected int AttribTheoryModified;
+        protected int AttribPerceptionModified;
+        protected int AngularDirection;
+        public uint Level { get; }
+        protected int Analyzed;
+        protected float[] Accucary;
+        protected short[] DamageAddMax;
+        protected short[] DamageAddEquippedMax;
+        protected short[] DamageAddMin;
+        protected short[] DamageAddEquippedMin;
+        protected short[] Resists;
         protected List<TFID> SummonedCreature;
         protected List<TFID> SummonedCreatureNoCount;
-        protected Single CriticalHitOffenseCreature;
-        protected Single CriticalHitOffenseVehicle;
-        protected Single CriticalHitDefenseCreature;
-        protected Single CriticalHitDefenseVehicle;
-        protected Single RefireRateModifier;
-        protected Single AggroRadiusModifier;
-        protected Single CreatureSpeed;
-        protected Single Boost;
-        protected Single CreatureTurningRate;
-        protected UInt32 AIFlags;
-        protected Boolean ForceSpawned;
-        public Boolean DoesntCountAsSummon { get; private set; }
-        protected Boolean SummonerIsCharacter;
-        protected Boolean Sleeping;
-        protected Int32 ActivationCounter;
-        public Int64 CurrentVehicleId { get; protected set; }
-        public Int64 DynamicOnUseTrigger { get; private set; }
-        public Int64 DynamicOnUseReaction { get; private set; }
+        protected float CriticalHitOffenseCreature;
+        protected float CriticalHitOffenseVehicle;
+        protected float CriticalHitDefenseCreature;
+        protected float CriticalHitDefenseVehicle;
+        protected float RefireRateModifier;
+        protected float AggroRadiusModifier;
+        protected float CreatureSpeed;
+        protected float Boost;
+        protected float CreatureTurningRate;
+        protected uint AIFlags;
+        protected bool ForceSpawned;
+        public bool DoesntCountAsSummon { get; }
+        protected bool SummonerIsCharacter;
+        protected bool Sleeping;
+        protected int ActivationCounter;
+        public long CurrentVehicleId { get; protected set; }
+        public long DynamicOnUseTrigger { get; private set; }
+        public long DynamicOnUseReaction { get; private set; }
         protected TFID SummonOwner;
         protected Vector4 MoveToTarget;
-        protected Single DefensiveBonus;
-        protected Single OffensiveBonus;
-        protected Single Penetration;
-        protected Single Deflection;
-        public Byte AIState { get; private set; }
-        protected Single SummonDistance;
-        protected Single SummonBaseDistance;
-        protected Byte SummonMode;
-        protected Boolean Wandering;
-        protected Int64 CurrentTrailerCoid;
+        protected float DefensiveBonus;
+        protected float OffensiveBonus;
+        protected float Penetration;
+        protected float Deflection;
+        public byte AIState { get; }
+        protected float SummonDistance;
+        protected float SummonBaseDistance;
+        protected byte SummonMode;
+        protected bool Wandering;
+        protected long CurrentTrailerCoid;
         #endregion Declaration
 
         public Creature()
@@ -98,7 +97,7 @@ namespace Genesis.Shared.Entities
             {
                 Coid = -1L,
                 Global = false
-            }; ;
+            };
             AttribTech = 1;
             AttribCombat = 1;
             AttribTheory = 1;
@@ -139,7 +138,7 @@ namespace Genesis.Shared.Entities
             {
                 Coid = -1L,
                 Global = false
-            }; ;
+            };
             DefensiveBonus = 0;
             OffensiveBonus = 0;
             Penetration = 0;
@@ -167,15 +166,15 @@ namespace Genesis.Shared.Entities
             MoveToTarget.Z = 0.0f;
             MoveToTarget.W = 0.0f;
 
-            Accucary = new Single[6];
-            DamageAddMax = new Int16[6];
-            DamageAddEquippedMax = new Int16[6];
-            DamageAddMin = new Int16[6];
-            DamageAddEquippedMin = new Int16[6];
-            Resists = new Int16[6];
-            StatusEffectInvincibility = new Int32[8];
-            StatusEffectCountingMutexCancelable = new Int32[8];
-            StatusEffectCountingMutexNonCancelable = new Int32[8];
+            Accucary = new float[6];
+            DamageAddMax = new short[6];
+            DamageAddEquippedMax = new short[6];
+            DamageAddMin = new short[6];
+            DamageAddEquippedMin = new short[6];
+            Resists = new short[6];
+            StatusEffectInvincibility = new int[8];
+            StatusEffectCountingMutexCancelable = new int[8];
+            StatusEffectCountingMutexNonCancelable = new int[8];
             AttackingAnimation = -1;
             TurretDirection = 0.0f;
             Encountered = false;
@@ -192,34 +191,34 @@ namespace Genesis.Shared.Entities
             return this;
         }
 
-        public void SetAttribCombat(Int32 combat)
+        public void SetAttribCombat(int combat)
         {
             AttribCombat = combat;
         }
 
-        public void SetAttribPerception(Int32 perception)
+        public void SetAttribPerception(int perception)
         {
             AttribPerception = perception;
         }
 
-        public void SetAttribTech(Int32 tech)
+        public void SetAttribTech(int tech)
         {
             AttribTech = tech;
         }
 
-        public void SetAttribTheory(Int32 theory)
+        public void SetAttribTheory(int theory)
         {
             AttribTheory = theory;
         }
 
-        public override Character GetSuperCharacter(Boolean inclSummons)
+        public override Character GetSuperCharacter(bool inclSummons)
         {
             return null;
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
-            base.WriteToCreatePacket(packet);
+            base.WriteToCreatePacket(packet, extended);
 
             if (extended || this is Character) // only chars and vehicles can be extended
                 return;

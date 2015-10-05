@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Genesis.Shared.Mission.Requirements
 {
@@ -7,11 +6,11 @@ namespace Genesis.Shared.Mission.Requirements
 
     public class ObjectiveRequirementTimePlayed : ObjectiveRequirement
     {
-        public Int32 SecondsPlayed;
-        public Boolean UseTotal;
-        public Boolean FailTimer;
-        public Boolean ShowTimer;
-        public String TimerText;
+        public int SecondsPlayed;
+        public bool UseTotal;
+        public bool FailTimer;
+        public bool ShowTimer;
+        public string TimerText;
 
         public ObjectiveRequirementTimePlayed(MissionObjective owner)
             : base(owner)
@@ -21,31 +20,31 @@ namespace Genesis.Shared.Mission.Requirements
 
         public override void UnSerialize(XElement elem)
         {
-            FirstStateSlot = (Byte)(Int32)elem.Attribute("slot");
+            FirstStateSlot = (byte)(int)elem.Attribute("slot");
 
             var secsPlayed = elem.Element("SecondsPlayed");
             if (secsPlayed != null && !secsPlayed.IsEmpty)
-                SecondsPlayed = (Int32)secsPlayed;
+                SecondsPlayed = (int)secsPlayed;
 
             var minsPlayed = elem.Element("MinutesPlayed");
             if (minsPlayed != null && !minsPlayed.IsEmpty)
-                SecondsPlayed = (Int32)minsPlayed * 60;
+                SecondsPlayed = (int)minsPlayed * 60;
 
             var useTotal = elem.Element("UseTotal");
             if (useTotal != null && !useTotal.IsEmpty)
-                UseTotal = (Int32)useTotal != 0;
+                UseTotal = (int)useTotal != 0;
 
             var failTimer = elem.Element("FailTimer");
             if (failTimer != null && !failTimer.IsEmpty)
-                FailTimer = (Int32)failTimer != 0;
+                FailTimer = (int)failTimer != 0;
 
             var showTimer = elem.Element("ShowTimer");
             if (showTimer != null && !showTimer.IsEmpty)
-                ShowTimer = (Int32)showTimer != 0;
+                ShowTimer = (int)showTimer != 0;
 
             var timerText = elem.Element("TimerText");
             if (timerText != null && !timerText.IsEmpty)
-                TimerText = (String)timerText;
+                TimerText = (string)timerText;
         }
     }
 }

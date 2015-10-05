@@ -1,18 +1,17 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Prefix
 {
     public class PrefixOrnament : PrefixBase
     {
-        public Int16 CombatAdjust;
-        public Single CombatAdjustf;
-        public Int16 PerceptionAdjust;
-        public Single PerceptionAdjustf;
-        public Int16 TechAdjust;
-        public Single TechAdjustf;
-        public Int16 TheoryAdjust;
-        public Single TheoryAdjustf;
+        public short CombatAdjust;
+        public float CombatAdjustf;
+        public short PerceptionAdjust;
+        public float PerceptionAdjustf;
+        public short TechAdjust;
+        public float TechAdjustf;
+        public short TheoryAdjust;
+        public float TheoryAdjustf;
 
         public PrefixOrnament(BinaryReader br)
             : base(br)

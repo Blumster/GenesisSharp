@@ -1,14 +1,13 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Prefix
 {
     public class PrefixRaceItem : PrefixBase
     {
-        public Int16 HazardCountBonus;
-        public Single HazardCountBonusf;
-        public Int16 HazardSecondsBonus;
-        public Single HazardSecondsBonusf;
+        public short HazardCountBonus;
+        public float HazardCountBonusf;
+        public short HazardSecondsBonus;
+        public float HazardSecondsBonusf;
 
         public PrefixRaceItem(BinaryReader br)
             : base(br)

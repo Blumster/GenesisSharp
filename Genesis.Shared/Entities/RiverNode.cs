@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Entities
 {
     public class RiverNode : RoadNode
     {
-        public Int32 ReflectColor;
-        public Int32 RefractColor;
-        public Single WaterDepth;
+        public int ReflectColor;
+        public int RefractColor;
+        public float WaterDepth;
 
-        public override void UnSerialize(BinaryReader br, UInt32 mapVersion)
+        public override void UnSerialize(BinaryReader br, uint mapVersion)
         {
             base.UnSerialize(br, mapVersion);
 

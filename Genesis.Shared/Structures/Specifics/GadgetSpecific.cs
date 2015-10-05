@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
     public struct GadgetSpecific
     {
-        public UInt32 ObjectType;
-        public Int32 Prefix;
+        public uint ObjectType;
+        public int Prefix;
 
         public static GadgetSpecific Read(BinaryReader br)
         {

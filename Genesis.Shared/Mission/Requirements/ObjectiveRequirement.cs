@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Genesis.Shared.Mission.Requirements
 {
@@ -9,7 +8,7 @@ namespace Genesis.Shared.Mission.Requirements
     {
         public MissionObjective ObjectiveOwner;
         public RequirementType RequirementType;
-        public Byte FirstStateSlot;
+        public byte FirstStateSlot;
 
         protected ObjectiveRequirement(MissionObjective owner)
         {
@@ -20,7 +19,7 @@ namespace Genesis.Shared.Mission.Requirements
 
         public static ObjectiveRequirement Create(MissionObjective owner, XElement elem)
         {
-            var type = (String)elem.Attribute("type");
+            var type = (string)elem.Attribute("type");
 
             ObjectiveRequirement req;
 

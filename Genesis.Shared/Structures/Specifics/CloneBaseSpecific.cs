@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures.Specifics
 {
@@ -7,21 +6,21 @@ namespace Genesis.Shared.Structures.Specifics
 
     public struct CloneBaseSpecific
     {
-        public UInt32 Available;
-        public Int32 BaseValue;
-        public Int32 CloneBaseId;
-        public Int32 CommodityGroupType;
-        public String FxFileName;
-        public UInt32 InLootGenerator;
-        public UInt32 InStores;
-        public UInt32 IsGeneratable;
-        public Boolean IsSellable;
-        public UInt32 IsTargetable;
-        public String LongDesc;
-        public String ShortDesc;
-        public Int32 TilesetFlags;
-        public Int32 Type;
-        public String UniqueName;
+        public uint Available;
+        public int BaseValue;
+        public int CloneBaseId;
+        public int CommodityGroupType;
+        public string FxFileName;
+        public uint InLootGenerator;
+        public uint InStores;
+        public uint IsGeneratable;
+        public bool IsSellable;
+        public uint IsTargetable;
+        public string LongDesc;
+        public string ShortDesc;
+        public int TilesetFlags;
+        public int Type;
+        public string UniqueName;
 
         public static CloneBaseSpecific Read(BinaryReader br)
         {

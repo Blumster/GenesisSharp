@@ -14,6 +14,6 @@ namespace Genesis.Shared.Clonebase
             CloneBaseSpecific = CloneBaseSpecific.Read(br);
         }
 
-        public ObjectType Type { get { return (ObjectType)CloneBaseSpecific.Type; } }
+        public ObjectType Type => (ObjectType) CloneBaseSpecific.Type;
     }
 }

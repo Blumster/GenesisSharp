@@ -12,21 +12,21 @@ namespace Genesis.Shared.Entities
 
     public class SimpleObject : ClonedObjectBase
     {
-        protected Int32[] Prefixes;
-        protected Int32[] Gadgets;
-        protected Int32 MaxGadgets;
-        protected Int32 TeamFaction;
-        protected Int32 Quantity;
-        protected UInt32 HP;
-        protected UInt32 MaxHP;
-        protected Int32 ItemTemplateId;
-        protected Byte InventoryPositionX;
-        protected Byte InventoryPositionY;
-        protected Byte SkillLevel1;
-        protected Byte SkillLevel2;
-        protected Byte SkillLevel3;
-        protected Boolean AlreadyAssembled;
-        protected Boolean IsInDB;
+        protected int[] Prefixes;
+        protected int[] Gadgets;
+        protected int MaxGadgets;
+        protected int TeamFaction;
+        protected int Quantity;
+        protected uint HP;
+        protected uint MaxHP;
+        protected int ItemTemplateId;
+        protected byte InventoryPositionX;
+        protected byte InventoryPositionY;
+        protected byte SkillLevel1;
+        protected byte SkillLevel2;
+        protected byte SkillLevel3;
+        protected bool AlreadyAssembled;
+        protected bool IsInDB;
 
         public SimpleObject()
         {
@@ -50,12 +50,12 @@ namespace Genesis.Shared.Entities
         {
             base.InitializeBaseData();
 
-            MaxHP = (UInt32)CloneBaseObject.SimpleObjectSpecific.MaxHitPoint;
-            HP = (UInt32)CloneBaseObject.SimpleObjectSpecific.MinHitPoints;
+            MaxHP = (uint)CloneBaseObject.SimpleObjectSpecific.MaxHitPoint;
+            HP = (uint)CloneBaseObject.SimpleObjectSpecific.MinHitPoints;
             TeamFaction = CloneBaseObject.SimpleObjectSpecific.Faction;
         }
 
-        public override Int32 GetQuantity()
+        public override int GetQuantity()
         {
             return Quantity;
         }
@@ -64,7 +64,7 @@ namespace Genesis.Shared.Entities
         {
         }
 
-        public override void WriteToCreatePacket(Packet packet, Boolean extended = false)
+        public override void WriteToCreatePacket(Packet packet, bool extended = false)
         {
             packet.WriteInteger(CBID);
             packet.WriteLong(-1L); // coid Store
@@ -122,12 +122,12 @@ namespace Genesis.Shared.Entities
 
             packet.WritePadding(1);
 
-            packet.WriteShort((Int16)MaxGadgets);
-            packet.WriteShort((Int16)RequiredLevel);
-            packet.WriteShort((Int16)RequiredCombat);
-            packet.WriteShort((Int16)RequiredPerception);
-            packet.WriteShort((Int16)RequiredTech);
-            packet.WriteShort((Int16)RequiredTheory);
+            packet.WriteShort((short)MaxGadgets);
+            packet.WriteShort((short)RequiredLevel);
+            packet.WriteShort((short)RequiredCombat);
+            packet.WriteShort((short)RequiredPerception);
+            packet.WriteShort((short)RequiredTech);
+            packet.WriteShort((short)RequiredTheory);
 
             packet.WritePadding(2);
 
@@ -136,12 +136,12 @@ namespace Genesis.Shared.Entities
             packet.WritePadding(4);
         }
 
-        public override void SetCurrentHP(UInt32 hp)
+        public override void SetCurrentHP(uint hp)
         {
             HP = hp;
         }
 
-        public override void SetMaximumHP(UInt32 hp)
+        public override void SetMaximumHP(uint hp)
         {
             MaxHP = hp;
         }
@@ -179,7 +179,7 @@ namespace Genesis.Shared.Entities
             }
         }
 
-        public virtual Boolean LoadFromDB(Int64 coid)
+        public virtual bool LoadFromDB(long coid)
         {
             var id = DataAccess.Item.GetItemFrom("item_simple", coid);
             if (id == null)
@@ -193,7 +193,7 @@ namespace Genesis.Shared.Entities
             return true;
         }
 
-        public static void WriteEmptyObjectToPacket(Packet packet, Int32 extraSkip = 0)
+        public static void WriteEmptyObjectToPacket(Packet packet, int extraSkip = 0)
         {
             packet.WriteInteger(-1); // CBID
             packet.WritePadding(208 + extraSkip);
@@ -201,7 +201,7 @@ namespace Genesis.Shared.Entities
             // TODO: fill actual empty data maybe?
         }
 
-        public virtual UInt32 GetMapId()
+        public virtual uint GetMapId()
         {
             return 0;
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Xml.Linq;
@@ -12,52 +11,52 @@ namespace Genesis.Shared.Mission
     public class Mission
     {
         #region Template Data
-        public Int32 Achievement;
-        public Int16 ActiveObjectiveOverride;
-        public Int16 AutoAssing;
-        public Int32 Continent;
-        public Int32 Discipline;
-        public Int32 DisciplineValue;
-        public UInt32 Id;
-        public Int16 IsRepeatable;
-        public Int32[] Item;
-        public Int16[] ItemIsKit;
-        public Int32[] ItemQuantity;
-        public Int32[] ItemTemplate;
-        public Single[] ItemValue;
-        public Int32 NPC;
-        public String Name;
-        public Byte NumberOfObjectives;
+        public int Achievement;
+        public short ActiveObjectiveOverride;
+        public short AutoAssing;
+        public int Continent;
+        public int Discipline;
+        public int DisciplineValue;
+        public uint Id;
+        public short IsRepeatable;
+        public int[] Item;
+        public short[] ItemIsKit;
+        public int[] ItemQuantity;
+        public int[] ItemTemplate;
+        public float[] ItemValue;
+        public int NPC;
+        public string Name;
+        public byte NumberOfObjectives;
 
-        public Dictionary<Byte, MissionObjective> Objectives;
-        public Int32 Pocket;
-        public Int32 Priority;
-        public Int32 Region;
-        public Int16 ReqClass;
-        public Int32 ReqLevelMax;
-        public Int32 ReqLevelMin;
-        public Int32[] ReqMissionId;
-        public Int16 ReqRace;
-        public Int32 RequirementEventId;
-        public Int32 RequirementsNegative;
-        public Int32 RequirementsOred;
-        public Int32 RewardDiscipline;
-        public Int32 RewardDisciplineValue;
-        public Int32 RewardUnassignedDisciplinePoints;
-        public Int16 TargetLevel;
-        public Byte Type;
+        public Dictionary<byte, MissionObjective> Objectives;
+        public int Pocket;
+        public int Priority;
+        public int Region;
+        public short ReqClass;
+        public int ReqLevelMax;
+        public int ReqLevelMin;
+        public int[] ReqMissionId;
+        public short ReqRace;
+        public int RequirementEventId;
+        public int RequirementsNegative;
+        public int RequirementsOred;
+        public int RewardDiscipline;
+        public int RewardDisciplineValue;
+        public int RewardUnassignedDisciplinePoints;
+        public short TargetLevel;
+        public byte Type;
         #endregion
 
         #region Extra Data
-        public String Title;
-        public String InternalName;
-        public String Description;
-        public String OnLineAccept;
-        public String OnLineReject;
-        public String NotCompleteText;
-        public String CompleteText;
-        public String FailText;
-        public Boolean CoreMission;
+        public string Title;
+        public string InternalName;
+        public string Description;
+        public string OnLineAccept;
+        public string OnLineReject;
+        public string NotCompleteText;
+        public string CompleteText;
+        public string FailText;
+        public bool CoreMission;
         #endregion
 
         public static Mission Read(BinaryReader br)
@@ -67,7 +66,7 @@ namespace Genesis.Shared.Mission
                 Id = br.ReadUInt32(),
                 Name = br.ReadUnicodeString(65),
                 Type = br.ReadByte(),
-                Objectives = new Dictionary<Byte, MissionObjective>()
+                Objectives = new Dictionary<byte, MissionObjective>()
             };
 
             br.ReadByte();
@@ -78,16 +77,16 @@ namespace Genesis.Shared.Mission
             mi.ReqClass = br.ReadInt16();
             mi.ReqLevelMin = br.ReadInt32();
             mi.ReqLevelMax = br.ReadInt32();
-            mi.ReqMissionId = br.Read<Int32>(4);
+            mi.ReqMissionId = br.Read<int>(4);
             mi.IsRepeatable = br.ReadInt16();
 
             br.ReadBytes(2);
 
-            mi.Item = br.Read<Int32>(4);
-            mi.ItemTemplate = br.Read<Int32>(4);
-            mi.ItemValue = br.Read<Single>(4);
-            mi.ItemIsKit = br.Read<Int16>(4);
-            mi.ItemQuantity = br.Read<Int32>(4);
+            mi.Item = br.Read<int>(4);
+            mi.ItemTemplate = br.Read<int>(4);
+            mi.ItemValue = br.Read<float>(4);
+            mi.ItemIsKit = br.Read<short>(4);
+            mi.ItemQuantity = br.Read<int>(4);
             mi.AutoAssing = br.ReadInt16();
             mi.ActiveObjectiveOverride = br.ReadInt16();
             mi.Continent = br.ReadInt32();
@@ -112,8 +111,8 @@ namespace Genesis.Shared.Mission
 
             XElement element = null;
 
-            var stream = AssetManager.GetStreamByName(String.Format("{0}.xml", mi.Name), "missions.glm") ??
-                         AssetManager.GetStreamByName(String.Format("{0}.xml", mi.Name), "misc.glm");
+            var stream = AssetManager.GetStreamByName($"{mi.Name}.xml", "missions.glm") ??
+                         AssetManager.GetStreamByName($"{mi.Name}.xml", "misc.glm");
 
             if (stream != null)
             {
@@ -125,15 +124,15 @@ namespace Genesis.Shared.Mission
                     element = doc.Element("Mission");
                     if (element != null)
                     {
-                        mi.Title = (String)element.Element("Title");
-                        mi.InternalName = (String)element.Element("Internal");
-                        mi.Description = (String)element.Element("Description");
-                        mi.OnLineAccept = (String)element.Element("OnLineAccept");
-                        mi.OnLineReject = (String)element.Element("OnLineReject");
-                        mi.NotCompleteText = (String)element.Element("NotCompleteText");
-                        mi.CompleteText = (String)element.Element("CompleteText");
-                        mi.FailText = (String)element.Element("FailText");
-                        mi.CoreMission = (String)element.Element("CoreMission") != "0";
+                        mi.Title = (string)element.Element("Title");
+                        mi.InternalName = (string)element.Element("Internal");
+                        mi.Description = (string)element.Element("Description");
+                        mi.OnLineAccept = (string)element.Element("OnLineAccept");
+                        mi.OnLineReject = (string)element.Element("OnLineReject");
+                        mi.NotCompleteText = (string)element.Element("NotCompleteText");
+                        mi.CompleteText = (string)element.Element("CompleteText");
+                        mi.FailText = (string)element.Element("FailText");
+                        mi.CoreMission = (string)element.Element("CoreMission") != "0";
                     }
                 }
             }

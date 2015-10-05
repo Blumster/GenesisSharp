@@ -1,15 +1,14 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 
 namespace Genesis.Shared.Structures
 {
     public struct ItemType
     {
-        public Int32 CBID;
-        public Byte TypeOfItem;
-        public Single Percentage;
-        public Byte Unlimited;
-        public Int32 Value;
+        public int CBID;
+        public byte TypeOfItem;
+        public float Percentage;
+        public byte Unlimited;
+        public int Value;
 
         public static ItemType Read(BinaryReader br)
         {

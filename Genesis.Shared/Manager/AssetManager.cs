@@ -21,7 +21,7 @@ namespace Genesis.Shared.Manager
     public static class AssetManager
     {
         #region Declarations
-        public static AssetContainer AssetContainer { get; private set; }
+        public static AssetContainer AssetContainer { get; }
         #endregion
 
         static AssetManager()
@@ -29,7 +29,7 @@ namespace Genesis.Shared.Manager
             AssetContainer = new AssetContainer();
         }
 
-        public static void Initialize(String assetPath)
+        public static void Initialize(string assetPath)
         {
             Logger.WriteLog("+++ Initializing Asset Manager", LogType.Initialize);
 
@@ -40,7 +40,7 @@ namespace Genesis.Shared.Manager
             //LoadMaps();
         }
 
-        private static void ReadEntries(String path)
+        private static void ReadEntries(string path)
         {
             AssetContainer.AccessLock.EnterWriteLock();
             AssetContainer.FileEntries.Clear();
@@ -53,7 +53,7 @@ namespace Genesis.Shared.Manager
             Directory.GetFiles(path, "*.glm", SearchOption.AllDirectories).ToList().ForEach(ReadFile);
         }
 
-        private static void ReadFile(String fileName)
+        private static void ReadFile(string fileName)
         {
             using (var br = new BinaryReader(new FileStream(fileName, FileMode.Open, FileAccess.Read)))
             {
@@ -99,7 +99,7 @@ namespace Genesis.Shared.Manager
             }
         }
 
-        private static List<FileEntry> CreateEntriesByStringTable(IEnumerable<Byte> data)
+        private static List<FileEntry> CreateEntriesByStringTable(IEnumerable<byte> data)
         {
             var sList = new List<FileEntry>();
 
@@ -108,7 +108,7 @@ namespace Genesis.Shared.Manager
             foreach (var t in data)
             {
                 if (t != 0)
-                    sb.Append((Char)t);
+                    sb.Append((char)t);
                 else
                 {
                     sList.Add(new FileEntry { Name = sb.ToString() });
@@ -118,7 +118,7 @@ namespace Genesis.Shared.Manager
             return sList;
         }
 
-        public static FileEntry GetFileEntryByName(String name, String source = "")
+        public static FileEntry GetFileEntryByName(string name, string source = "")
         {
             AssetContainer.AccessLock.EnterReadLock();
 
@@ -137,7 +137,7 @@ namespace Genesis.Shared.Manager
             return ret;
         }
 
-        public static BinaryReader GetReaderByName(String name)
+        public static BinaryReader GetReaderByName(string name)
         {
             return GetReaderByEntry(GetFileEntryByName(name));
         }
@@ -147,7 +147,7 @@ namespace Genesis.Shared.Manager
             return new BinaryReader(GetStreamByEntry(entry));
         }
 
-        public static MemoryStream GetStreamByName(String name, String source = "")
+        public static MemoryStream GetStreamByName(string name, string source = "")
         {
             return GetStreamByEntry(GetFileEntryByName(name, source));
         }
@@ -161,11 +161,11 @@ namespace Genesis.Shared.Manager
             {
                 br.BaseStream.Position = entry.Offset;
 
-                return new MemoryStream(br.ReadBytes((Int32)entry.Size));
+                return new MemoryStream(br.ReadBytes((int)entry.Size));
             }
         }
 
-        public static List<FileEntry> GetFileEntriesByName(String name)
+        public static List<FileEntry> GetFileEntriesByName(string name)
         {
             AssetContainer.AccessLock.EnterReadLock();
 
@@ -206,9 +206,9 @@ namespace Genesis.Shared.Manager
         case "tk":
         case "lnk":*/
 
-        public static void ReadWAD(String path)
+        public static void ReadWAD(string path)
         {
-            using (var br = new BinaryReader(new FileStream(String.Format("{0}clonebase.wad", path), FileMode.Open, FileAccess.Read)))
+            using (var br = new BinaryReader(new FileStream($"{path}clonebase.wad", FileMode.Open, FileAccess.Read)))
             {
                 var version = br.ReadUInt32();
                 Debug.Assert(version == 27);
@@ -377,11 +377,11 @@ namespace Genesis.Shared.Manager
             }
         }
 
-        public static void ReadXML(String path) // TODO: Analyze data, what will be needed
+        public static void ReadXML(string path) // TODO: Analyze data, what will be needed
         {
             var des = new XmlSerializer(typeof(DataHolder));
 
-            using (var sr = new StreamReader(String.Format(@"{0}\wad.xml", path)))
+            using (var sr = new StreamReader($@"{path}\wad.xml"))
             {
                 var dh = des.Deserialize(sr) as DataHolder;
                 if (dh == null)
@@ -395,7 +395,7 @@ namespace Genesis.Shared.Manager
             }
         }
 
-        public static MapEntry LoadMap(String name)
+        public static MapEntry LoadMap(string name)
         {
             AssetContainer.AccessLock.EnterReadLock();
 
@@ -408,18 +408,25 @@ namespace Genesis.Shared.Manager
                 return me;
             }
 
-            var mapEntry = AssetContainer.FileEntries.SingleOrDefault(fEntry => fEntry.Key == name);
-
-            AssetContainer.AccessLock.ExitReadLock();
-
-            using (var br = GetReaderByEntry(mapEntry.Value))
+            if (AssetContainer.FileEntries.ContainsKey(name))
             {
-                var me = MapEntry.Read(mapEntry.Value, br);
+                var mapEntry = AssetContainer.FileEntries.Single(fEntry => fEntry.Key == name);
 
-                AssetContainer.AddMapEntry(mapEntry.Key, me);
+                AssetContainer.AccessLock.ExitReadLock();
 
-                return me;
+                using (var br = GetReaderByEntry(mapEntry.Value))
+                {
+                    var me = MapEntry.Read(mapEntry.Value, br);
+
+                    AssetContainer.AddMapEntry(mapEntry.Key, me);
+
+                    return me;
+                }
             }
+
+            Logger.WriteLog($"Unable to open map: {name}! File not found in GLM files.", LogType.Error);
+
+            return null;
         }
 
         /*private void LoadMaps()

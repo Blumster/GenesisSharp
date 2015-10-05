@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 
 namespace Genesis.Shared.Structures
@@ -8,17 +7,17 @@ namespace Genesis.Shared.Structures
 
     public struct VisualWaypoint
     {
-        public UInt32 Id;
-        public UInt64 ObjectCOID;
-        public Int32 ObjectiveCount;
-        public List<UInt32> Objectives;
-        public UInt64 ReactionCOID;
-        public Byte Type;
-        public Single X;
-        public Single Y;
-        public Single Z;
+        public uint Id;
+        public ulong ObjectCOID;
+        public int ObjectiveCount;
+        public List<uint> Objectives;
+        public ulong ReactionCOID;
+        public byte Type;
+        public float X;
+        public float Y;
+        public float Z;
 
-        public static VisualWaypoint Read(BinaryReader br, UInt32 mapVersion)
+        public static VisualWaypoint Read(BinaryReader br, uint mapVersion)
         {
             /*var streamVer = */
             br.ReadUInt32();
@@ -35,7 +34,7 @@ namespace Genesis.Shared.Structures
                 ObjectiveCount = br.ReadInt32()
             };
 
-            wp.Objectives = new List<UInt32>(br.Read<UInt32>(wp.ObjectiveCount));
+            wp.Objectives = new List<uint>(br.Read<uint>(wp.ObjectiveCount));
 
             return wp;
         }

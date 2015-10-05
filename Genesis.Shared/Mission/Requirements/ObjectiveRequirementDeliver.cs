@@ -1,5 +1,4 @@
-﻿using System;
-using System.Xml.Linq;
+﻿using System.Xml.Linq;
 
 namespace Genesis.Shared.Mission.Requirements
 {
@@ -7,14 +6,14 @@ namespace Genesis.Shared.Mission.Requirements
 
     public class ObjectiveRequirementDeliver : ObjectiveRequirement
     {
-        public Int32 ItemCBID;
-        public Int32 NumToDeliver;
-        public Int32 NPCTargetCBID;
-        public Int32 NPCContinentId;
-        public Boolean GiveItemOnStart;
-        public Boolean TakeItemAtEnd;
-        public Boolean NPCTargetCompletes;
-        public Boolean RequireItemToComplete;
+        public int ItemCBID;
+        public int NumToDeliver;
+        public int NPCTargetCBID;
+        public int NPCContinentId;
+        public bool GiveItemOnStart;
+        public bool TakeItemAtEnd;
+        public bool NPCTargetCompletes;
+        public bool RequireItemToComplete;
 
         public ObjectiveRequirementDeliver(MissionObjective owner)
             : base(owner)
@@ -33,38 +32,38 @@ namespace Genesis.Shared.Mission.Requirements
 
         public override void UnSerialize(XElement elem)
         {
-            FirstStateSlot = (Byte)(Int32)elem.Attribute("slot");
+            FirstStateSlot = (byte)(int)elem.Attribute("slot");
 
             var cbid = elem.Element("CBIDItem");
             if (cbid != null && !cbid.IsEmpty)
             {
-                ItemCBID = (Int32)cbid;
+                ItemCBID = (int)cbid;
                 RequireItemToComplete = ItemCBID == -1;
             }
 
             var contCBID = elem.Element("ContinentID");
             if (contCBID != null && !contCBID.IsEmpty)
-                NPCContinentId = (Int32)contCBID;
+                NPCContinentId = (int)contCBID;
 
             var numToDeliver = elem.Element("NumToDeliver");
             if (numToDeliver != null && !numToDeliver.IsEmpty)
-                NumToDeliver = (Int32)numToDeliver;
+                NumToDeliver = (int)numToDeliver;
 
             var targetCBID = elem.Element("TargetNPCCBID");
             if (targetCBID != null && !targetCBID.IsEmpty)
-                NPCTargetCBID = (Int32)targetCBID;
+                NPCTargetCBID = (int)targetCBID;
 
             var giveItemAtStart = elem.Element("GiveItemAtStart");
             if (giveItemAtStart != null && !giveItemAtStart.IsEmpty)
-                GiveItemOnStart = (Int32)giveItemAtStart != 0;
+                GiveItemOnStart = (int)giveItemAtStart != 0;
 
             var takeItemAtEnd = elem.Element("TakeItemAtEnd");
             if (takeItemAtEnd != null && !takeItemAtEnd.IsEmpty)
-                TakeItemAtEnd = (Int32)takeItemAtEnd != 0;
+                TakeItemAtEnd = (int)takeItemAtEnd != 0;
 
             var targetCompletes = elem.Element("NPCTargetCompletes");
             if (targetCompletes != null && !targetCompletes.IsEmpty)
-                NPCTargetCompletes = (Int32)targetCompletes != 0;
+                NPCTargetCompletes = (int)targetCompletes != 0;
         }
     }
 }
