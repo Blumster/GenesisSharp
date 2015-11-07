@@ -121,7 +121,7 @@ CREATE TABLE `character` (
   `Credits` bigint(20) unsigned NOT NULL,
   `CreditsDebt` bigint(20) unsigned NOT NULL,
   `KMTravelled` float NOT NULL,
-  `Online` tinyint(3) unsigned NOT NULL,
+  `Online` tinyint(3) unsigned NOT NULL DEFAULT 0,
   PRIMARY KEY (`Coid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

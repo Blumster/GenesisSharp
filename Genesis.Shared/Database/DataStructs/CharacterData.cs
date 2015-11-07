@@ -47,6 +47,7 @@ namespace Genesis.Shared.Database.DataStructs
         public ulong CreditsDebt { get; set; }
         public float Scale { get; set; }
         public float KmTravelled { get; set; }
+        public bool Online { get; set; }
 
         public static CharacterData Read(IDataReader reader)
         {
@@ -94,6 +95,7 @@ namespace Genesis.Shared.Database.DataStructs
                     CreditsDebt = reader.GetUInt64(37),
                     KmTravelled = reader.GetFloat(37),
                     Scale = reader.GetFloat(39),
+                    Online = reader.GetBoolean(40)
                 };
             }
 
@@ -102,20 +104,18 @@ namespace Genesis.Shared.Database.DataStructs
 
         public static string GetQueryString()
         {
-            //       0            1       2       3               4            5                   6    7    8    9     10    11    12    13      14      15            16             17      18        19     20        21              22                23          24           25           26              27       28      29             30                   31               32      33       34            35            36         37             38             39
-            return "`AccountId`, `Coid`, `Cbid`, `TeamFaction`,  `LastMapId`, `LastStationMapId`, `X`, `Y`, `Z`, `Q1`, `Q2`, `Q3`, `Q4`, `Head`, `Body`, `HeadDetail`, `HeadDetail2`, `Hair`, `Mouth`, `Eyes`, `Helmet`, `PrimaryColor`, `SecondaryColor`, `EyeColor`, `HairColor`, `SkinColor`, `SpecialColor`, `Level`, `Name`, `ScaleOffset`, `ActiveVehicleCoid`, `LastStationId`, `Race`, `Class`, `CombatMode`, `BattleMode`, `Credits`, `CreditsDebt`, `KMTravelled`, `Scale`";
+            //       0            1       2       3               4            5                   6    7    8    9     10    11    12    13      14      15            16             17      18        19     20        21              22                23          24           25           26              27       28      29             30                   31               32      33       34            35            36         37             38             39       40
+            return "`AccountId`, `Coid`, `Cbid`, `TeamFaction`,  `LastMapId`, `LastStationMapId`, `X`, `Y`, `Z`, `Q1`, `Q2`, `Q3`, `Q4`, `Head`, `Body`, `HeadDetail`, `HeadDetail2`, `Hair`, `Mouth`, `Eyes`, `Helmet`, `PrimaryColor`, `SecondaryColor`, `EyeColor`, `HairColor`, `SkinColor`, `SpecialColor`, `Level`, `Name`, `ScaleOffset`, `ActiveVehicleCoid`, `LastStationId`, `Race`, `Class`, `CombatMode`, `BattleMode`, `Credits`, `CreditsDebt`, `KMTravelled`, `Scale`, `Online`";
         }
 
         public string GetInsertString()
         {
-            return
-                $"{AccountId}, {Coid}, {Cbid}, {TeamFaction}, {LastMapId}, {LastStationMapId}, {X.ToString(CultureInfo.InvariantCulture)}, {Y.ToString(CultureInfo.InvariantCulture)}, {Z.ToString(CultureInfo.InvariantCulture)}, {Q1.ToString(CultureInfo.InvariantCulture)}, {Q2.ToString(CultureInfo.InvariantCulture)}, {Q3.ToString(CultureInfo.InvariantCulture)}, {Q4.ToString(CultureInfo.InvariantCulture)}, {Head}, {Body}, {HeadDetail}, {HeadDetail2}, {Hair}, {Mouth}, {Eyes}, {Helmet}, {PrimaryColor}, {SecondaryColor}, {EyeColor}, {HairColor}, {SkinColor}, {SpecialColor}, {Level}, '{Name}', {ScaleOffset.ToString(CultureInfo.InvariantCulture)}, {ActiveVehicleCOID}, {LastStationId}, {Race}, {Class}, {CombatMode}, {BattleMode}, {Credits}, {CreditsDebt}, {KmTravelled.ToString(CultureInfo.InvariantCulture)}, {Scale.ToString(CultureInfo.InvariantCulture)}";
+            return $"{AccountId}, {Coid}, {Cbid}, {TeamFaction}, {LastMapId}, {LastStationMapId}, {X.ToString(CultureInfo.InvariantCulture)}, {Y.ToString(CultureInfo.InvariantCulture)}, {Z.ToString(CultureInfo.InvariantCulture)}, {Q1.ToString(CultureInfo.InvariantCulture)}, {Q2.ToString(CultureInfo.InvariantCulture)}, {Q3.ToString(CultureInfo.InvariantCulture)}, {Q4.ToString(CultureInfo.InvariantCulture)}, {Head}, {Body}, {HeadDetail}, {HeadDetail2}, {Hair}, {Mouth}, {Eyes}, {Helmet}, {PrimaryColor}, {SecondaryColor}, {EyeColor}, {HairColor}, {SkinColor}, {SpecialColor}, {Level}, '{Name}', {ScaleOffset.ToString(CultureInfo.InvariantCulture)}, {ActiveVehicleCOID}, {LastStationId}, {Race}, {Class}, {CombatMode}, {BattleMode}, {Credits}, {CreditsDebt}, {KmTravelled.ToString(CultureInfo.InvariantCulture)}, {Scale.ToString(CultureInfo.InvariantCulture)}, {(Online ? 1 : 0)}";
         }
 
         public string GetUpdateString()
         {
-            return
-                $"`AccountId` = {AccountId}, `Coid` = {Coid}, `Cbid` = {Cbid}, `TeamFaction` = {TeamFaction}, `LastMapId` = {LastMapId}, `LastStationMapId` = {LastStationMapId}, `X` = {X.ToString(CultureInfo.InvariantCulture)}, `Y` = {Y.ToString(CultureInfo.InvariantCulture)}, `Z` = {Z.ToString(CultureInfo.InvariantCulture)}, `Q1` = {Q1.ToString(CultureInfo.InvariantCulture)}, `Q2` = {Q2.ToString(CultureInfo.InvariantCulture)}, `Q3` = {Q3.ToString(CultureInfo.InvariantCulture)}, `Q4` = {Q4.ToString(CultureInfo.InvariantCulture)}, `Head` = {Head}, `Body` = {Body}, `HeadDetail` = {HeadDetail}, `HeadDetail2` = {HeadDetail2}, `Hair` = {Hair}, `Mouth` = {Mouth},  `Eyes` = {Eyes}, `Helmet` = {Helmet}, `PrimaryColor` = {PrimaryColor}, `SecondaryColor` = {SecondaryColor}, `EyeColor` = {EyeColor}, `HairColor` = {HairColor}, `SkinColor` = {SkinColor}, `SpecialColor` = {SpecialColor}, `Level` = {Level}, `Name` = '{Name}', `ScaleOffset` = {ScaleOffset.ToString(CultureInfo.InvariantCulture)}, `ActiveVehicleCoid` = {ActiveVehicleCOID}, `LastStationId` = {LastStationId}, `Race` = {Race}, `Class` = {Class}, `CombatMode` = {CombatMode}, `BattleMode` = {BattleMode}, `Credits` = {Credits}, `CreditsDebt` = {CreditsDebt}, `KMTravelled` = {KmTravelled.ToString(CultureInfo.InvariantCulture)}, `Scale` = {Scale.ToString(CultureInfo.InvariantCulture)}";
+            return $"`AccountId` = {AccountId}, `Coid` = {Coid}, `Cbid` = {Cbid}, `TeamFaction` = {TeamFaction}, `LastMapId` = {LastMapId}, `LastStationMapId` = {LastStationMapId}, `X` = {X.ToString(CultureInfo.InvariantCulture)}, `Y` = {Y.ToString(CultureInfo.InvariantCulture)}, `Z` = {Z.ToString(CultureInfo.InvariantCulture)}, `Q1` = {Q1.ToString(CultureInfo.InvariantCulture)}, `Q2` = {Q2.ToString(CultureInfo.InvariantCulture)}, `Q3` = {Q3.ToString(CultureInfo.InvariantCulture)}, `Q4` = {Q4.ToString(CultureInfo.InvariantCulture)}, `Head` = {Head}, `Body` = {Body}, `HeadDetail` = {HeadDetail}, `HeadDetail2` = {HeadDetail2}, `Hair` = {Hair}, `Mouth` = {Mouth},  `Eyes` = {Eyes}, `Helmet` = {Helmet}, `PrimaryColor` = {PrimaryColor}, `SecondaryColor` = {SecondaryColor}, `EyeColor` = {EyeColor}, `HairColor` = {HairColor}, `SkinColor` = {SkinColor}, `SpecialColor` = {SpecialColor}, `Level` = {Level}, `Name` = '{Name}', `ScaleOffset` = {ScaleOffset.ToString(CultureInfo.InvariantCulture)}, `ActiveVehicleCoid` = {ActiveVehicleCOID}, `LastStationId` = {LastStationId}, `Race` = {Race}, `Class` = {Class}, `CombatMode` = {CombatMode}, `BattleMode` = {BattleMode}, `Credits` = {Credits}, `CreditsDebt` = {CreditsDebt}, `KMTravelled` = {KmTravelled.ToString(CultureInfo.InvariantCulture)}, `Scale` = {Scale.ToString(CultureInfo.InvariantCulture)}, `Online` = {(Online ? 1 : 0)}";
         }
     }
 }

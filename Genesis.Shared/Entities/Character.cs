@@ -408,7 +408,7 @@ namespace Genesis.Shared.Entities
                 BattleMode = _currentBattleMode,
                 Credits = _credits,
                 CreditsDebt = _creditsDebt,
-                KmTravelled = _kmTravelled,
+                KmTravelled = _kmTravelled
             };
 
             if (IsInDB)
