@@ -93,7 +93,7 @@ namespace Genesis.Shared.Database.DataStructs
                     BattleMode = reader.GetInt16(35),
                     Credits = reader.GetUInt64(36),
                     CreditsDebt = reader.GetUInt64(37),
-                    KmTravelled = reader.GetFloat(37),
+                    KmTravelled = reader.GetFloat(38),
                     Scale = reader.GetFloat(39),
                     Online = reader.GetBoolean(40)
                 };
